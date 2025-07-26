@@ -70,6 +70,7 @@ def require_focus(fn):
             
             #Set focus to roblox window
             else:
+                pg.press("altleft")
                 rblxWindow.maximize()
                 rblxWindow.activate()
 
