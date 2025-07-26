@@ -472,6 +472,8 @@ def launch_game(game_id:int):
     command = "start roblox://placeId="+str(game_id)
     os.system(command=command)
 
+    UI_NAV_ENABLED = False
+
 @require_focus
 def image_is_visible(image_path:str, confidence:float=0.9) -> bool:
     """Checks whether a given image is visible in the roblox window
