@@ -298,10 +298,7 @@ def chat(message:str):
     :type message: str
     """
     #Open chat
-    dinput.keyDown("shift")
-    dinput.keyDown("7")
-    dinput.keyUp("shift")
-    dinput.keyUp("7")
+    dinput.press("/")
 
     #Use clipboard to paste message quickly
     previousClipboard = pyclip.paste()
