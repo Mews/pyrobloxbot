@@ -35,3 +35,10 @@ class UI_NAVIGATE_DIRECTIONS:
     """Valid strings to pass to ui_navigate
     """
     VALUES = typing.Literal["up", "u", "left", "l", "right", "r", "down", "d"]
+
+
+__all__ = [
+    "KEYBOARD_KEYS",
+    "WALK_DIRECTIONS",
+    "UI_NAVIGATE_DIRECTIONS",
+]
