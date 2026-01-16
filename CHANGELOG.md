@@ -1,4 +1,8 @@
 # Changelog
+
+> [!NOTE]
+> Changes after 1.0.9 will be logged in the [releases page](https://github.com/Mews/pyrobloxbot/releases)
+
 ### 1.0.9
 -   Added docs for the module's global variables
 
