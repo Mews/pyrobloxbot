@@ -22,7 +22,8 @@ dependencies = [
   "pygetwindow",
   "pynput",
   "pyperclip",
-  "pywin32",
+  # Windows-only
+  "pywin32; sys_platform == 'win32'",
 ]
 
 [project.urls]
