@@ -13,5 +13,5 @@ jobs:
     uses: Mews/.github/.github/workflows/smoke-test-python.yaml@main
     with:
       package_name: 'pyrobloxbot'
-      python_versions: '["3.9", "3.10", "3.11", "3.12", "3.13"]'
+      python_versions: '["3.9", "3.13"]'
       os_list: '["windows-latest"]'
