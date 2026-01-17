@@ -14,3 +14,4 @@ jobs:
     with:
       python_version: '3.13'
       os: 'windows-latest'
+      type_check_command: 'mypy . --ignore-missing-imports'
