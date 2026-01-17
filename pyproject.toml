@@ -6,18 +6,24 @@ build-backend = "hatchling.build"
 name = "pyrobloxbot"
 version = "1.0.9"
 authors = [
-  { name="Mews", email="tiraraspas@gmail.com" },
+  { name="Mews", email="ar754456@gmail.com" },
 ]
 description = "A python library to control the roblox character and interact with game ui through keyboard inputs"
+
+keywords = ["roblox", "bot", "keyboard"]
+
 readme = "README.md"
-requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE"]
+
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: Microsoft :: Windows",
 ]
-license = "MIT"
-license-files = ["LICENSE"]
+
+requires-python = ">=3.10"
+
 dependencies = [
   "pydirectinput",
   "pygetwindow",
@@ -29,11 +35,12 @@ dependencies = [
   "opencv-python",
   "pillow",
 ]
-keywords = ["roblox", "bot", "keyboard"]
+
 
 [project.urls]
-Homepage = "https://github.com/Mews/py-roblox-bot"
-Issues = "https://github.com/Mews/py-roblox-bot/issues"
+Homepage = "https://github.com/Mews/pyrobloxbot"
+Issues = "https://github.com/Mews/pyrobloxbot/issues"
+
 
 [dependency-groups]
 docs = [
