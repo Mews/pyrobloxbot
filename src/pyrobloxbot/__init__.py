@@ -13,7 +13,6 @@ import pyautogui as pg
 from .exceptions import *
 from .literals import *
 
-print("ci should catch this"
 
 UI_NAV_ENABLED = False
 UI_NAV_KEY = "\\"
