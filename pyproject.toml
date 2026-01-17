@@ -10,7 +10,7 @@ authors = [
 ]
 description = "A python library to control the roblox character and interact with game ui through keyboard inputs"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
