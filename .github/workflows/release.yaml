@@ -12,3 +12,4 @@ jobs:
       os: 'windows-latest'
     permissions:
       id-token: write
+      contents: read
