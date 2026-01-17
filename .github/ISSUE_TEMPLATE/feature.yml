@@ -1,0 +1,38 @@
+name: Feature Request
+description: Suggest an idea you'd like to see added to this project
+title: "<short feature description>"
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for opening an issue! ❤️
+        Please ensure you search existing issues to avoid duplicates.
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Describe the feature you'd like
+      description: Describe in length the feature you'd like to see added to this project.
+      placeholder: Detailed feature description...
+    validations:
+      required: true
+
+  - type: textarea
+    id: related-problem
+    attributes:
+      label: Is your feature request related to a problem?
+      description: If applicable, describe the problem you have when using this project, and how this feature would solve it.
+      placeholder: "Ex.: It always frustrates me how..."
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context or screenshots about the feature request you think might be relevant.
+    validations:
+      required: false

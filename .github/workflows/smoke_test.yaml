@@ -1,0 +1,17 @@
+name: Smoke Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  call-run-python-tests:
+    name: Run smoke tests
+
+    uses: Mews/.github/.github/workflows/smoke-test-python.yaml@main
+    with:
+      package_name: 'pyrobloxbot'
+      python_versions: '["3.10", "3.13"]'
+      os_list: '["windows-latest"]'

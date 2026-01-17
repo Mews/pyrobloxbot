@@ -1,0 +1,85 @@
+name: Bug Report
+description: Report a bug to help improve the project
+title: "<short bug description>"
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for opening an issue! ❤️
+        Please ensure you search existing issues to avoid duplicates.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: Describe the bug in detail here.
+      placeholder: I clicked X and Y happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected behavior
+      description: Describe what you expected to happen.
+      placeholder: I expected the robot to walk...
+    validations:
+      required: true
+
+  - type: textarea
+    id: real-behavior
+    attributes:
+      label: Real behavior
+      description: Describe what actually happens.
+      placeholder: But it caught on fire...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: To Reproduce
+      description: List the steps needed to reproduce the bug.
+      placeholder: |
+        1. First step
+        2. Second step
+        3. Etc...
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      description: The operating system you were using.
+      placeholder: "Ex.: Windows 11, Ubuntu 25.10"
+    validations:
+      required: true
+  
+  - type: input
+    id: python-version
+    attributes:
+      label: Python Version
+      description: The python version you were using.
+      placeholder: "Ex.: Python 3.12"
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem. You can drag and drop images here.
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Add any other context about the problem that you think might be relevant.
+    validations:
+      required: false
