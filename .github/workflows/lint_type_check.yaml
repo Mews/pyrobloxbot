@@ -1,0 +1,17 @@
+name: 'Lint & Type Check'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  linting-and-type-checking:
+    name: Lint & Type Check
+
+    uses: Mews/.github/.github/workflows/ruff-mypy-python.yaml@main
+    with:
+      python_version: '3.13'
+      os: 'windows-latest'
+      type_check_command: 'mypy . --ignore-missing-imports'
