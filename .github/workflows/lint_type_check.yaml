@@ -1,0 +1,16 @@
+name: 'Lint & Type Check'
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  linting-and-type-checking:
+    name: Run smoke tests
+
+    uses: Mews/.github/.github/workflows/ruff-mypy-python.yaml@main
+    with:
+      python_version: '3.13'
+      os: 'windows-latest'
