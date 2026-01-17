@@ -38,10 +38,10 @@
 
     while not bot.image_is_visible("button.png", confidence=0.8):
         sleep(0.5) #Wait a bit before checking again
-    
+
     print("The button is on screen!")
     ```
-    
+
 ### 1.0.8
 This version was missing some dependencies
 
@@ -68,7 +68,7 @@ Other than that, the changes present in 1.0.9 also apply to this version, even t
 
 -   Added `ui_navigate` function which takes a direction string and calls the corresponding ui navigation function
 
-    `ui_navigate` raises `InvalidUiDirectionException` if the direction argument is not in `literals.UI_NAVIGATE_DIRECTIONS.VALUES` 
+    `ui_navigate` raises `InvalidUiDirectionException` if the direction argument is not in `literals.UI_NAVIGATE_DIRECTIONS.VALUES`
 
 -   `walk` function can now take multiple walk directions as arguments at the same time to walk diagonally
 

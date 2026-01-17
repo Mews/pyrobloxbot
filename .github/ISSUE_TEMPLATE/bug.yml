@@ -58,7 +58,7 @@ body:
       placeholder: "Ex.: Windows 11, Ubuntu 25.10"
     validations:
       required: true
-  
+
   - type: input
     id: python-version
     attributes:
