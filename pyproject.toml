@@ -40,3 +40,9 @@ docs = [
   "sphinx",
   "sphinx_rtd_theme",
 ]
+
+dev = [
+  "pre-commit",
+  "ruff",
+  "mypy",
+]
