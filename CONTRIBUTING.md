@@ -113,7 +113,7 @@ pre-commit install
 ```
 
 After this, you can create a new branch and commit your changes to it.
-Once you're done, you can create a [pull request](https://github.com/Mews/pyrobloxbot/compare).
+Once you're done, you can create a [pull request](https://github.com/Mews/pyrobloxbot/pulls).
 
 Make sure to follow the pull request template, and a maintainer will review it and merge it into the project.
 
