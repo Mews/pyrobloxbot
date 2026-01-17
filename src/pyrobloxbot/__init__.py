@@ -13,6 +13,7 @@ import pyautogui as pg
 from .exceptions import *
 from .literals import *
 
+
 UI_NAV_ENABLED = False
 UI_NAV_KEY = "\\"
 """The key that is used by toggle_ui_navigation to turn on the ui navigation mode"""
