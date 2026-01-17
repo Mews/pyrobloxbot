@@ -16,3 +16,12 @@ class InvalidWalkDirectionException(Exception):
 class InvalidUiDirectionException(Exception):
     """Raised by ui_navigate when given a direction that isn't in literals.UI_NAVIGATE_DIRECTIONS.VALUES
     """
+    pass
+
+
+__all__ = [
+    "NoRobloxWindowException",
+    "InvalidSlotNumberException",
+    "InvalidWalkDirectionException",
+    "InvalidUiDirectionException",
+]
