@@ -7,7 +7,7 @@ build:
   jobs:
     install:
       - pip install --upgrade pip==25.1
-      - pip install . --group docs
+      - pip install . --group docs --no-deps
 
 sphinx:
   configuration: docs/source/conf.py
