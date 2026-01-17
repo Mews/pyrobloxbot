@@ -34,3 +34,9 @@ keywords = ["roblox", "bot", "keyboard"]
 [project.urls]
 Homepage = "https://github.com/Mews/py-roblox-bot"
 Issues = "https://github.com/Mews/py-roblox-bot/issues"
+
+[dependency-groups]
+docs = [
+  "sphinx",
+  "sphinx_rtd_theme",
+]
