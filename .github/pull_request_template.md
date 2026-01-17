@@ -15,5 +15,6 @@
 <!--- Make sure you have completed the following steps before submitting your PR -->
 <!--- Feel free to type an `x` in all the boxes below to let us know you have completed the steps: -->
 <!--- If not applicable, check the box -->
+- [ ] The pre-commit checks all pass (see [contributing.md](../CONTRIBUTING.md))
 - [ ] Added necessary documentation (if applicable)
 - [ ] Added tests to cover new features (if applicable)
