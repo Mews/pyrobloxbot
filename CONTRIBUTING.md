@@ -104,7 +104,7 @@ Next, you can set up a virtual environment and install the project dependencies
 cd pyrobloxbot
 python -m venv venv
 .\venv\Scripts\activate
-pip install . -e --group dev
+pip install -e . --group dev
 ```
 
 You're also required to install the pre-commit hooks, using:
