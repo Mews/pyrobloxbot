@@ -96,7 +96,7 @@ git clone https://github.com/yourusername/pyrobloxbot.git
 ```
 or, if you have an SSH key set up,
 ```shell
-git clone git@github.com: yourusername/pyrobloxbot.git
+git clone git@github.com:yourusername/pyrobloxbot.git
 ```
 
 Next, you can set up a virtual environment and install the project dependencies
