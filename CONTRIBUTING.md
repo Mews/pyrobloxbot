@@ -92,11 +92,11 @@ The first thing you'll need to do is [fork the repository](https://github.com/Me
 
 Next, you'll need to clone the repository to your machine, either with
 ```shell
-git clone https://github.com/Mews/pyrobloxbot.git
+git clone https://github.com/yourusername/pyrobloxbot.git
 ```
 or, if you have an SSH key set up,
 ```shell
-git clone git@github.com:Mews/pyrobloxbot.git
+git clone git@github.com: yourusername/pyrobloxbot.git
 ```
 
 Next, you can set up a virtual environment and install the project dependencies
