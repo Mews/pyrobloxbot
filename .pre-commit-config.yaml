@@ -19,3 +19,13 @@ repos:
     hooks:
       - id: mypy
         args: [--ignore-missing-imports]
+
+-   repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]
