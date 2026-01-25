@@ -1,6 +1,47 @@
 import pytest
 from unittest.mock import patch
 import pyrobloxbot as bot
+from unittest.mock import MagicMock
+
+
+class TestRequireFocus:
+    @bot.require_focus
+    def dummy_function(self):
+        return "Success"
+
+    @patch("pyrobloxbot.core.GetForegroundWindow")
+    @patch("pyrobloxbot.core.GetWindowText", return_value="Roblox")
+    def test_require_focus_already_active(self, mock_text, mock_fg):
+        assert self.dummy_function() == "Success"
+
+    @patch("pyrobloxbot.core.getWindowsWithTitle", return_value=[])
+    @patch("pyrobloxbot.core.GetForegroundWindow")
+    @patch("pyrobloxbot.core.GetWindowText", return_value="Not Roblox")
+    def test_require_focus_raises_exception(self, mock_text, mock_fg, mock_get_windows):
+        with pytest.raises(bot.exceptions.NoRobloxWindowException) as excinfo:
+            self.dummy_function()
+
+        assert "You must have roblox opened" in str(excinfo.value)
+
+    @patch("pyrobloxbot.core.getActiveWindow")
+    @patch("pyrobloxbot.core.getWindowsWithTitle")
+    @patch("pyrobloxbot.core.pg.press")
+    @patch("pyrobloxbot.core.GetForegroundWindow")
+    @patch("pyrobloxbot.core.GetWindowText", return_value="Not Roblox")
+    def test_require_focus_activates_window(
+        self, mock_text, mock_fg, mock_press, mock_get_windows, mock_active
+    ):
+        mock_window = MagicMock()
+        mock_window.title = "Roblox"
+        mock_get_windows.return_value = [mock_window]
+
+        mock_active.return_value = "Roblox Window Object"
+
+        assert self.dummy_function() == "Success"
+
+        mock_window.maximize.assert_called_once()
+        mock_window.activate.assert_called_once()
+        mock_press.assert_called_with("altleft")
 
 
 class TestKeyboardAction:
