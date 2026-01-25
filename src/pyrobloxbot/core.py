@@ -21,7 +21,13 @@ from .exceptions import (
 )
 from .literals import KEYBOARD_KEYS, UI_NAVIGATE_DIRECTIONS, WALK_DIRECTIONS
 
-UI_NAV_ENABLED = False
+
+class BotState:
+    UI_NAV_ENABLED = False
+
+
+state = BotState()
+
 UI_NAV_KEY = "\\"
 """The key that is used by toggle_ui_navigation to turn on the ui navigation mode"""
 
@@ -307,9 +313,9 @@ def leave_game(interval: float = 0.5):
     :param interval: How long between each keyboard input, in seconds, defaults to 0.5
     :type interval: float
     """
-    global UI_NAV_ENABLED
+    global state
     dinput.press(("esc", "l", "enter"), interval=interval)
-    UI_NAV_ENABLED = False
+    state.UI_NAV_ENABLED = False
 
 
 @require_focus
@@ -355,8 +361,8 @@ def toggle_ui_navigation():
 
     The "UI Navigation Toggle" setting must be enabled on Roblox
     """
-    global UI_NAV_ENABLED
-    UI_NAV_ENABLED = not UI_NAV_ENABLED
+    global state
+    state.UI_NAV_ENABLED = not state.UI_NAV_ENABLED
     dinput.press(UI_NAV_KEY)
 
 
@@ -395,7 +401,7 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
 @require_focus
 def ui_navigate_up():
     """Navigate up in ui elements"""
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     dinput.press("up")
@@ -404,7 +410,7 @@ def ui_navigate_up():
 @require_focus
 def ui_navigate_left():
     """Navigate left in ui elements"""
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     dinput.press("left")
@@ -413,7 +419,7 @@ def ui_navigate_left():
 @require_focus
 def ui_navigate_right():
     """Navigate right in ui elements"""
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     dinput.press("right")
@@ -422,7 +428,7 @@ def ui_navigate_right():
 @require_focus
 def ui_navigate_down():
     """Navigate down in ui elements"""
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     dinput.press("down")
@@ -431,7 +437,7 @@ def ui_navigate_down():
 @require_focus
 def ui_click():
     """Click on currently selected ui element"""
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     dinput.press("enter")
@@ -449,7 +455,7 @@ def ui_scroll_up(ticks: int, delay: float = 0.1):
                   A lower delay will scroll faster but at some point can lose precision
     :type delay: float, optional
     """
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     kb = Controller()
@@ -469,7 +475,7 @@ def ui_scroll_down(ticks: int, delay: float = 0.1):
                   A lower delay will scroll faster but at some point can lose precision
     :type delay: float, optional
     """
-    if not UI_NAV_ENABLED:
+    if not state.UI_NAV_ENABLED:
         toggle_ui_navigation()
 
     kb = Controller()
@@ -504,8 +510,8 @@ def launch_game(game_id: int):
     command = "start roblox://placeId=" + str(game_id)
     os.system(command=command)
 
-    global UI_NAV_ENABLED
-    UI_NAV_ENABLED = False
+    global state
+    state.UI_NAV_ENABLED = False
 
 
 @require_focus
@@ -530,7 +536,7 @@ def image_is_visible(image_path: str, confidence: float = 0.9) -> bool:
 
 
 __all__ = [
-    "UI_NAV_ENABLED",
+    "state",
     "UI_NAV_KEY",
     "FAILSAFE_HOTKEY",
     "set_failsafe_hotkey",
