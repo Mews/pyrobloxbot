@@ -62,5 +62,5 @@ dev = [
 
 
 [tool.pytest.ini_options]
-addopts = "--cov=."
+addopts = "--cov=pyrobloxbot --cov=tests"
 testpaths = ["tests"]
