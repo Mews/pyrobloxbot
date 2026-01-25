@@ -390,7 +390,7 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
         ui_navigate_right()
 
     elif d in down_directions:
-        ui_navigate_left()
+        ui_navigate_down()
 
     else:
         raise InvalidUiDirectionException(
