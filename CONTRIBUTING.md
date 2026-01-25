@@ -110,6 +110,7 @@ pip install -e . --group dev  (you might need to update pip to do this)
 You're also required to install the pre-commit hooks, using:
 ```shell
 pre-commit install
+pre-commit install --hook-type pre-push
 ```
 
 After this, you can create a new branch and commit your changes to it.
