@@ -9,10 +9,19 @@ wheels/
 # Virtual environments
 .venv
 venv/**
+venv
 
-# Testing
+# Dev
 .coverage
-
+.mypy_cache
+.pytest_cache
+.ruff_cache
+htmlcov
+a.py
 
 #Sphinx
 docs/build/**
+
+# VS Code
+.vscode
+.vscode/**
