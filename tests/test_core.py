@@ -9,25 +9,25 @@ class TestRequireFocus:
     def dummy_function(self):
         return "Success"
 
-    @patch("pyrobloxbot.core.GetForegroundWindow")
-    @patch("pyrobloxbot.core.GetWindowText", return_value="Roblox")
+    @patch("pyrobloxbot.core.input.GetForegroundWindow")
+    @patch("pyrobloxbot.core.input.GetWindowText", return_value="Roblox")
     def test_require_focus_already_active(self, mock_text, mock_fg):
         assert self.dummy_function() == "Success"
 
-    @patch("pyrobloxbot.core.getWindowsWithTitle", return_value=[])
-    @patch("pyrobloxbot.core.GetForegroundWindow")
-    @patch("pyrobloxbot.core.GetWindowText", return_value="Not Roblox")
+    @patch("pyrobloxbot.core.input.getWindowsWithTitle", return_value=[])
+    @patch("pyrobloxbot.core.input.GetForegroundWindow")
+    @patch("pyrobloxbot.core.input.GetWindowText", return_value="Not Roblox")
     def test_require_focus_raises_exception(self, mock_text, mock_fg, mock_get_windows):
         with pytest.raises(bot.exceptions.NoRobloxWindowException) as excinfo:
             self.dummy_function()
 
         assert "You must have roblox opened" in str(excinfo.value)
 
-    @patch("pyrobloxbot.core.getActiveWindow")
-    @patch("pyrobloxbot.core.getWindowsWithTitle")
-    @patch("pyrobloxbot.core.pg.press")
-    @patch("pyrobloxbot.core.GetForegroundWindow")
-    @patch("pyrobloxbot.core.GetWindowText", return_value="Not Roblox")
+    @patch("pyrobloxbot.core.input.getActiveWindow")
+    @patch("pyrobloxbot.core.input.getWindowsWithTitle")
+    @patch("pyrobloxbot.core.input.pg.press")
+    @patch("pyrobloxbot.core.input.GetForegroundWindow")
+    @patch("pyrobloxbot.core.input.GetWindowText", return_value="Not Roblox")
     def test_require_focus_activates_window(
         self, mock_text, mock_fg, mock_press, mock_get_windows, mock_active
     ):
@@ -47,7 +47,7 @@ class TestRequireFocus:
 class TestKeyboardAction:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
-        with patch("pyrobloxbot.core.dinput") as self.mock_dinput:
+        with patch("pyrobloxbot.core.input.dinput") as self.mock_dinput:
             yield
 
     def test_keyboard_action(self):
@@ -71,8 +71,8 @@ class TestHoldKeyboardAction:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
         with (
-            patch("pyrobloxbot.core.dinput") as self.mock_dinput,
-            patch("pyrobloxbot.core.wait") as self.mock_wait,
+            patch("pyrobloxbot.core.input.dinput") as self.mock_dinput,
+            patch("pyrobloxbot.utils.sleep") as self.mock_wait,
         ):
             yield
 
@@ -101,7 +101,7 @@ class TestHoldKeyboardAction:
 class TestPressKey:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
-        with patch("pyrobloxbot.core.dinput") as self.mock_dinput:
+        with patch("pyrobloxbot.core.input.dinput") as self.mock_dinput:
             yield
 
     def test_press_key(self):
@@ -125,8 +125,8 @@ class TestHoldKey:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
         with (
-            patch("pyrobloxbot.core.dinput") as self.mock_dinput,
-            patch("pyrobloxbot.core.wait") as self.mock_wait,
+            patch("pyrobloxbot.core.input.dinput") as self.mock_dinput,
+            patch("pyrobloxbot.utils.sleep") as self.mock_wait,
         ):
             yield
 
@@ -155,7 +155,7 @@ class TestHoldKey:
 class TestKeyDown:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
-        with patch("pyrobloxbot.core.dinput") as self.mock_dinput:
+        with patch("pyrobloxbot.core.input.dinput") as self.mock_dinput:
             yield
 
     def test_key_down(self):
@@ -168,7 +168,7 @@ class TestKeyDown:
 class TestKeyUp:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
-        with patch("pyrobloxbot.core.dinput") as self.mock_dinput:
+        with patch("pyrobloxbot.core.input.dinput") as self.mock_dinput:
             yield
 
     def test_key_up(self):

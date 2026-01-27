@@ -7,8 +7,8 @@ class TestWalk:
     @pytest.fixture(autouse=True)
     def setup_mocks(self):
         with (
-            patch("pyrobloxbot.core.dinput") as self.mock_dinput,
-            patch("pyrobloxbot.core.wait") as self.mock_wait,
+            patch("pyrobloxbot.core.input.dinput") as self.mock_dinput,
+            patch("pyrobloxbot.utils.sleep") as self.mock_wait,
         ):
             yield
 
