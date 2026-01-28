@@ -16,7 +16,7 @@ def toggle_ui_navigation():
 
     The "UI Navigation Toggle" setting must be enabled on Roblox
     """
-    state._ui_nav_enabled = not state.is_ui_nav_enabled()
+    state._UI_NAV_ENABLED = not state.is_ui_nav_enabled()
     press_key(keybinds.toggle_ui_navigation)
 
 

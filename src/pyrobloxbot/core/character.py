@@ -60,7 +60,7 @@ def equip_slot(slot: int):
 def toggle_shift_lock():
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
     press_key(keybinds.toggle_shift_lock)
-    state._shift_lock_enabled = not state.is_shift_lock_enabled()
+    state._SHIFT_LOCK_ENABLED = not state.is_shift_lock_enabled()
 
 
 __all__ = [

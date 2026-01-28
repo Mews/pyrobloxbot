@@ -3,15 +3,15 @@ from dataclasses import dataclass
 
 @dataclass
 class BotState:
-    _ui_nav_enabled: bool = False
+    _UI_NAV_ENABLED: bool = False
 
-    _shift_lock_enabled: bool = False
+    _SHIFT_LOCK_ENABLED: bool = False
 
     def is_ui_nav_enabled(self):
-        return self._ui_nav_enabled
+        return self._UI_NAV_ENABLED
 
     def is_shift_lock_enabled(self):
-        return self._shift_lock_enabled
+        return self._SHIFT_LOCK_ENABLED
 
 
 __all__ = ["BotState"]
