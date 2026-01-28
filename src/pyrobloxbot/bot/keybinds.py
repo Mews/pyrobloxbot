@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from ..constants import KEYBOARD_KEYS
-import keyboard as kb
+import keyboard
 import _thread
 
 
@@ -40,11 +40,11 @@ class BotKeybinds:
         """
 
         if self._FAILSAFE_HOTKEY:
-            kb.clear_hotkey(self._FAILSAFE_HOTKEY)
+            keyboard.clear_hotkey(self._FAILSAFE_HOTKEY)
 
         self._FAILSAFE_HOTKEY = "+".join(keys)
 
-        kb.add_hotkey(self._FAILSAFE_HOTKEY, _thread.interrupt_main)
+        keyboard.add_hotkey(self._FAILSAFE_HOTKEY, _thread.interrupt_main)
 
 
 __all__ = ["BotKeybinds"]

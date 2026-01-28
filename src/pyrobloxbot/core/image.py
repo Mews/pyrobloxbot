@@ -1,5 +1,5 @@
 from .input import require_focus
-import pyautogui as pg
+import pyautogui
 
 
 @require_focus
@@ -17,9 +17,9 @@ def image_is_visible(image_path: str, confidence: float = 0.9) -> bool:
     """
 
     try:
-        pg.locateOnScreen(image_path, confidence=confidence)
+        pyautogui.locateOnScreen(image_path, confidence=confidence)
         return True
-    except pg.ImageNotFoundException:
+    except pyautogui.ImageNotFoundException:
         return False
 
 

@@ -5,8 +5,8 @@ from win32gui import GetForegroundWindow, GetWindowText
 from ..constants import KEYBOARD_KEYS
 from ..exceptions import NoRobloxWindowException
 
-import pydirectinput as dinput
-import pyautogui as pg
+import pydirectinput
+import pyautogui
 
 from ..utils import wait
 
@@ -39,7 +39,7 @@ def require_focus(fn):
 
             # Set focus to roblox window
             else:
-                pg.press("altleft")
+                pyautogui.press("altleft")
                 rblxWindow.maximize()
                 rblxWindow.activate()
 
@@ -60,7 +60,7 @@ def press_key(*keys: KEYBOARD_KEYS.VALUES):
     :type keys: KEYBOARD_KEYS
     """
     for key in keys:
-        dinput.press(key)
+        pydirectinput.press(key)
 
 
 @require_focus
@@ -97,7 +97,7 @@ def key_down(key: KEYBOARD_KEYS.VALUES):
     :param key: The key to be held down
     :type key: KEYBOARD_KEYS
     """
-    dinput.keyDown(key)
+    pydirectinput.keyDown(key)
 
 
 @require_focus
@@ -107,7 +107,7 @@ def key_up(key: KEYBOARD_KEYS.VALUES):
     :param key: The key to be released
     :type key: KEYBOARD_KEYS
     """
-    dinput.keyUp(key)
+    pydirectinput.keyUp(key)
 
 
 __all__ = [
