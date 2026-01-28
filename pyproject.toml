@@ -64,3 +64,14 @@ dev = [
 [tool.pytest.ini_options]
 addopts = "--cov=pyrobloxbot --cov=tests"
 testpaths = ["tests"]
+
+
+[tool.mypy]
+ignore_missing_imports = true
+implicit_reexport = true
+mypy_path = "src"
+explicit_package_bases = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disable_error_code = ["attr-defined"]
