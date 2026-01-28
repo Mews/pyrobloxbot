@@ -16,7 +16,7 @@ def toggle_ui_navigation():
 
     The "UI Navigation Toggle" setting must be enabled on Roblox
     """
-    state.ui_nav_enabled = not state.ui_nav_enabled
+    state._ui_nav_enabled = not state.is_ui_nav_enabled()
     press_key(keybinds.toggle_ui_navigation)
 
 
@@ -27,7 +27,7 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
     :type direction: UI_NAVIGATE_DIRECTIONS
     :raises InvalidUiDirectionException: Raised if direction isn't one of
     """
-    if not state.ui_nav_enabled:
+    if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
     d = direction.lower().strip()
@@ -82,7 +82,7 @@ def ui_navigate_down():
 @require_focus
 def ui_click():
     """Click on currently selected ui element"""
-    if not state.ui_nav_enabled:
+    if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
     press_key(keybinds.ui_click)
@@ -100,7 +100,7 @@ def ui_scroll_up(ticks: int, delay: float = 0.1):
                   A lower delay will scroll faster but at some point can lose precision
     :type delay: float, optional
     """
-    if not state.ui_nav_enabled:
+    if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
     kb = Controller()
@@ -120,7 +120,7 @@ def ui_scroll_down(ticks: int, delay: float = 0.1):
                   A lower delay will scroll faster but at some point can lose precision
     :type delay: float, optional
     """
-    if not state.ui_nav_enabled:
+    if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
     kb = Controller()

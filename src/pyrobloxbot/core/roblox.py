@@ -18,7 +18,7 @@ def leave_game(interval: float = 0.5):
     wait(interval)
     press_key("enter")
 
-    state.ui_nav_enabled = False
+    state._ui_nav_enabled = False
 
 
 def launch_game(game_id: int):
@@ -32,7 +32,7 @@ def launch_game(game_id: int):
     command = "start roblox://placeId=" + str(game_id)
     os.system(command=command)
 
-    state.ui_nav_enabled = False
+    state._ui_nav_enabled = False
 
 
 __all__ = ["leave_game", "launch_game"]
