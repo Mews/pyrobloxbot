@@ -7,7 +7,6 @@ class TestPackageExports:
         "api_member",
         [
             "state",
-            "exceptions",
             "keybinds",
             "require_focus",
             "keyboard_action",
