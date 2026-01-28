@@ -27,6 +27,9 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
     :type direction: UI_NAVIGATE_DIRECTIONS
     :raises InvalidUiDirectionException: Raised if direction isn't one of
     """
+    if not state.ui_nav_enabled:
+        toggle_ui_navigation()
+
     d = direction.lower().strip()
 
     up_directions = ["up", "u"]
@@ -55,36 +58,24 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
 @require_focus
 def ui_navigate_up():
     """Navigate up in ui elements"""
-    if not state.ui_nav_enabled:
-        toggle_ui_navigation()
-
     ui_navigate("u")
 
 
 @require_focus
 def ui_navigate_left():
     """Navigate left in ui elements"""
-    if not state.ui_nav_enabled:
-        toggle_ui_navigation()
-
     ui_navigate("l")
 
 
 @require_focus
 def ui_navigate_right():
     """Navigate right in ui elements"""
-    if not state.ui_nav_enabled:
-        toggle_ui_navigation()
-
     ui_navigate("r")
 
 
 @require_focus
 def ui_navigate_down():
     """Navigate down in ui elements"""
-    if not state.ui_nav_enabled:
-        toggle_ui_navigation()
-
     ui_navigate("d")
 
 
