@@ -1,7 +1,7 @@
 from ..exceptions import InvalidUiDirectionException
 from ..constants import UI_NAVIGATE_DIRECTIONS
 from .input import require_focus, press_key
-from ..bot.bot import state
+from ..bot.bot import state, keybinds
 from pynput.keyboard import Controller, Key
 from ..utils import wait
 
@@ -17,7 +17,7 @@ def toggle_ui_navigation():
     The "UI Navigation Toggle" setting must be enabled on Roblox
     """
     state.ui_nav_enabled = not state.ui_nav_enabled
-    press_key("\\")
+    press_key(keybinds.toggle_ui_navigation)
 
 
 def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
@@ -35,16 +35,16 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
     down_directions = ["down", "d"]
 
     if d in up_directions:
-        press_key("up")
+        press_key(keybinds.ui_navigate_up)
 
     elif d in left_directions:
-        press_key("left")
+        press_key(keybinds.ui_navigate_left)
 
     elif d in right_directions:
-        press_key("right")
+        press_key(keybinds.ui_navigate_right)
 
     elif d in down_directions:
-        press_key("down")
+        press_key(keybinds.ui_navigate_down)
 
     else:
         raise InvalidUiDirectionException(
@@ -94,7 +94,7 @@ def ui_click():
     if not state.ui_nav_enabled:
         toggle_ui_navigation()
 
-    press_key("enter")
+    press_key(keybinds.ui_click)
 
 
 @require_focus

@@ -2,6 +2,7 @@ from ..constants import WALK_DIRECTIONS
 from .input import require_focus, key_down, key_up, press_key, hold_key
 from ..exceptions import InvalidWalkDirectionException
 from ..utils import wait
+from ..bot.bot import keybinds
 
 
 @require_focus
@@ -44,13 +45,13 @@ def walk(*directions: WALK_DIRECTIONS.VALUES, duration: float):
         d = direction.lower().strip()
 
         if d in forwardDirections:
-            key_down("w")
+            key_down(keybinds.walk_forward)
         elif d in leftDirections:
-            key_down("a")
+            key_down(keybinds.walk_left)
         elif d in rightDirections:
-            key_down("d")
+            key_down(keybinds.walk_right)
         elif d in backDirections:
-            key_down("s")
+            key_down(keybinds.walk_back)
 
     wait(duration)
 
@@ -59,13 +60,13 @@ def walk(*directions: WALK_DIRECTIONS.VALUES, duration: float):
         d = direction.lower().strip()
 
         if d in forwardDirections:
-            key_up("w")
+            key_up(keybinds.walk_forward)
         elif d in leftDirections:
-            key_up("a")
+            key_up(keybinds.walk_left)
         elif d in rightDirections:
-            key_up("d")
+            key_up(keybinds.walk_right)
         elif d in backDirections:
-            key_up("s")
+            key_up(keybinds.walk_back)
 
 
 @require_focus
@@ -118,7 +119,7 @@ def jump(number_of_jumps: int = 1, delay: float = 0):
     :type delay: float
     """
     for _ in range(number_of_jumps):
-        press_key("space")
+        press_key(keybinds.jump)
         wait(delay)
 
 
@@ -129,7 +130,7 @@ def jump_continuous(duration: float):
     :param duration: How long to hold jump for, in seconds
     :type duration: float
     """
-    hold_key("space", duration=duration)
+    hold_key(keybinds.jump, duration=duration)
 
 
 __all__ = [

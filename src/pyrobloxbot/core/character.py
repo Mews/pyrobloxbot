@@ -1,6 +1,7 @@
 from ..exceptions import InvalidSlotNumberException
 from .input import require_focus, press_key, hold_key
 from ..utils import wait
+from ..bot.bot import keybinds
 import pyperclip
 
 
@@ -26,7 +27,7 @@ def chat(message: str):
     :type message: str
     """
     # Open chat
-    press_key("/")
+    press_key(keybinds.open_chat)
 
     # Use clipboard to paste message quickly
     previousClipboard = pyperclip.paste()
@@ -58,7 +59,7 @@ def equip_slot(slot: int):
 @require_focus
 def toggle_shift_lock():
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
-    press_key("shift")
+    press_key(keybinds.toggle_shift_lock)
 
 
 __all__ = [
