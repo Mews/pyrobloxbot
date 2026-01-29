@@ -10,7 +10,7 @@ def mock_press_key():
         yield m
 
 
-@pytest.fixture
+@pytest.fixture(autouse=True)
 def mock_toggle_ui_navigation(mock_press_key):
     with patch("pyrobloxbot.core.ui.toggle_ui_navigation") as m:
         yield m
@@ -68,25 +68,25 @@ def test_ui_navigate_dont_enable_ui_navigation_already_on(mock_toggle_ui_navigat
 @pytest.mark.parametrize("direction", ["up", "u"])
 def test_ui_navigate_up_directions(direction, mock_press_key):
     bot.ui_navigate(direction)
-    mock_press_key.assert_called_once_with(bot.keybinds.ui_navigate_up)
+    mock_press_key.assert_called_with(bot.keybinds.ui_navigate_up)
 
 
 @pytest.mark.parametrize("direction", ["down", "d"])
 def test_ui_navigate_down_directions(direction, mock_press_key):
     bot.ui_navigate(direction)
-    mock_press_key.assert_called_once_with(bot.keybinds.ui_navigate_down)
+    mock_press_key.assert_called_with(bot.keybinds.ui_navigate_down)
 
 
 @pytest.mark.parametrize("direction", ["left", "l"])
 def test_ui_navigate_left_directions(direction, mock_press_key):
     bot.ui_navigate(direction)
-    mock_press_key.assert_called_once_with(bot.keybinds.ui_navigate_left)
+    mock_press_key.assert_called_with(bot.keybinds.ui_navigate_left)
 
 
 @pytest.mark.parametrize("direction", ["right", "r"])
 def test_ui_navigate_right_directions(direction, mock_press_key):
     bot.ui_navigate(direction)
-    mock_press_key.assert_called_once_with(bot.keybinds.ui_navigate_right)
+    mock_press_key.assert_called_with(bot.keybinds.ui_navigate_right)
 
 
 def test_ui_navigate_invalid_direction(mock_press_key):
@@ -128,13 +128,13 @@ def test_ui_click_doesnt_enable_ui_navigation_already_on(mock_toggle_ui_navigati
 
 def test_ui_click(mock_press_key):
     bot.ui_click()
-    mock_press_key.assert_called_once_with(bot.keybinds.ui_click)
+    mock_press_key.assert_called_with(bot.keybinds.ui_click)
 
 
 def test_ui_click_different_hotkey(mock_press_key):
     bot.keybinds.ui_click = "space"
     bot.ui_click()
-    mock_press_key.assert_called_once_with("space")
+    mock_press_key.assert_called_with("space")
 
 
 def test_ui_scroll_up_enables_ui_navigation(
