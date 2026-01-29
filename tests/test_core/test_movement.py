@@ -54,7 +54,7 @@ def test_walk_single_direction_forward_change_keybind(mock_key_up, mock_key_down
     mock_key_up.assert_called_once_with("esc")
 
 
-@pytest.mark.parametrize("direction", ["b", "back", "backward", "backwards"])
+@pytest.mark.parametrize("direction", ["b", "back", "backward", "backwards", "bw"])
 def test_walk_single_direction_backward(
     direction, mock_key_up, mock_key_down, mock_wait
 ):
