@@ -1,9 +1,16 @@
 from ..exceptions import InvalidUiDirectionException
-from ..constants import UI_NAVIGATE_DIRECTIONS
+from ..constants.ui_navigate_directions import (
+    UI_NAVIGATE_DIRECTIONS,
+    UI_NAVIGATE_DOWN_DIRECTIONS,
+    UI_NAVIGATE_LEFT_DIRECTIONS,
+    UI_NAVIGATE_RIGHT_DIRECTIONS,
+    UI_NAVIGATE_UP_DIRECTIONS,
+)
 from .input import require_focus, press_key
 from ..bot.bot import state, keybinds
 from pynput.keyboard import Controller, Key
 from ..utils import wait
+from typing import get_args
 
 
 @require_focus
@@ -32,21 +39,16 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS):
 
     d = direction.lower().strip()
 
-    up_directions = ["up", "u"]
-    left_directions = ["left", "l"]
-    right_directions = ["right", "r"]
-    down_directions = ["down", "d"]
-
-    if d in up_directions:
+    if d in get_args(UI_NAVIGATE_UP_DIRECTIONS):
         press_key(keybinds.ui_navigate_up)
 
-    elif d in left_directions:
+    elif d in get_args(UI_NAVIGATE_LEFT_DIRECTIONS):
         press_key(keybinds.ui_navigate_left)
 
-    elif d in right_directions:
+    elif d in get_args(UI_NAVIGATE_RIGHT_DIRECTIONS):
         press_key(keybinds.ui_navigate_right)
 
-    elif d in down_directions:
+    elif d in get_args(UI_NAVIGATE_DOWN_DIRECTIONS):
         press_key(keybinds.ui_navigate_down)
 
     else:

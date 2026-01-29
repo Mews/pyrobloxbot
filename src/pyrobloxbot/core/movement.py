@@ -1,8 +1,15 @@
-from ..constants import WALK_DIRECTIONS
+from ..constants.walk_directions import (
+    WALK_DIRECTIONS,
+    WALK_BACK_DIRECTIONS,
+    WALK_FORWARD_DIRECTIONS,
+    WALK_LEFT_DIRECTIONS,
+    WALK_RIGHT_DIRECTIONS,
+)
 from .input import require_focus, key_down, key_up, press_key, hold_key
 from ..exceptions import InvalidWalkDirectionException
 from ..utils import wait
 from ..bot.bot import keybinds
+from typing import get_args
 
 
 @require_focus
@@ -18,55 +25,31 @@ def walk(*directions: WALK_DIRECTIONS, duration: float):
     :raises InvalidWalkDirectionException: Raised when given directions aren't one of literals.WALK_DIRECTIONS
     """
 
-    forwardDirections = ["f", "fw", "forward", "forwards"]
-    leftDirections = ["l", "left"]
-    rightDirections = ["r", "right"]
-    backDirections = ["b", "back", "backward", "backwards"]
+    keys = set()
 
-    ## Check if all directions are valid
     for direction in directions:
         d = direction.lower().strip()
 
-        if d in forwardDirections:
-            pass
-        elif d in leftDirections:
-            pass
-        elif d in rightDirections:
-            pass
-        elif d in backDirections:
-            pass
+        if d in get_args(WALK_FORWARD_DIRECTIONS):
+            keys.add(keybinds.walk_forward)
+        elif d in get_args(WALK_LEFT_DIRECTIONS):
+            keys.add(keybinds.walk_left)
+        elif d in get_args(WALK_RIGHT_DIRECTIONS):
+            keys.add(keybinds.walk_right)
+        elif d in get_args(WALK_BACK_DIRECTIONS):
+            keys.add(keybinds.walk_back)
         else:
             raise InvalidWalkDirectionException(
                 "Direction must be one of " + str(WALK_DIRECTIONS)
             )
 
-    # Hold down keys
-    for direction in directions:
-        d = direction.lower().strip()
-
-        if d in forwardDirections:
-            key_down(keybinds.walk_forward)
-        elif d in leftDirections:
-            key_down(keybinds.walk_left)
-        elif d in rightDirections:
-            key_down(keybinds.walk_right)
-        elif d in backDirections:
-            key_down(keybinds.walk_back)
+    for key in keys:
+        key_down(key)
 
     wait(duration)
 
-    # Release keys
-    for direction in directions:
-        d = direction.lower().strip()
-
-        if d in forwardDirections:
-            key_up(keybinds.walk_forward)
-        elif d in leftDirections:
-            key_up(keybinds.walk_left)
-        elif d in rightDirections:
-            key_up(keybinds.walk_right)
-        elif d in backDirections:
-            key_up(keybinds.walk_back)
+    for key in keys:
+        key_up(key)
 
 
 @require_focus
