@@ -1,0 +1,100 @@
+import pytest
+
+import pyrobloxbot as bot
+from pyrobloxbot.bot.state import BotState
+from pyrobloxbot.bot.keybinds import BotKeybinds
+
+
+def test_state():
+    assert isinstance(bot.state, BotState)
+
+
+def test_keybinds():
+    assert isinstance(bot.keybinds, BotKeybinds)
+
+
+@pytest.mark.parametrize("export", bot.__all__)
+def test__all__included_by_default(export):
+    assert hasattr(bot, export), f"{export} not exported"
+
+
+@pytest.mark.parametrize(
+    "export",
+    [
+        "utils",
+        "exceptions",
+    ],
+)
+def test_other_exports_included_by_default(export):
+    assert hasattr(bot, export), f"{export} not exported"
+
+
+@pytest.mark.parametrize(
+    "export",
+    [
+        "state",
+        "keybinds",
+        "reset_player",
+        "chat",
+        "equip_slot",
+        "toggle_shift_lock",
+        "image_is_visible",
+        "require_focus",
+        "press_key",
+        "hold_key",
+        "keyboard_action",
+        "hold_keyboard_action",
+        "key_down",
+        "key_up",
+        "walk",
+        "walk_forward",
+        "walk_left",
+        "walk_right",
+        "walk_back",
+        "jump",
+        "jump_continuous",
+        "leave_game",
+        "launch_game",
+        "toggle_ui_navigation",
+        "ui_navigate",
+        "ui_navigate_up",
+        "ui_navigate_down",
+        "ui_navigate_left",
+        "ui_navigate_right",
+        "ui_click",
+        "ui_scroll_up",
+        "ui_scroll_down",
+    ],
+)
+def test__all__is_complete(export):
+    assert export in bot.__all__, f"{export} not in __all__"
+
+
+@pytest.mark.parametrize(
+    "export",
+    [
+        "BotState",
+        "BotKeybinds",
+        "pyautogui",
+        "pydirectinput",
+        "keyboard",
+        "pyperclip",
+        "getActiveWindow",
+        "getWindowsWithTitle",
+        "GetForegroundWindow",
+        "GetWindowText",
+        "wraps",
+        "os",
+        "sleep",
+        "NoRobloxWindowException",
+        "InvalidSlotNumberException",
+        "InvalidWalkDirectionException",
+        "InvalidUiDirectionException",
+        "wait",
+        "KEYBOARD_KEYS",
+        "WALK_DIRECTIONS",
+        "UI_NAVIGATE_DIRECTIONS",
+    ],
+)
+def test_libraries_arent_exported(export):
+    assert not hasattr(bot, export), f"{export} is being leaked"
