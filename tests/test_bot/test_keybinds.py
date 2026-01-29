@@ -14,7 +14,7 @@ def keybinds(mock_keyboard):
     return _BotKeybinds()
 
 
-def test_default_keybinds(keybinds):
+def assert_keybinds_are_default(keybinds):
     assert keybinds.walk_forward == "w"
     assert keybinds.walk_left == "a"
     assert keybinds.walk_right == "d"
@@ -33,6 +33,10 @@ def test_default_keybinds(keybinds):
     assert keybinds.ui_click == "enter"
 
     assert keybinds.open_chat == "/"
+
+
+def test_default_keybinds(keybinds):
+    assert_keybinds_are_default(keybinds)
 
 
 def test_failsafe_enabled(keybinds, mock_keyboard):
@@ -62,3 +66,16 @@ def test_set_failsafe_hotkey(keybinds, mock_keyboard):
     assert (
         mock_keyboard.add_hotkey.call_count == 2
     )  # the one is __post_init__ and the one we tested
+
+
+def test__reset(keybinds):
+    for attr in keybinds.__dict__:
+        if not attr.startswith("_"):
+            setattr(keybinds, attr, "esc")
+
+    assert keybinds.jump == "esc"
+    assert keybinds.open_chat == "esc"
+
+    keybinds._reset()
+
+    assert_keybinds_are_default(keybinds)

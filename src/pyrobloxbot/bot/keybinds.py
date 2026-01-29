@@ -46,5 +46,8 @@ class _BotKeybinds:
 
         keyboard.add_hotkey(self._FAILSAFE_HOTKEY, _thread.interrupt_main)
 
+    def _reset(self):
+        self.__init__()
+
 
 __all__ = ["_BotKeybinds"]

@@ -13,5 +13,8 @@ class _BotState:
     def is_shift_lock_enabled(self):
         return self._SHIFT_LOCK_ENABLED
 
+    def _reset(self):
+        self.__init__()
+
 
 __all__ = ["_BotState"]
