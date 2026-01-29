@@ -198,36 +198,4 @@ KEYBOARD_KEYS = typing.Literal[
     "optionright",
 ]
 
-
-WALK_FORWARD_DIRECTIONS = typing.Literal["f", "fw", "forward", "forwards"]
-WALK_BACK_DIRECTIONS = typing.Literal["b", "bw", "back", "backward", "backwards"]
-WALK_LEFT_DIRECTIONS = typing.Literal["l", "left"]
-WALK_RIGHT_DIRECTIONS = typing.Literal["r", "right"]
-
-"""Valid strings to pass to walk"""
-WALK_DIRECTIONS = (
-    WALK_FORWARD_DIRECTIONS
-    | WALK_BACK_DIRECTIONS
-    | WALK_LEFT_DIRECTIONS
-    | WALK_RIGHT_DIRECTIONS
-)
-
-
-UI_NAVIGATE_UP_DIRECTIONS = typing.Literal["up", "u"]
-UI_NAVIGATE_LEFT_DIRECTIONS = typing.Literal["left", "l"]
-UI_NAVIGATE_RIGHT_DIRECTIONS = typing.Literal["right", "r"]
-UI_NAVIGATE_DOWN_DIRECTIONS = typing.Literal["down", "d"]
-
-"""Valid strings to pass to ui_navigate"""
-UI_NAVIGATE_DIRECTIONS = (
-    UI_NAVIGATE_UP_DIRECTIONS
-    | UI_NAVIGATE_LEFT_DIRECTIONS
-    | UI_NAVIGATE_RIGHT_DIRECTIONS
-    | UI_NAVIGATE_DOWN_DIRECTIONS
-)
-
-__all__ = [
-    "KEYBOARD_KEYS",
-    "WALK_DIRECTIONS",
-    "UI_NAVIGATE_DIRECTIONS",
-]
+__all__ = ["KEYBOARD_KEYS"]

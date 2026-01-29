@@ -1,0 +1,22 @@
+import typing
+
+UI_NAVIGATE_UP_DIRECTIONS = typing.Literal["up", "u"]
+UI_NAVIGATE_LEFT_DIRECTIONS = typing.Literal["left", "l"]
+UI_NAVIGATE_RIGHT_DIRECTIONS = typing.Literal["right", "r"]
+UI_NAVIGATE_DOWN_DIRECTIONS = typing.Literal["down", "d"]
+
+"""Valid strings to pass to ui_navigate"""
+UI_NAVIGATE_DIRECTIONS = (
+    UI_NAVIGATE_UP_DIRECTIONS
+    | UI_NAVIGATE_LEFT_DIRECTIONS
+    | UI_NAVIGATE_RIGHT_DIRECTIONS
+    | UI_NAVIGATE_DOWN_DIRECTIONS
+)
+
+__all__ = [
+    "UI_NAVIGATE_UP_DIRECTIONS",
+    "UI_NAVIGATE_LEFT_DIRECTIONS",
+    "UI_NAVIGATE_RIGHT_DIRECTIONS",
+    "UI_NAVIGATE_DOWN_DIRECTIONS",
+    "UI_NAVIGATE_DIRECTIONS",
+]
