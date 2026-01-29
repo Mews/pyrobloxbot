@@ -6,7 +6,7 @@ from ..bot.bot import keybinds
 
 
 @require_focus
-def walk(*directions: WALK_DIRECTIONS.VALUES, duration: float):
+def walk(*directions: WALK_DIRECTIONS, duration: float):
     """Walks in one or more directions for a given time
 
     If more than one direction is given it will walk diagonally
@@ -15,7 +15,7 @@ def walk(*directions: WALK_DIRECTIONS.VALUES, duration: float):
     :type directions: WALK_DIRECTIONS
     :param duration: How long to walk for, in seconds
     :type duration: float
-    :raises InvalidWalkDirectionException: Raised when given directions aren't one of literals.WALK_DIRECTIONS.VALUES
+    :raises InvalidWalkDirectionException: Raised when given directions aren't one of literals.WALK_DIRECTIONS
     """
 
     forwardDirections = ["f", "fw", "forward", "forwards"]
@@ -37,7 +37,7 @@ def walk(*directions: WALK_DIRECTIONS.VALUES, duration: float):
             pass
         else:
             raise InvalidWalkDirectionException(
-                "Direction must be one of " + str(WALK_DIRECTIONS.VALUES)
+                "Direction must be one of " + str(WALK_DIRECTIONS)
             )
 
     # Hold down keys

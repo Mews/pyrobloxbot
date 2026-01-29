@@ -20,7 +20,7 @@ def toggle_ui_navigation():
     press_key(keybinds.toggle_ui_navigation)
 
 
-def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
+def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS):
     """Navigates through roblox ui in specified direction
 
     :param direction: The direction to navigate in
@@ -51,7 +51,7 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS.VALUES):
 
     else:
         raise InvalidUiDirectionException(
-            "Direction must be one of " + str(UI_NAVIGATE_DIRECTIONS.VALUES)
+            "Direction must be one of " + str(UI_NAVIGATE_DIRECTIONS)
         )
 
 

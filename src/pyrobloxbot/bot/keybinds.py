@@ -30,7 +30,7 @@ class BotKeybinds:
     def __post_init__(self):
         self.set_failsafe_hotkey("ctrl", "m")
 
-    def set_failsafe_hotkey(self, *keys: KEYBOARD_KEYS.VALUES):
+    def set_failsafe_hotkey(self, *keys: KEYBOARD_KEYS):
         """Changes hotkey required to trigger the failsafe
 
         The default hotkey is control + m
