@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class BotState:
+class _BotState:
     _UI_NAV_ENABLED: bool = False
 
     _SHIFT_LOCK_ENABLED: bool = False
@@ -14,4 +14,4 @@ class BotState:
         return self._SHIFT_LOCK_ENABLED
 
 
-__all__ = ["BotState"]
+__all__ = ["_BotState"]

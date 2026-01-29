@@ -5,7 +5,7 @@ import _thread
 
 
 @dataclass
-class BotKeybinds:
+class _BotKeybinds:
     walk_forward: str = "w"
     walk_back: str = "s"
     walk_left: str = "a"
@@ -47,4 +47,4 @@ class BotKeybinds:
         keyboard.add_hotkey(self._FAILSAFE_HOTKEY, _thread.interrupt_main)
 
 
-__all__ = ["BotKeybinds"]
+__all__ = ["_BotKeybinds"]

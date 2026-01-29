@@ -1,10 +1,10 @@
 import pytest
-from pyrobloxbot.bot.state import BotState
+from pyrobloxbot.bot.state import _BotState
 
 
 @pytest.fixture
 def state():
-    return BotState()
+    return _BotState()
 
 
 def test_default_values(state):

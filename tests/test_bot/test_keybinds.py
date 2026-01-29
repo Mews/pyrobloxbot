@@ -1,5 +1,5 @@
 import pytest
-from pyrobloxbot.bot.keybinds import BotKeybinds
+from pyrobloxbot.bot.keybinds import _BotKeybinds
 from unittest.mock import patch
 
 
@@ -11,7 +11,7 @@ def mock_keyboard():
 
 @pytest.fixture
 def keybinds(mock_keyboard):
-    return BotKeybinds()
+    return _BotKeybinds()
 
 
 def test_default_keybinds(keybinds):

@@ -1,16 +1,16 @@
 import pytest
 
 import pyrobloxbot as bot
-from pyrobloxbot.bot.state import BotState
-from pyrobloxbot.bot.keybinds import BotKeybinds
+from pyrobloxbot.bot.state import _BotState
+from pyrobloxbot.bot.keybinds import _BotKeybinds
 
 
 def test_state():
-    assert isinstance(bot.state, BotState)
+    assert isinstance(bot.state, _BotState)
 
 
 def test_keybinds():
-    assert isinstance(bot.keybinds, BotKeybinds)
+    assert isinstance(bot.keybinds, _BotKeybinds)
 
 
 @pytest.mark.parametrize("export", bot.__all__)
@@ -74,7 +74,7 @@ def test__all__is_complete(export):
     "export",
     [
         "BotState",
-        "BotKeybinds",
+        "_BotKeybinds",
         "pyautogui",
         "pydirectinput",
         "keyboard",
