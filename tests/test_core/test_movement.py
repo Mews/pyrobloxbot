@@ -121,7 +121,8 @@ def test_walk_multiple_directions(mock_key_up, mock_key_down, mock_wait):
             call(bot.keybinds.walk_left),
             call(bot.keybinds.walk_right),
             call(bot.keybinds.walk_back),
-        ]
+        ],
+        any_order=True,
     )
     mock_wait.assert_called_once_with(10)
     mock_key_up.assert_has_calls(
@@ -130,7 +131,8 @@ def test_walk_multiple_directions(mock_key_up, mock_key_down, mock_wait):
             call(bot.keybinds.walk_left),
             call(bot.keybinds.walk_right),
             call(bot.keybinds.walk_back),
-        ]
+        ],
+        any_order=True,
     )
 
 

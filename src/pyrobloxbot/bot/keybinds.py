@@ -5,7 +5,7 @@ import _thread
 
 
 @dataclass
-class BotKeybinds:
+class _BotKeybinds:
     walk_forward: str = "w"
     walk_back: str = "s"
     walk_left: str = "a"
@@ -30,7 +30,7 @@ class BotKeybinds:
     def __post_init__(self):
         self.set_failsafe_hotkey("ctrl", "m")
 
-    def set_failsafe_hotkey(self, *keys: KEYBOARD_KEYS.VALUES):
+    def set_failsafe_hotkey(self, *keys: KEYBOARD_KEYS):
         """Changes hotkey required to trigger the failsafe
 
         The default hotkey is control + m
@@ -46,5 +46,8 @@ class BotKeybinds:
 
         keyboard.add_hotkey(self._FAILSAFE_HOTKEY, _thread.interrupt_main)
 
+    def _reset(self):
+        self.__init__()
 
-__all__ = ["BotKeybinds"]
+
+__all__ = ["_BotKeybinds"]

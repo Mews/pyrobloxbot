@@ -1,7 +1,7 @@
-from .keybinds import BotKeybinds
-from .state import BotState
+from .keybinds import _BotKeybinds
+from .state import _BotState
 
-state = BotState()
-keybinds = BotKeybinds()
+state = _BotState()
+keybinds = _BotKeybinds()
 
 __all__ = ["state", "keybinds"]

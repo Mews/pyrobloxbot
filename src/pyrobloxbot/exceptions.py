@@ -11,13 +11,13 @@ class InvalidSlotNumberException(Exception):
 
 
 class InvalidWalkDirectionException(Exception):
-    """Raised by walk when given a direction that isn't in literals.WALK_DIRECTIONS.VALUES"""
+    """Raised by walk when given a direction that isn't in constants.WALK_DIRECTIONS"""
 
     pass
 
 
 class InvalidUiDirectionException(Exception):
-    """Raised by ui_navigate when given a direction that isn't in literals.UI_NAVIGATE_DIRECTIONS.VALUES"""
+    """Raised by ui_navigate when given a direction that isn't in constants.UI_NAVIGATE_DIRECTIONS"""
 
     pass
 
