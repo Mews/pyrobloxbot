@@ -1,11 +1,12 @@
 from ..exceptions import InvalidSlotNumberException
 from .input import press_key, hold_key
-from .decorators import require_focus
+from .decorators import require_focus, apply_cooldown
 from ..utils import wait
 from ..bot.bot import keybinds, state
 import pyperclip
 
 
+@apply_cooldown
 @require_focus
 def reset_player(interval: float = 0.5) -> None:
     """Resets player character
@@ -20,6 +21,7 @@ def reset_player(interval: float = 0.5) -> None:
     press_key("enter")
 
 
+@apply_cooldown
 @require_focus
 def chat(message: str) -> None:
     """Sends a message in chat
@@ -43,6 +45,7 @@ def chat(message: str) -> None:
     pyperclip.copy(previousClipboard)
 
 
+@apply_cooldown
 @require_focus
 def equip_slot(slot: int) -> None:
     """Equip a given item slot
@@ -57,6 +60,7 @@ def equip_slot(slot: int) -> None:
     press_key(str(slot))
 
 
+@apply_cooldown
 @require_focus
 def toggle_shift_lock() -> None:
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""

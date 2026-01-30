@@ -1,10 +1,11 @@
 from .input import press_key
-from .decorators import require_focus, resets_state
+from .decorators import require_focus, resets_state, apply_cooldown
 from ..utils import wait
 
 import os
 
 
+@apply_cooldown
 @require_focus
 @resets_state
 def leave_game(interval: float = 0.5) -> None:
@@ -20,6 +21,7 @@ def leave_game(interval: float = 0.5) -> None:
     press_key("enter")
 
 
+@apply_cooldown
 @resets_state
 def launch_game(game_id: int) -> None:
     """Launches a roblox game

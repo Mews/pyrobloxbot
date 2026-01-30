@@ -34,6 +34,7 @@ def test_other_exports_included_by_default(export):
     [
         "state",
         "keybinds",
+        "options",
         "reset_player",
         "chat",
         "equip_slot",
@@ -72,8 +73,9 @@ def test__all__is_complete(export):
 @pytest.mark.parametrize(
     "export",
     [
-        "BotState",
+        "_BotState",
         "_BotKeybinds",
+        "_BotOptions",
         "pyautogui",
         "pydirectinput",
         "keyboard",

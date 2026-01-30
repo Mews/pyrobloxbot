@@ -7,13 +7,14 @@ from ..constants.ui_navigate_directions import (
     UI_NAVIGATE_UP_DIRECTIONS,
 )
 from .input import press_key
-from .decorators import require_focus, requires_ui_navigation_mode
+from .decorators import require_focus, requires_ui_navigation_mode, apply_cooldown
 from ..bot.bot import state, keybinds
 from pynput.keyboard import Controller, Key
 from ..utils import wait
 from typing import get_args
 
 
+@apply_cooldown
 @require_focus
 def toggle_ui_navigation() -> None:
     """Toggles ui navigation mode.
@@ -28,6 +29,7 @@ def toggle_ui_navigation() -> None:
     press_key(keybinds.toggle_ui_navigation)
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
@@ -57,6 +59,7 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
         )
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_up() -> None:
@@ -64,6 +67,7 @@ def ui_navigate_up() -> None:
     ui_navigate("u")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_left() -> None:
@@ -71,6 +75,7 @@ def ui_navigate_left() -> None:
     ui_navigate("l")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_right() -> None:
@@ -78,6 +83,7 @@ def ui_navigate_right() -> None:
     ui_navigate("r")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_down() -> None:
@@ -85,6 +91,7 @@ def ui_navigate_down() -> None:
     ui_navigate("d")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_click() -> None:
@@ -92,6 +99,7 @@ def ui_click() -> None:
     press_key(keybinds.ui_click)
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
@@ -112,6 +120,7 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
         wait(interval)
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:

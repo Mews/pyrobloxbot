@@ -22,3 +22,4 @@ def mock_wait():
 def reset_bot():
     bot.state._reset()
     bot.keybinds._reset()
+    bot.options._reset()

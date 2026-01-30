@@ -6,13 +6,14 @@ from ..constants.walk_directions import (
     WALK_RIGHT_DIRECTIONS,
 )
 from .input import key_down, key_up, press_key, hold_key
-from .decorators import require_focus
+from .decorators import require_focus, apply_cooldown
 from ..exceptions import InvalidWalkDirectionException
 from ..utils import wait
 from ..bot.bot import keybinds
 from typing import get_args
 
 
+@apply_cooldown
 @require_focus
 def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
     """Walks in one or more directions for a given time
@@ -53,6 +54,7 @@ def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
         key_up(key)
 
 
+@apply_cooldown
 @require_focus
 def walk_forward(duration: float) -> None:
     """Walks forward for a given time
@@ -63,6 +65,7 @@ def walk_forward(duration: float) -> None:
     walk("f", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def walk_left(duration: float) -> None:
     """Walks left for a given time
@@ -73,6 +76,7 @@ def walk_left(duration: float) -> None:
     walk("l", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def walk_right(duration: float) -> None:
     """Walks right for a given time
@@ -83,6 +87,7 @@ def walk_right(duration: float) -> None:
     walk("r", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def walk_back(duration: float) -> None:
     """Walks back for a given time
@@ -93,6 +98,7 @@ def walk_back(duration: float) -> None:
     walk("b", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
     """Jumps for a given number of times
@@ -107,6 +113,7 @@ def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
         wait(interval)
 
 
+@apply_cooldown
 @require_focus
 def jump_continuous(duration: float) -> None:
     """Holds jump for a given time
