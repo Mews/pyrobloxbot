@@ -4,6 +4,7 @@ from win32gui import GetForegroundWindow, GetWindowText
 
 import pyautogui
 from ..exceptions import NoRobloxWindowException
+from ..bot.bot import state
 
 
 def require_focus(fn):
@@ -47,6 +48,20 @@ def require_focus(fn):
     return wrapper
 
 
+def resets_state(fn):
+    """This decorator marks functions that have the side effect of reseting the bot's state in game"""
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        try:
+            return fn(*args, **kwargs)
+        finally:
+            state._reset()
+
+    return wrapper
+
+
 __all__ = [
     "require_focus",
+    "resets_state",
 ]

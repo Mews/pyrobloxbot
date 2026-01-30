@@ -48,3 +48,25 @@ def test_require_focus_window_not_already_active(
     mock_pyautogui.press.assert_called_once_with("altleft")
     mock_window.maximize.assert_called_once()
     mock_window.activate.assert_called_once()
+
+
+@patch("pyrobloxbot.decorators.state")
+def test_resets_state(mock_state):
+    @bot.decorators.resets_state
+    def dummy_function():
+        return "success"
+
+    assert dummy_function() == "success"
+    mock_state._reset.assert_called_once()
+
+
+@patch("pyrobloxbot.decorators.state")
+def test_resets_state_still_resets_if_fn_raises(mock_state):
+    @bot.decorators.resets_state
+    def dummy_function():
+        raise Exception
+
+    with pytest.raises(Exception):
+        dummy_function()
+
+    mock_state._reset.assert_called_once()
