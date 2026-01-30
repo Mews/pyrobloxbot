@@ -13,8 +13,8 @@ from ..bot.bot import keybinds
 from typing import get_args
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
     """Walks in one or more directions for a given time
 
@@ -94,8 +94,8 @@ def walk_back(duration: float) -> None:
     walk("b", duration=duration)
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
     """Jumps for a given number of times
 
@@ -109,8 +109,8 @@ def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
         wait(interval)
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def jump_continuous(duration: float) -> None:
     """Holds jump for a given time
 

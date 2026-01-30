@@ -6,8 +6,8 @@ from ..bot.bot import keybinds, state
 import pyperclip
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def reset_player(interval: float = 0.5) -> None:
     """Resets player character
 
@@ -21,8 +21,8 @@ def reset_player(interval: float = 0.5) -> None:
     press_key("enter")
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def chat(message: str) -> None:
     """Sends a message in chat
 
@@ -45,8 +45,8 @@ def chat(message: str) -> None:
     pyperclip.copy(previousClipboard)
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def equip_slot(slot: int) -> None:
     """Equip a given item slot
 
@@ -60,8 +60,8 @@ def equip_slot(slot: int) -> None:
     press_key(str(slot))
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def toggle_shift_lock() -> None:
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
     press_key(keybinds.toggle_shift_lock)

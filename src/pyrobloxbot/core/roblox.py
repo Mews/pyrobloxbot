@@ -5,9 +5,9 @@ from ..utils import wait
 import os
 
 
+@apply_cooldown
 @require_focus
 @resets_state
-@apply_cooldown
 def leave_game(interval: float = 0.5) -> None:
     """Leaves the current game
 
@@ -21,8 +21,8 @@ def leave_game(interval: float = 0.5) -> None:
     press_key("enter")
 
 
-@resets_state
 @apply_cooldown
+@resets_state
 def launch_game(game_id: int) -> None:
     """Launches a roblox game
 

@@ -14,8 +14,8 @@ from ..utils import wait
 from typing import get_args
 
 
-@require_focus
 @apply_cooldown
+@require_focus
 def toggle_ui_navigation() -> None:
     """Toggles ui navigation mode.
 
@@ -29,9 +29,9 @@ def toggle_ui_navigation() -> None:
     press_key(keybinds.toggle_ui_navigation)
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-@apply_cooldown
 def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
@@ -87,17 +87,17 @@ def ui_navigate_down() -> None:
     ui_navigate("d")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-@apply_cooldown
 def ui_click() -> None:
     """Click on currently selected ui element"""
     press_key(keybinds.ui_click)
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-@apply_cooldown
 def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
     """Scrolls up through selected ui element
 
@@ -116,9 +116,9 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
         wait(interval)
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-@apply_cooldown
 def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
     """Scrolls down in selected ui element
 
