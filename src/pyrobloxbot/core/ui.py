@@ -14,7 +14,7 @@ from typing import get_args
 
 
 @require_focus
-def toggle_ui_navigation():
+def toggle_ui_navigation() -> None:
     """Toggles ui navigation mode.
 
     This is called by all ui navigation functions if ui navigation mode is disabled.
@@ -27,7 +27,7 @@ def toggle_ui_navigation():
     press_key(keybinds.toggle_ui_navigation)
 
 
-def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS):
+def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
     :param direction: The direction to navigate in
@@ -58,31 +58,31 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS):
 
 
 @require_focus
-def ui_navigate_up():
+def ui_navigate_up() -> None:
     """Navigate up in ui elements"""
     ui_navigate("u")
 
 
 @require_focus
-def ui_navigate_left():
+def ui_navigate_left() -> None:
     """Navigate left in ui elements"""
     ui_navigate("l")
 
 
 @require_focus
-def ui_navigate_right():
+def ui_navigate_right() -> None:
     """Navigate right in ui elements"""
     ui_navigate("r")
 
 
 @require_focus
-def ui_navigate_down():
+def ui_navigate_down() -> None:
     """Navigate down in ui elements"""
     ui_navigate("d")
 
 
 @require_focus
-def ui_click():
+def ui_click() -> None:
     """Click on currently selected ui element"""
     if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
@@ -91,7 +91,7 @@ def ui_click():
 
 
 @require_focus
-def ui_scroll_up(ticks: int, delay: float = 0.1):
+def ui_scroll_up(ticks: int, delay: float = 0.1) -> None:
     """Scrolls up through selected ui element
 
     The ui element itself has to be scrollable
@@ -113,7 +113,7 @@ def ui_scroll_up(ticks: int, delay: float = 0.1):
 
 
 @require_focus
-def ui_scroll_down(ticks: int, delay: float = 0.1):
+def ui_scroll_down(ticks: int, delay: float = 0.1) -> None:
     """Scrolls down in selected ui element
 
     :param ticks: How many times to scroll

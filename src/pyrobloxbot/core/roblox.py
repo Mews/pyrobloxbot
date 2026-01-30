@@ -6,7 +6,7 @@ import os
 
 
 @require_focus
-def leave_game(interval: float = 0.5):
+def leave_game(interval: float = 0.5) -> None:
     """Leaves the current game
 
     :param interval: How long between each keyboard input, in seconds, defaults to 0.5
@@ -21,7 +21,7 @@ def leave_game(interval: float = 0.5):
     state._UI_NAV_ENABLED = False
 
 
-def launch_game(game_id: int):
+def launch_game(game_id: int) -> None:
     """Launches a roblox game
 
     There can be a few seconds of delay between calling this function and the game opening

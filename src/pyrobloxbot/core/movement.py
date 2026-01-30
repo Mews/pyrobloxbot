@@ -13,7 +13,7 @@ from typing import get_args
 
 
 @require_focus
-def walk(*directions: WALK_DIRECTIONS, duration: float):
+def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
     """Walks in one or more directions for a given time
 
     If more than one direction is given it will walk diagonally
@@ -53,7 +53,7 @@ def walk(*directions: WALK_DIRECTIONS, duration: float):
 
 
 @require_focus
-def walk_forward(duration: float):
+def walk_forward(duration: float) -> None:
     """Walks forward for a given time
 
     :param duration: How long to walk for, in seconds
@@ -63,7 +63,7 @@ def walk_forward(duration: float):
 
 
 @require_focus
-def walk_left(duration: float):
+def walk_left(duration: float) -> None:
     """Walks left for a given time
 
     :param duration: How long to walk for, in seconds
@@ -73,7 +73,7 @@ def walk_left(duration: float):
 
 
 @require_focus
-def walk_right(duration: float):
+def walk_right(duration: float) -> None:
     """Walks right for a given time
 
     :param duration: How long to walk for, in seconds
@@ -83,7 +83,7 @@ def walk_right(duration: float):
 
 
 @require_focus
-def walk_back(duration: float):
+def walk_back(duration: float) -> None:
     """Walks back for a given time
 
     :param duration: How long to walk for, in seconds
@@ -93,7 +93,7 @@ def walk_back(duration: float):
 
 
 @require_focus
-def jump(number_of_jumps: int = 1, delay: float = 0):
+def jump(number_of_jumps: int = 1, delay: float = 0) -> None:
     """Jumps for a given number of times
 
     :param number_of_jumps: How many times to jump, defaults to 1
@@ -107,7 +107,7 @@ def jump(number_of_jumps: int = 1, delay: float = 0):
 
 
 @require_focus
-def jump_continuous(duration: float):
+def jump_continuous(duration: float) -> None:
     """Holds jump for a given time
 
     :param duration: How long to hold jump for, in seconds

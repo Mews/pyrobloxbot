@@ -53,7 +53,7 @@ def require_focus(fn):
 
 
 @require_focus
-def press_key(*keys: KEYBOARD_KEYS):
+def press_key(*keys: KEYBOARD_KEYS) -> None:
     """Presses one or more keyboard keys
 
     :param keys: The keys to be pressed
@@ -64,7 +64,7 @@ def press_key(*keys: KEYBOARD_KEYS):
 
 
 @require_focus
-def hold_key(*keys: KEYBOARD_KEYS, duration: float):
+def hold_key(*keys: KEYBOARD_KEYS, duration: float) -> None:
     """Holds one or more keyboard keys for a given time
 
     If more than one key is provided, all keys will be held and released simultaneously
@@ -89,7 +89,7 @@ hold_keyboard_action = hold_key
 
 
 @require_focus
-def key_down(key: KEYBOARD_KEYS):
+def key_down(key: KEYBOARD_KEYS) -> None:
     """Holds down a key in a non blocking way
 
     The key will be held until key_up is called for the same key
@@ -101,7 +101,7 @@ def key_down(key: KEYBOARD_KEYS):
 
 
 @require_focus
-def key_up(key: KEYBOARD_KEYS):
+def key_up(key: KEYBOARD_KEYS) -> None:
     """Releases a key
 
     :param key: The key to be released
