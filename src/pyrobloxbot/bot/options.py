@@ -3,7 +3,7 @@ from dataclasses import dataclass
 
 @dataclass
 class _BotOptions:
-    pass
+    maximize_roblox_window: bool = False
 
     def _reset(self):
         self.__init__()

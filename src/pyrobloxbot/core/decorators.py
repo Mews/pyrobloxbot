@@ -4,7 +4,7 @@ from win32gui import GetForegroundWindow, GetWindowText
 
 import pydirectinput
 from ..exceptions import NoRobloxWindowException
-from ..bot.bot import state
+from ..bot.bot import state, options
 
 
 def require_focus(fn):
@@ -36,7 +36,8 @@ def require_focus(fn):
             # Set focus to roblox window
             else:
                 pydirectinput.press("altleft")
-                rblxWindow.maximize()
+                if options.maximize_roblox_window:
+                    rblxWindow.maximize()
                 rblxWindow.activate()
 
                 # Wait for the roblox window to be active
