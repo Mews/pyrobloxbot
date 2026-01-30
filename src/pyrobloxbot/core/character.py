@@ -6,7 +6,7 @@ import pyperclip
 
 
 @require_focus
-def reset_player(interval: float = 0.5):
+def reset_player(interval: float = 0.5) -> None:
     """Resets player character
 
     :param interval: How long between each keyboard input, in seconds, defaults to 0.5
@@ -20,7 +20,7 @@ def reset_player(interval: float = 0.5):
 
 
 @require_focus
-def chat(message: str):
+def chat(message: str) -> None:
     """Sends a message in chat
 
     :param message: The message to send
@@ -43,7 +43,7 @@ def chat(message: str):
 
 
 @require_focus
-def equip_slot(slot: int):
+def equip_slot(slot: int) -> None:
     """Equip a given item slot
 
     :param slot: The item slot to equip
@@ -57,7 +57,7 @@ def equip_slot(slot: int):
 
 
 @require_focus
-def toggle_shift_lock():
+def toggle_shift_lock() -> None:
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
     press_key(keybinds.toggle_shift_lock)
     state._SHIFT_LOCK_ENABLED = not state.is_shift_lock_enabled()
