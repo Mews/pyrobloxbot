@@ -61,7 +61,31 @@ def resets_state(fn):
     return wrapper
 
 
+def requires_ui_navigation_mode(fn):
+    """This decorator ensures ui navigation mode is enabled on roblox before running the decorated function
+    After the function is done, it returns to the original state, meaning if ui navigation was disabled before the function was called it'll go back to being disabled, if it was already enabled it'll stay enabled
+    """
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        from . import ui
+
+        original_is_ui_nav_enabled = state.is_ui_nav_enabled()
+
+        if not original_is_ui_nav_enabled:
+            ui.toggle_ui_navigation()
+
+        try:
+            return fn(*args, **kwargs)
+        finally:
+            if state.is_ui_nav_enabled() != original_is_ui_nav_enabled:
+                ui.toggle_ui_navigation()
+
+    return wrapper
+
+
 __all__ = [
     "require_focus",
     "resets_state",
+    "requires_ui_navigation_mode",
 ]

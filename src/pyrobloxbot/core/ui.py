@@ -7,7 +7,7 @@ from ..constants.ui_navigate_directions import (
     UI_NAVIGATE_UP_DIRECTIONS,
 )
 from .input import press_key
-from .decorators import require_focus
+from .decorators import require_focus, requires_ui_navigation_mode
 from ..bot.bot import state, keybinds
 from pynput.keyboard import Controller, Key
 from ..utils import wait
@@ -29,6 +29,7 @@ def toggle_ui_navigation() -> None:
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
@@ -36,9 +37,6 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
     :type direction: UI_NAVIGATE_DIRECTIONS
     :raises InvalidUiDirectionException: Raised if direction isn't one of
     """
-    if not state.is_ui_nav_enabled():
-        toggle_ui_navigation()
-
     d = direction.lower().strip()
 
     if d in get_args(UI_NAVIGATE_UP_DIRECTIONS):
@@ -60,39 +58,42 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_navigate_up() -> None:
     """Navigate up in ui elements"""
     ui_navigate("u")
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_navigate_left() -> None:
     """Navigate left in ui elements"""
     ui_navigate("l")
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_navigate_right() -> None:
     """Navigate right in ui elements"""
     ui_navigate("r")
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_navigate_down() -> None:
     """Navigate down in ui elements"""
     ui_navigate("d")
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_click() -> None:
     """Click on currently selected ui element"""
-    if not state.is_ui_nav_enabled():
-        toggle_ui_navigation()
-
     press_key(keybinds.ui_click)
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
     """Scrolls up through selected ui element
 
@@ -104,9 +105,6 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
                   A lower delay will scroll faster but at some point can lose precision
     :type interval: float, optional
     """
-    if not state.is_ui_nav_enabled():
-        toggle_ui_navigation()
-
     kb = Controller()
     for _ in range(ticks):
         kb.press(Key.page_up)
@@ -115,6 +113,7 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
 
 
 @require_focus
+@requires_ui_navigation_mode
 def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
     """Scrolls down in selected ui element
 
@@ -124,9 +123,6 @@ def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
                   A lower delay will scroll faster but at some point can lose precision
     :type interval: float, optional
     """
-    if not state.is_ui_nav_enabled():
-        toggle_ui_navigation()
-
     kb = Controller()
     for _ in range(ticks):
         kb.press(Key.page_down)
