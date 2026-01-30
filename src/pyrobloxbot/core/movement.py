@@ -93,17 +93,17 @@ def walk_back(duration: float) -> None:
 
 
 @require_focus
-def jump(number_of_jumps: int = 1, delay: float = 0) -> None:
+def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
     """Jumps for a given number of times
 
     :param number_of_jumps: How many times to jump, defaults to 1
     :type number_of_jumps: int
-    :param delay: How much time between jumps, in seconds, defaults to 0
-    :type delay: float
+    :param interval: How much time between jumps, in seconds, defaults to 0
+    :type interval: float
     """
     for _ in range(number_of_jumps):
         press_key(keybinds.jump)
-        wait(delay)
+        wait(interval)
 
 
 @require_focus

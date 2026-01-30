@@ -91,16 +91,16 @@ def ui_click() -> None:
 
 
 @require_focus
-def ui_scroll_up(ticks: int, delay: float = 0.1) -> None:
+def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
     """Scrolls up through selected ui element
 
     The ui element itself has to be scrollable
 
     :param ticks: How many times to scroll
     :type ticks: int
-    :param delay: The delay between each input, defaults to 0.1\n
+    :param interval: The delay between each input, defaults to 0.1\n
                   A lower delay will scroll faster but at some point can lose precision
-    :type delay: float, optional
+    :type interval: float, optional
     """
     if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
@@ -109,18 +109,18 @@ def ui_scroll_up(ticks: int, delay: float = 0.1) -> None:
     for _ in range(ticks):
         kb.press(Key.page_up)
         kb.release(Key.page_up)
-        wait(delay)
+        wait(interval)
 
 
 @require_focus
-def ui_scroll_down(ticks: int, delay: float = 0.1) -> None:
+def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
     """Scrolls down in selected ui element
 
     :param ticks: How many times to scroll
     :type ticks: int
-    :param delay: The delay between each input, defaults to 0.1\n
+    :param interval: The delay between each input, defaults to 0.1\n
                   A lower delay will scroll faster but at some point can lose precision
-    :type delay: float, optional
+    :type interval: float, optional
     """
     if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
@@ -129,7 +129,7 @@ def ui_scroll_down(ticks: int, delay: float = 0.1) -> None:
     for _ in range(ticks):
         kb.press(Key.page_down)
         kb.release(Key.page_down)
-        wait(delay)
+        wait(interval)
 
 
 __all__ = [
