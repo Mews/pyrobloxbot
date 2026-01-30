@@ -22,29 +22,36 @@ def require_focus(fn):
             return fn(*args, **kwargs)
 
         else:
-            rblxWindow = None
+            rblx_window = None
+            previous_window = getActiveWindow()
 
             # Find roblox window
             for window in getWindowsWithTitle("Roblox"):
                 if window.title == "Roblox":
-                    rblxWindow = window
+                    rblx_window = window
 
             # Raise error if roblox isn't open
-            if rblxWindow is None:
+            if rblx_window is None:
                 raise NoRobloxWindowException("You must have roblox opened")
 
             # Set focus to roblox window
             else:
                 pydirectinput.press("altleft")
                 if options.maximize_roblox_window:
-                    rblxWindow.maximize()
-                rblxWindow.activate()
+                    rblx_window.maximize()
+                rblx_window.activate()
 
                 # Wait for the roblox window to be active
                 while getActiveWindow() is None:
                     pass
 
-            return fn(*args, **kwargs)
+            retv = fn(*args, **kwargs)
+
+            if options.restore_focus_after_action:
+                pydirectinput.press("altleft")
+                previous_window.activate()
+
+            return retv
 
     return wrapper
 

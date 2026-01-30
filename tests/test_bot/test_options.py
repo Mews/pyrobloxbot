@@ -10,6 +10,7 @@ def options():
 
 def assert_options_are_default(options):
     assert options.maximize_roblox_window == False  #  noqa: E712
+    assert options.restore_focus_after_action == False  #  noqa: E712
 
 
 def test_default_values(options):
@@ -18,5 +19,6 @@ def test_default_values(options):
 
 def test__reset(options):
     options.maximize_roblox_window = True
+    options.restore_focus_after_action = True
     options._reset()
     assert_options_are_default(options)
