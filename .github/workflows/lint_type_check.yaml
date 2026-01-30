@@ -15,3 +15,5 @@ jobs:
       python_version: '3.13'
       os: 'windows-latest'
       type_check_command: 'mypy'
+      lint_command: 'ruff check .'
+      format_command: 'ruff format . --check'

@@ -69,3 +69,6 @@ testpaths = ["tests"]
 files = ["src"]
 ignore_missing_imports = true
 disallow_incomplete_defs = true
+
+[tool.ruff]
+fix = true
