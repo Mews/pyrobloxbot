@@ -4,10 +4,9 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
-  linting-and-type-checking:
+  lint:
     name: Lint & Type Check
 
     uses: Mews/.github/.github/workflows/ruff-mypy-python.yaml@main

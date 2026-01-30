@@ -4,10 +4,9 @@ on:
   push:
     branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
 
 jobs:
-  call-run-python-tests:
+  smoke:
     name: Run smoke tests
 
     uses: Mews/.github/.github/workflows/smoke-test-python.yaml@main
