@@ -1,5 +1,6 @@
 from ..exceptions import InvalidSlotNumberException
-from .input import require_focus, press_key, hold_key
+from .input import press_key, hold_key
+from .decorators import require_focus
 from ..utils import wait
 from ..bot.bot import keybinds, state
 import pyperclip

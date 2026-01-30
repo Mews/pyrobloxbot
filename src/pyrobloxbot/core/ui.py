@@ -6,7 +6,8 @@ from ..constants.ui_navigate_directions import (
     UI_NAVIGATE_RIGHT_DIRECTIONS,
     UI_NAVIGATE_UP_DIRECTIONS,
 )
-from .input import require_focus, press_key
+from .input import press_key
+from .decorators import require_focus
 from ..bot.bot import state, keybinds
 from pynput.keyboard import Controller, Key
 from ..utils import wait

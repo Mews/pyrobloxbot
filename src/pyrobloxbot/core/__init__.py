@@ -4,6 +4,7 @@ from .input import *  # noqa: F403
 from .movement import *  # noqa: F403
 from .roblox import *  # noqa: F403
 from .ui import *  # noqa: F403
+from . import decorators
 
 from .character import __all__ as character__all__
 from .image import __all__ as image__all__
@@ -19,4 +20,5 @@ __all__ = [
     *movement__all__,
     *roblox__all__,
     *ui__all__,
+    "decorators",
 ]

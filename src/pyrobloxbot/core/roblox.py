@@ -1,5 +1,6 @@
 from ..bot.bot import state
-from .input import require_focus, press_key
+from .input import press_key
+from .decorators import require_focus
 from ..utils import wait
 
 import os
