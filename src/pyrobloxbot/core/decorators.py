@@ -2,7 +2,7 @@ from functools import wraps
 from pygetwindow import getActiveWindow, getWindowsWithTitle
 from win32gui import GetForegroundWindow, GetWindowText
 
-import pyautogui
+import pydirectinput
 from ..exceptions import NoRobloxWindowException
 from ..bot.bot import state
 
@@ -35,7 +35,7 @@ def require_focus(fn):
 
             # Set focus to roblox window
             else:
-                pyautogui.press("altleft")
+                pydirectinput.press("altleft")
                 rblxWindow.maximize()
                 rblxWindow.activate()
 

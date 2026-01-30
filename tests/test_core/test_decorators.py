@@ -27,12 +27,12 @@ def test_require_focus_no_roblox_window(_, __, ___):
 
 
 @patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None")
-@patch("pyrobloxbot.core.decorators.pyautogui")
+@patch("pyrobloxbot.core.decorators.pydirectinput")
 @patch("pyrobloxbot.core.decorators.getWindowsWithTitle")
 @patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Not Roblox")
 @patch("pyrobloxbot.core.decorators.GetForegroundWindow")
 def test_require_focus_window_not_already_active(
-    _, __, mock_getWindowsWithTitle, mock_pyautogui, ___
+    _, __, mock_getWindowsWithTitle, mock_pydirectinput, ___
 ):
     mock_window = MagicMock()
     mock_window.title = "Roblox"
@@ -45,7 +45,7 @@ def test_require_focus_window_not_already_active(
 
     assert dummy_function() == "success"
 
-    mock_pyautogui.press.assert_called_once_with("altleft")
+    mock_pydirectinput.press.assert_called_once_with("altleft")
     mock_window.maximize.assert_called_once()
     mock_window.activate.assert_called_once()
 
