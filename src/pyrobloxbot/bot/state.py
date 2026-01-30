@@ -7,6 +7,8 @@ class _BotState:
 
     _SHIFT_LOCK_ENABLED: bool = False
 
+    _COOLDOWN_SET: bool = False
+
     def is_ui_nav_enabled(self) -> bool:
         return self._UI_NAV_ENABLED
 

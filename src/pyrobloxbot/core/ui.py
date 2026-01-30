@@ -59,6 +59,7 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
         )
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_up() -> None:
@@ -66,6 +67,7 @@ def ui_navigate_up() -> None:
     ui_navigate("u")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_left() -> None:
@@ -73,6 +75,7 @@ def ui_navigate_left() -> None:
     ui_navigate("l")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_right() -> None:
@@ -80,6 +83,7 @@ def ui_navigate_right() -> None:
     ui_navigate("r")
 
 
+@apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_down() -> None:

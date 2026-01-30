@@ -10,6 +10,7 @@ def state():
 def assert_state_is_default(state):
     assert not state._SHIFT_LOCK_ENABLED
     assert not state._UI_NAV_ENABLED
+    assert not state._COOLDOWN_SET
 
 
 def test_default_values(state):
@@ -31,6 +32,7 @@ def test_is_shift_lock_enabled(state):
 def test__reset(state):
     state._SHIFT_LOCK_ENABLED = True
     state._UI_NAV_ENABLED = True
+    state._COOLDOWN_SET = True
     state._reset()
 
     assert_state_is_default(state)

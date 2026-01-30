@@ -98,12 +98,21 @@ def apply_cooldown(fn):
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
-        retv = fn(*args, **kwargs)
+        if state._COOLDOWN_SET:
+            return fn(*args, **kwargs)
 
-        if options.action_cooldown > 0:
-            wait(options.action_cooldown)
+        state._COOLDOWN_SET = True
 
-        return retv
+        try:
+            retv = fn(*args, **kwargs)
+
+            if options.action_cooldown > 0:
+                wait(options.action_cooldown)
+
+            return retv
+
+        finally:
+            state._COOLDOWN_SET = False
 
     return wrapper
 

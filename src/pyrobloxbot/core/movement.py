@@ -54,6 +54,7 @@ def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
         key_up(key)
 
 
+@apply_cooldown
 @require_focus
 def walk_forward(duration: float) -> None:
     """Walks forward for a given time
@@ -64,6 +65,7 @@ def walk_forward(duration: float) -> None:
     walk("f", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def walk_left(duration: float) -> None:
     """Walks left for a given time
@@ -74,6 +76,7 @@ def walk_left(duration: float) -> None:
     walk("l", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def walk_right(duration: float) -> None:
     """Walks right for a given time
@@ -84,6 +87,7 @@ def walk_right(duration: float) -> None:
     walk("r", duration=duration)
 
 
+@apply_cooldown
 @require_focus
 def walk_back(duration: float) -> None:
     """Walks back for a given time
