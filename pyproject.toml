@@ -64,3 +64,8 @@ dev = [
 [tool.pytest.ini_options]
 addopts = "--cov=pyrobloxbot --cov=tests"
 testpaths = ["tests"]
+
+[tool.mypy]
+files = ["src"]
+ignore_missing_imports = true
+disallow_incomplete_defs = true
