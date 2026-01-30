@@ -28,6 +28,7 @@ def toggle_ui_navigation() -> None:
     press_key(keybinds.toggle_ui_navigation)
 
 
+@require_focus
 def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
