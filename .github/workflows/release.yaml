@@ -5,7 +5,17 @@ on:
     types: [published]
 
 jobs:
+  call-lint:
+    uses: ./.github/workflows/lint_type_check.yaml
+
+  call-tests:
+    uses: ./.github/workflows/tests.yaml
+
+  call-smoke:
+    uses: ./.github/workflows/smoke_test.yaml
+
   publish:
+    needs: [call-lint, call-tests, call-smoke]
     uses: Mews/.github/.github/workflows/publish-python-package.yaml@main
     with:
       python_version: '3.10'
