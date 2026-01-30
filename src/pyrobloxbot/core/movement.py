@@ -5,7 +5,8 @@ from ..constants.walk_directions import (
     WALK_LEFT_DIRECTIONS,
     WALK_RIGHT_DIRECTIONS,
 )
-from .input import require_focus, key_down, key_up, press_key, hold_key
+from .input import key_down, key_up, press_key, hold_key
+from .decorators import require_focus
 from ..exceptions import InvalidWalkDirectionException
 from ..utils import wait
 from ..bot.bot import keybinds

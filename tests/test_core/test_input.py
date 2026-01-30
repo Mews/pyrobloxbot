@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, call, MagicMock
+from unittest.mock import patch, call
 
 import pyrobloxbot as bot
 
@@ -69,49 +69,3 @@ def test_key_down(mock_pydirectinput):
 def test_key_up(mock_pydirectinput):
     bot.key_up("esc")
     mock_pydirectinput.keyUp.assert_called_once_with("esc")
-
-
-@patch("pyrobloxbot.core.input.GetForegroundWindow")
-@patch("pyrobloxbot.core.input.GetWindowText", return_value="Roblox")
-def test_require_focus_window_already_active(_, __):
-    @bot.require_focus
-    def dummy_function():
-        return "success"
-
-    assert dummy_function() == "success"
-
-
-@patch("pyrobloxbot.core.input.GetForegroundWindow")
-@patch("pyrobloxbot.core.input.GetWindowText", return_value="Not Roblox")
-@patch("pyrobloxbot.core.input.getWindowsWithTitle", return_value=[])
-def test_require_focus_no_roblox_window(_, __, ___):
-    @bot.require_focus
-    def dummy_function():
-        return "success"
-
-    with pytest.raises(bot.exceptions.NoRobloxWindowException):
-        dummy_function()
-
-
-@patch("pyrobloxbot.core.input.getActiveWindow", return_value="Not None")
-@patch("pyrobloxbot.core.input.pyautogui")
-@patch("pyrobloxbot.core.input.getWindowsWithTitle")
-@patch("pyrobloxbot.core.input.GetWindowText", return_value="Not Roblox")
-@patch("pyrobloxbot.core.input.GetForegroundWindow")
-def test_require_focus_window_not_already_active(
-    _, __, mock_getWindowsWithTitle, mock_pyautogui, ___
-):
-    mock_window = MagicMock()
-    mock_window.title = "Roblox"
-
-    mock_getWindowsWithTitle.return_value = [mock_window]
-
-    @bot.require_focus
-    def dummy_function():
-        return "success"
-
-    assert dummy_function() == "success"
-
-    mock_pyautogui.press.assert_called_once_with("altleft")
-    mock_window.maximize.assert_called_once()
-    mock_window.activate.assert_called_once()

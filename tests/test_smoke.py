@@ -39,7 +39,6 @@ def test_other_exports_included_by_default(export):
         "equip_slot",
         "toggle_shift_lock",
         "image_is_visible",
-        "require_focus",
         "press_key",
         "hold_key",
         "keyboard_action",

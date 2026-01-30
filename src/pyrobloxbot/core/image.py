@@ -1,4 +1,4 @@
-from .input import require_focus
+from .decorators import require_focus
 import pyautogui
 
 

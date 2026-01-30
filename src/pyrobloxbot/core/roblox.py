@@ -1,11 +1,12 @@
-from ..bot.bot import state
-from .input import require_focus, press_key
+from .input import press_key
+from .decorators import require_focus, resets_state
 from ..utils import wait
 
 import os
 
 
 @require_focus
+@resets_state
 def leave_game(interval: float = 0.5) -> None:
     """Leaves the current game
 
@@ -18,9 +19,8 @@ def leave_game(interval: float = 0.5) -> None:
     wait(interval)
     press_key("enter")
 
-    state._UI_NAV_ENABLED = False
 
-
+@resets_state
 def launch_game(game_id: int) -> None:
     """Launches a roblox game
 
@@ -31,8 +31,6 @@ def launch_game(game_id: int) -> None:
     """
     command = "start roblox://placeId=" + str(game_id)
     os.system(command=command)
-
-    state._UI_NAV_ENABLED = False
 
 
 __all__ = ["leave_game", "launch_game"]
