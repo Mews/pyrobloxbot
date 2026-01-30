@@ -7,7 +7,7 @@ from ..constants.ui_navigate_directions import (
     UI_NAVIGATE_UP_DIRECTIONS,
 )
 from .input import press_key
-from .decorators import require_focus, requires_ui_navigation_mode
+from .decorators import require_focus, requires_ui_navigation_mode, apply_cooldown
 from ..bot.bot import state, keybinds
 from pynput.keyboard import Controller, Key
 from ..utils import wait
@@ -15,6 +15,7 @@ from typing import get_args
 
 
 @require_focus
+@apply_cooldown
 def toggle_ui_navigation() -> None:
     """Toggles ui navigation mode.
 
@@ -30,6 +31,7 @@ def toggle_ui_navigation() -> None:
 
 @require_focus
 @requires_ui_navigation_mode
+@apply_cooldown
 def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
@@ -87,6 +89,7 @@ def ui_navigate_down() -> None:
 
 @require_focus
 @requires_ui_navigation_mode
+@apply_cooldown
 def ui_click() -> None:
     """Click on currently selected ui element"""
     press_key(keybinds.ui_click)
@@ -94,6 +97,7 @@ def ui_click() -> None:
 
 @require_focus
 @requires_ui_navigation_mode
+@apply_cooldown
 def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
     """Scrolls up through selected ui element
 
@@ -114,6 +118,7 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
 
 @require_focus
 @requires_ui_navigation_mode
+@apply_cooldown
 def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
     """Scrolls down in selected ui element
 

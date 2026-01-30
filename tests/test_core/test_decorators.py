@@ -184,3 +184,39 @@ def test_requires_ui_navigation_mode_already_enabled(mock_toggle_ui_navigation):
     bot.state._UI_NAV_ENABLED = True
     assert dummy_function() == "success"
     assert mock_toggle_ui_navigation.call_count == 0
+
+
+def test_apply_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown
+    def dummy_function():
+        return "success"
+
+    bot.options.action_cooldown = 10
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_called_once_with(10)
+
+
+def test_apply_cooldown_zero_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown
+    def dummy_function():
+        return "success"
+
+    bot.options.action_cooldown = 0
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_not_called()
+
+
+def test_apply_cooldown_negative_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown
+    def dummy_function():
+        return "success"
+
+    bot.options.action_cooldown = -1
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_not_called()

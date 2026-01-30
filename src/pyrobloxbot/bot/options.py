@@ -7,6 +7,8 @@ class _BotOptions:
 
     restore_focus_after_action: bool = False
 
+    action_cooldown: float = 0
+
     def _reset(self):
         self.__init__()
 

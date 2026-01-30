@@ -5,6 +5,7 @@ from win32gui import GetForegroundWindow, GetWindowText
 import pydirectinput
 from ..exceptions import NoRobloxWindowException
 from ..bot.bot import state, options
+from ..utils import wait
 
 
 def require_focus(fn):
@@ -92,8 +93,24 @@ def requires_ui_navigation_mode(fn):
     return wrapper
 
 
+def apply_cooldown(fn):
+    """This decorator applies the cooldown defined in bot.options.action_cooldown at the end of the decorated function"""
+
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+        retv = fn(*args, **kwargs)
+
+        if options.action_cooldown > 0:
+            wait(options.action_cooldown)
+
+        return retv
+
+    return wrapper
+
+
 __all__ = [
     "require_focus",
     "resets_state",
     "requires_ui_navigation_mode",
+    "apply_cooldown",
 ]
