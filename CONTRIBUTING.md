@@ -18,21 +18,19 @@ All types of contributions are encouraged and valued. See the [Table of Contents
   - [Your First Code Contribution](#your-first-code-contribution)
   - [Improving The Documentation](#improving-the-documentation)
 
-
-
 ## I Have a Question
 
-> If you want to ask a question, we assume that you have read the available [Documentation](https://pyrobloxbot.readthedocs.io/en/latest/).
+You should feel free to ask any questions you have!
 
-Before you ask a question, it is best to search for existing [Issues](https://github.com/Mews/pyrobloxbot/issues) that might help you. In case you have found a suitable issue and still need clarification, you can then post a new issue. It is also advisable to search the internet for answers first.
+However, before you do ask a question, you might want to read the [documentation](https://pyrobloxbot.readthedocs.io/en/latest/), or search existing [Issues](https://github.com/Mews/pyrobloxbot/issues) that might help you.
 
-If you then still feel the need to ask a question and need clarification, we recommend the following:
+If you then still feel the need to ask a question, you can:
+- Open an [issue](https://github.com/Mews/pyrobloxbot/issues/new?labels=question) (recommended, since this helps people with the same question as you in the future)
+- Contact me through discord (mews75)
 
-- Open an [issue](https://github.com/Mews/pyrobloxbot/issues/new?labels=question).
-- Provide as much context as you can about what you're running into.
-- Provide project and platform versions, depending on what seems relevant.
+You should provide all the information you can when asking your question.
 
-We will then take care of the issue as soon as possible.
+We will then try to take care of the issue as soon as possible.
 
 Make sure to pay attention to any activity in any issues you create, so as to make taking care of them as fast as possible.
 
