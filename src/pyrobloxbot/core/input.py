@@ -46,7 +46,7 @@ hold_keyboard_action = hold_key
 
 @apply_cooldown
 @require_focus
-def key_down(key: KEYBOARD_KEYS) -> None:
+def key_down(*keys: KEYBOARD_KEYS) -> None:
     """Holds down a key in a non blocking way
 
     The key will be held until key_up is called for the same key
@@ -54,18 +54,20 @@ def key_down(key: KEYBOARD_KEYS) -> None:
     :param key: The key to be held down
     :type key: KEYBOARD_KEYS
     """
-    pydirectinput.keyDown(key)
+    for key in keys:
+        pydirectinput.keyDown(key)
 
 
 @apply_cooldown
 @require_focus
-def key_up(key: KEYBOARD_KEYS) -> None:
+def key_up(*keys: KEYBOARD_KEYS) -> None:
     """Releases a key
 
     :param key: The key to be released
     :type key: KEYBOARD_KEYS
     """
-    pydirectinput.keyUp(key)
+    for key in keys:
+        pydirectinput.keyUp(key)
 
 
 __all__ = [
