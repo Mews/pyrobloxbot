@@ -49,11 +49,11 @@ def test_hold_key_multiple(mock_key_down, mock_key_up, mock_wait):
 
     bot.hold_key(*keys, duration=10)
 
-    mock_key_down.assert_has_calls([call(key) for key in keys])
+    mock_key_down.assert_called_once_with("w", "a", "s", "d")
 
     mock_wait.assert_called_once_with(10)
 
-    mock_key_up.assert_has_calls([call(key) for key in keys])
+    mock_key_up.assert_called_once_with("w", "a", "s", "d")
 
 
 def test_aliases():
@@ -66,6 +66,20 @@ def test_key_down(mock_pydirectinput):
     mock_pydirectinput.keyDown.assert_called_once_with("esc")
 
 
+def test_key_down_multiple(mock_pydirectinput):
+    bot.key_down("w", "a", "s", "d")
+    mock_pydirectinput.keyDown.assert_has_calls(
+        [call("w"), call("a"), call("s"), call("d")]
+    )
+
+
 def test_key_up(mock_pydirectinput):
     bot.key_up("esc")
     mock_pydirectinput.keyUp.assert_called_once_with("esc")
+
+
+def test_key_up_multiple(mock_pydirectinput):
+    bot.key_up("w", "a", "s", "d")
+    mock_pydirectinput.keyUp.assert_has_calls(
+        [call("w"), call("a"), call("s"), call("d")]
+    )
