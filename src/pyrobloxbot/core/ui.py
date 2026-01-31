@@ -32,31 +32,32 @@ def toggle_ui_navigation() -> None:
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
+def ui_navigate(*directions: UI_NAVIGATE_DIRECTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
     :param direction: The direction to navigate in
     :type direction: UI_NAVIGATE_DIRECTIONS
     :raises InvalidUiDirectionException: Raised if direction isn't one of
     """
-    d = direction.lower().strip()
+    for direction in directions:
+        d = direction.lower().strip()
 
-    if d in get_args(UI_NAVIGATE_UP_DIRECTIONS):
-        press_key(keybinds.ui_navigate_up)
+        if d in get_args(UI_NAVIGATE_UP_DIRECTIONS):
+            press_key(keybinds.ui_navigate_up)
 
-    elif d in get_args(UI_NAVIGATE_LEFT_DIRECTIONS):
-        press_key(keybinds.ui_navigate_left)
+        elif d in get_args(UI_NAVIGATE_LEFT_DIRECTIONS):
+            press_key(keybinds.ui_navigate_left)
 
-    elif d in get_args(UI_NAVIGATE_RIGHT_DIRECTIONS):
-        press_key(keybinds.ui_navigate_right)
+        elif d in get_args(UI_NAVIGATE_RIGHT_DIRECTIONS):
+            press_key(keybinds.ui_navigate_right)
 
-    elif d in get_args(UI_NAVIGATE_DOWN_DIRECTIONS):
-        press_key(keybinds.ui_navigate_down)
+        elif d in get_args(UI_NAVIGATE_DOWN_DIRECTIONS):
+            press_key(keybinds.ui_navigate_down)
 
-    else:
-        raise InvalidUiDirectionException(
-            "Direction must be one of " + str(UI_NAVIGATE_DIRECTIONS)
-        )
+        else:
+            raise InvalidUiDirectionException(
+                "Direction must be one of " + str(UI_NAVIGATE_DIRECTIONS)
+            )
 
 
 @apply_cooldown

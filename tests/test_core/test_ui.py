@@ -89,6 +89,22 @@ def test_ui_navigate_right_directions(direction, mock_press_key):
     mock_press_key.assert_called_with(bot.keybinds.ui_navigate_right)
 
 
+def test_ui_navigate_multiple_directions(mock_press_key):
+    bot.ui_navigate("u", "u", "d", "d", "l", "r", "l", "r")  # B A Start :)
+    mock_press_key.assert_has_calls(
+        [
+            call(bot.keybinds.ui_navigate_up),
+            call(bot.keybinds.ui_navigate_up),
+            call(bot.keybinds.ui_navigate_down),
+            call(bot.keybinds.ui_navigate_down),
+            call(bot.keybinds.ui_navigate_left),
+            call(bot.keybinds.ui_navigate_right),
+            call(bot.keybinds.ui_navigate_left),
+            call(bot.keybinds.ui_navigate_right),
+        ]
+    )
+
+
 def test_ui_navigate_invalid_direction(mock_press_key):
     with pytest.raises(bot.exceptions.InvalidUiDirectionException):
         bot.ui_navigate("Hello world!")
