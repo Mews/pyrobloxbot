@@ -62,33 +62,37 @@ def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_up() -> None:
+def ui_navigate_up(times: int = 1) -> None:
     """Navigate up in ui elements"""
-    ui_navigate("u")
+    for _ in range(times):
+        ui_navigate("u")
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_left() -> None:
+def ui_navigate_left(times: int = 1) -> None:
     """Navigate left in ui elements"""
-    ui_navigate("l")
+    for _ in range(times):
+        ui_navigate("l")
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_right() -> None:
+def ui_navigate_right(times: int = 1) -> None:
     """Navigate right in ui elements"""
-    ui_navigate("r")
+    for _ in range(times):
+        ui_navigate("r")
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_down() -> None:
+def ui_navigate_down(times: int = 1) -> None:
     """Navigate down in ui elements"""
-    ui_navigate("d")
+    for _ in range(times):
+        ui_navigate("d")
 
 
 @apply_cooldown

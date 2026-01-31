@@ -99,9 +99,19 @@ def test_ui_navigate_up(mock_ui_navigate):
     mock_ui_navigate.assert_called_once_with("u")
 
 
+def test_ui_navigate_up_multiple_times(mock_ui_navigate):
+    bot.ui_navigate_up(10)
+    mock_ui_navigate.assert_has_calls([call("u")] * 10)
+
+
 def test_ui_navigate_down(mock_ui_navigate):
     bot.ui_navigate_down()
     mock_ui_navigate.assert_called_once_with("d")
+
+
+def test_ui_navigate_down_multiple_times(mock_ui_navigate):
+    bot.ui_navigate_down(10)
+    mock_ui_navigate.assert_has_calls([call("d")] * 10)
 
 
 def test_ui_navigate_left(mock_ui_navigate):
@@ -109,9 +119,19 @@ def test_ui_navigate_left(mock_ui_navigate):
     mock_ui_navigate.assert_called_once_with("l")
 
 
+def test_ui_navigate_left_multiple_times(mock_ui_navigate):
+    bot.ui_navigate_left(10)
+    mock_ui_navigate.assert_has_calls([call("l")] * 10)
+
+
 def test_ui_navigate_right(mock_ui_navigate):
     bot.ui_navigate_right()
     mock_ui_navigate.assert_called_once_with("r")
+
+
+def test_ui_navigate_right_multiple_times(mock_ui_navigate):
+    bot.ui_navigate_right(10)
+    mock_ui_navigate.assert_has_calls([call("r")] * 10)
 
 
 def test_ui_click_enables_ui_navigation(mock_toggle_ui_navigation):
