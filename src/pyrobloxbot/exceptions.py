@@ -16,8 +16,8 @@ class InvalidWalkDirectionException(Exception):
     pass
 
 
-class InvalidUiDirectionException(Exception):
-    """Raised by ui_navigate when given a direction that isn't in constants.UI_NAVIGATE_DIRECTIONS"""
+class InvalidUiActionException(Exception):
+    """Raised by ui_navigate when given a action that isn't in constants.UI_ACTIONS"""
 
     pass
 
@@ -26,5 +26,5 @@ __all__ = [
     "NoRobloxWindowException",
     "InvalidSlotNumberException",
     "InvalidWalkDirectionException",
-    "InvalidUiDirectionException",
+    "InvalidUiActionException",
 ]

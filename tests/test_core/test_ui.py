@@ -65,31 +65,31 @@ def test_ui_navigate_dont_enable_ui_navigation_already_on(mock_toggle_ui_navigat
     mock_toggle_ui_navigation.assert_not_called()
 
 
-@pytest.mark.parametrize("direction", ["up", "u"])
-def test_ui_navigate_up_directions(direction, mock_press_key):
-    bot.ui_navigate(direction)
+@pytest.mark.parametrize("action", ["up", "u"])
+def test_ui_navigate_up_actions(action, mock_press_key):
+    bot.ui_navigate(action)
     mock_press_key.assert_called_with(bot.keybinds.ui_navigate_up)
 
 
-@pytest.mark.parametrize("direction", ["down", "d"])
-def test_ui_navigate_down_directions(direction, mock_press_key):
-    bot.ui_navigate(direction)
+@pytest.mark.parametrize("action", ["down", "d"])
+def test_ui_navigate_down_actions(action, mock_press_key):
+    bot.ui_navigate(action)
     mock_press_key.assert_called_with(bot.keybinds.ui_navigate_down)
 
 
-@pytest.mark.parametrize("direction", ["left", "l"])
-def test_ui_navigate_left_directions(direction, mock_press_key):
-    bot.ui_navigate(direction)
+@pytest.mark.parametrize("action", ["left", "l"])
+def test_ui_navigate_left_actions(action, mock_press_key):
+    bot.ui_navigate(action)
     mock_press_key.assert_called_with(bot.keybinds.ui_navigate_left)
 
 
-@pytest.mark.parametrize("direction", ["right", "r"])
-def test_ui_navigate_right_directions(direction, mock_press_key):
-    bot.ui_navigate(direction)
+@pytest.mark.parametrize("action", ["right", "r"])
+def test_ui_navigate_right_actions(action, mock_press_key):
+    bot.ui_navigate(action)
     mock_press_key.assert_called_with(bot.keybinds.ui_navigate_right)
 
 
-def test_ui_navigate_multiple_directions(mock_press_key):
+def test_ui_navigate_multiple_actions_cardinal_only(mock_press_key):
     bot.ui_navigate("u", "u", "d", "d", "l", "r", "l", "r")  # B A Start :)
     mock_press_key.assert_has_calls(
         [
@@ -105,8 +105,8 @@ def test_ui_navigate_multiple_directions(mock_press_key):
     )
 
 
-def test_ui_navigate_invalid_direction(mock_press_key):
-    with pytest.raises(bot.exceptions.InvalidUiDirectionException):
+def test_ui_navigate_invalid_action(mock_press_key):
+    with pytest.raises(bot.exceptions.InvalidUiActionException):
         bot.ui_navigate("Hello world!")
 
 

@@ -1,10 +1,10 @@
-from ..exceptions import InvalidUiDirectionException
-from ..constants.ui_navigate_directions import (
-    UI_NAVIGATE_DIRECTIONS,
-    UI_NAVIGATE_DOWN_DIRECTIONS,
-    UI_NAVIGATE_LEFT_DIRECTIONS,
-    UI_NAVIGATE_RIGHT_DIRECTIONS,
-    UI_NAVIGATE_UP_DIRECTIONS,
+from ..exceptions import InvalidUiActionException
+from ..constants.ui_actions import (
+    UI_ACTIONS,
+    UI_NAVIGATE_DOWN_ACTIONS,
+    UI_NAVIGATE_LEFT_ACTIONS,
+    UI_NAVIGATE_RIGHT_ACTIONS,
+    UI_NAVIGATE_UP_ACTIONS,
 )
 from .input import press_key
 from .decorators import require_focus, requires_ui_navigation_mode, apply_cooldown
@@ -32,32 +32,30 @@ def toggle_ui_navigation() -> None:
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate(*directions: UI_NAVIGATE_DIRECTIONS) -> None:
+def ui_navigate(*actions: UI_ACTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
     :param direction: The direction to navigate in
-    :type direction: UI_NAVIGATE_DIRECTIONS
+    :type direction: UI_ACTIONS
     :raises InvalidUiDirectionException: Raised if direction isn't one of
     """
-    for direction in directions:
-        d = direction.lower().strip()
+    for action in actions:
+        a = action.lower().strip()
 
-        if d in get_args(UI_NAVIGATE_UP_DIRECTIONS):
+        if a in get_args(UI_NAVIGATE_UP_ACTIONS):
             press_key(keybinds.ui_navigate_up)
 
-        elif d in get_args(UI_NAVIGATE_LEFT_DIRECTIONS):
+        elif a in get_args(UI_NAVIGATE_LEFT_ACTIONS):
             press_key(keybinds.ui_navigate_left)
 
-        elif d in get_args(UI_NAVIGATE_RIGHT_DIRECTIONS):
+        elif a in get_args(UI_NAVIGATE_RIGHT_ACTIONS):
             press_key(keybinds.ui_navigate_right)
 
-        elif d in get_args(UI_NAVIGATE_DOWN_DIRECTIONS):
+        elif a in get_args(UI_NAVIGATE_DOWN_ACTIONS):
             press_key(keybinds.ui_navigate_down)
 
         else:
-            raise InvalidUiDirectionException(
-                "Direction must be one of " + str(UI_NAVIGATE_DIRECTIONS)
-            )
+            raise InvalidUiActionException("Action must be one of " + str(UI_ACTIONS))
 
 
 @apply_cooldown

@@ -93,11 +93,15 @@ def test__all__is_complete(export):
         "NoRobloxWindowException",
         "InvalidSlotNumberException",
         "InvalidWalkDirectionException",
-        "InvalidUiDirectionException",
+        "InvalidUiActionException",
         "wait",
         "KEYBOARD_KEYS",
         "WALK_DIRECTIONS",
-        "UI_NAVIGATE_DIRECTIONS",
+        "UI_ACTIONS",
+        "UI_NAVIGATE_UP_ACTIONS",
+        "UI_NAVIGATE_LEFT_ACTIONS",
+        "UI_NAVIGATE_RIGHT_ACTIONS",
+        "UI_NAVIGATE_DOWN_ACTIONS",
     ],
 )
 def test_libraries_arent_exported(export):
