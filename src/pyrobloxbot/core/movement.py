@@ -108,9 +108,11 @@ def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
     :param interval: How much time between jumps, in seconds, defaults to 0
     :type interval: float
     """
-    for _ in range(number_of_jumps):
+    for i in range(number_of_jumps):
         press_key(keybinds.jump)
-        wait(interval)
+
+        if i != number_of_jumps - 1:
+            wait(interval)
 
 
 @apply_cooldown

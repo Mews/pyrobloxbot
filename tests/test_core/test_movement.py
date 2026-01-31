@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import patch, call
+from unittest.mock import patch, call, Mock
 
 import pyrobloxbot as bot
 
@@ -169,7 +169,29 @@ def test_jump(mock_press_key, mock_wait):
     bot.jump(10, 5)
 
     mock_press_key.assert_has_calls([call("space")] * 10)
-    mock_wait.assert_has_calls([call(5)] * 10)
+    mock_wait.assert_has_calls([call(5)] * 9)
+
+
+def test_jump_issue_41(mock_press_key, mock_wait):
+    manager = Mock()
+    manager.attach_mock(mock_press_key, "mock_press_key")
+    manager.attach_mock(mock_wait, "mock_wait")
+
+    bot.jump(5, 2)
+
+    expected_calls = [
+        call.mock_press_key(bot.keybinds.jump),
+        call.mock_wait(2),
+        call.mock_press_key(bot.keybinds.jump),
+        call.mock_wait(2),
+        call.mock_press_key(bot.keybinds.jump),
+        call.mock_wait(2),
+        call.mock_press_key(bot.keybinds.jump),
+        call.mock_wait(2),
+        call.mock_press_key(bot.keybinds.jump),
+    ]
+
+    assert manager.mock_calls == expected_calls
 
 
 def test_jump_continous(mock_hold_key):
