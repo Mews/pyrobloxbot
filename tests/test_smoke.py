@@ -103,6 +103,8 @@ def test__all__is_complete(export):
         "UI_NAVIGATE_RIGHT_ACTIONS",
         "UI_NAVIGATE_DOWN_ACTIONS",
         "UI_CLICK_ACTIONS",
+        "pyscreeze",
+        "ImageGrab",
     ],
 )
 def test_libraries_arent_exported(export):
