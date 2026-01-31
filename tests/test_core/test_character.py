@@ -22,6 +22,12 @@ def mock_pyperclip():
         yield m
 
 
+@pytest.fixture
+def mock_toggle_inventory(mock_press_key):
+    with patch("pyrobloxbot.core.character.toggle_inventory") as m:
+        yield m
+
+
 def test_reset_player(mock_press_key, mock_wait):
     bot.reset_player(3)
 
@@ -108,3 +114,27 @@ def test_toggle_inventory_different_keybind(mock_press_key):
     mock_press_key.assert_called_once_with("\\")
 
     assert bot.state.is_inventory_open()
+
+
+def test_open_inventory_inventory_closed(mock_toggle_inventory):
+    bot.state._INVENTORY_OPEN = False
+    bot.open_inventory()
+    mock_toggle_inventory.assert_called_once()
+
+
+def test_open_inventory_inventory_open(mock_toggle_inventory):
+    bot.state._INVENTORY_OPEN = True
+    bot.open_inventory()
+    mock_toggle_inventory.assert_not_called()
+
+
+def test_close_inventory_inventory_closed(mock_toggle_inventory):
+    bot.state._INVENTORY_OPEN = False
+    bot.close_inventory()
+    mock_toggle_inventory.assert_not_called()
+
+
+def test_close_inventory_inventory_open(mock_toggle_inventory):
+    bot.state._INVENTORY_OPEN = True
+    bot.close_inventory()
+    mock_toggle_inventory.assert_called_once()

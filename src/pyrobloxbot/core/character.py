@@ -69,6 +69,20 @@ def toggle_inventory() -> None:
 
 @apply_cooldown
 @require_focus
+def open_inventory() -> None:
+    if not state.is_inventory_open():
+        toggle_inventory()
+
+
+@apply_cooldown
+@require_focus
+def close_inventory() -> None:
+    if state.is_inventory_open():
+        toggle_inventory()
+
+
+@apply_cooldown
+@require_focus
 def toggle_shift_lock() -> None:
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
     press_key(keybinds.toggle_shift_lock)
@@ -81,4 +95,6 @@ __all__ = [
     "equip_slot",
     "toggle_shift_lock",
     "toggle_inventory",
+    "open_inventory",
+    "close_inventory",
 ]
