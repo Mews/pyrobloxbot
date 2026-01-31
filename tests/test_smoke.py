@@ -64,6 +64,9 @@ def test_other_exports_included_by_default(export):
         "ui_click",
         "ui_scroll_up",
         "ui_scroll_down",
+        "toggle_inventory",
+        "open_inventory",
+        "close_inventory",
     ],
 )
 def test__all__is_complete(export):

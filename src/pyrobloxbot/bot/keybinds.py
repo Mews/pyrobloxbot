@@ -17,6 +17,8 @@ class _BotKeybinds:
 
     toggle_ui_navigation: str = "\\"
 
+    toggle_inventory: str = "`"
+
     ui_navigate_up: str = "up"
     ui_navigate_down: str = "down"
     ui_navigate_left: str = "left"
