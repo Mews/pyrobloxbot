@@ -1,10 +1,11 @@
-from ..exceptions import InvalidUiDirectionException
-from ..constants.ui_navigate_directions import (
-    UI_NAVIGATE_DIRECTIONS,
-    UI_NAVIGATE_DOWN_DIRECTIONS,
-    UI_NAVIGATE_LEFT_DIRECTIONS,
-    UI_NAVIGATE_RIGHT_DIRECTIONS,
-    UI_NAVIGATE_UP_DIRECTIONS,
+from ..exceptions import InvalidUiActionException
+from ..constants.ui_actions import (
+    UI_ACTIONS,
+    UI_NAVIGATE_DOWN_ACTIONS,
+    UI_NAVIGATE_LEFT_ACTIONS,
+    UI_NAVIGATE_RIGHT_ACTIONS,
+    UI_NAVIGATE_UP_ACTIONS,
+    UI_CLICK_ACTIONS,
 )
 from .input import press_key
 from .decorators import require_focus, requires_ui_navigation_mode, apply_cooldown
@@ -32,63 +33,69 @@ def toggle_ui_navigation() -> None:
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate(direction: UI_NAVIGATE_DIRECTIONS) -> None:
+def ui_navigate(*actions: UI_ACTIONS) -> None:
     """Navigates through roblox ui in specified direction
 
     :param direction: The direction to navigate in
-    :type direction: UI_NAVIGATE_DIRECTIONS
+    :type direction: UI_ACTIONS
     :raises InvalidUiDirectionException: Raised if direction isn't one of
     """
-    d = direction.lower().strip()
+    for action in actions:
+        a = action.lower().strip()
 
-    if d in get_args(UI_NAVIGATE_UP_DIRECTIONS):
-        press_key(keybinds.ui_navigate_up)
+        if a in get_args(UI_NAVIGATE_UP_ACTIONS):
+            press_key(keybinds.ui_navigate_up)
 
-    elif d in get_args(UI_NAVIGATE_LEFT_DIRECTIONS):
-        press_key(keybinds.ui_navigate_left)
+        elif a in get_args(UI_NAVIGATE_LEFT_ACTIONS):
+            press_key(keybinds.ui_navigate_left)
 
-    elif d in get_args(UI_NAVIGATE_RIGHT_DIRECTIONS):
-        press_key(keybinds.ui_navigate_right)
+        elif a in get_args(UI_NAVIGATE_RIGHT_ACTIONS):
+            press_key(keybinds.ui_navigate_right)
 
-    elif d in get_args(UI_NAVIGATE_DOWN_DIRECTIONS):
-        press_key(keybinds.ui_navigate_down)
+        elif a in get_args(UI_NAVIGATE_DOWN_ACTIONS):
+            press_key(keybinds.ui_navigate_down)
 
-    else:
-        raise InvalidUiDirectionException(
-            "Direction must be one of " + str(UI_NAVIGATE_DIRECTIONS)
-        )
+        elif a in get_args(UI_CLICK_ACTIONS):
+            press_key(keybinds.ui_click)
+
+        else:
+            raise InvalidUiActionException("Action must be one of " + str(UI_ACTIONS))
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_up() -> None:
+def ui_navigate_up(times: int = 1) -> None:
     """Navigate up in ui elements"""
-    ui_navigate("u")
+    for _ in range(times):
+        ui_navigate("u")
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_left() -> None:
+def ui_navigate_left(times: int = 1) -> None:
     """Navigate left in ui elements"""
-    ui_navigate("l")
+    for _ in range(times):
+        ui_navigate("l")
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_right() -> None:
+def ui_navigate_right(times: int = 1) -> None:
     """Navigate right in ui elements"""
-    ui_navigate("r")
+    for _ in range(times):
+        ui_navigate("r")
 
 
 @apply_cooldown
 @require_focus
 @requires_ui_navigation_mode
-def ui_navigate_down() -> None:
+def ui_navigate_down(times: int = 1) -> None:
     """Navigate down in ui elements"""
-    ui_navigate("d")
+    for _ in range(times):
+        ui_navigate("d")
 
 
 @apply_cooldown
@@ -96,7 +103,7 @@ def ui_navigate_down() -> None:
 @requires_ui_navigation_mode
 def ui_click() -> None:
     """Click on currently selected ui element"""
-    press_key(keybinds.ui_click)
+    ui_navigate("c")
 
 
 @apply_cooldown
