@@ -53,6 +53,30 @@ def test_toggle_ui_navigation_different_keybind(mock_press_key):
     assert bot.state.is_ui_nav_enabled()
 
 
+def test_enable_ui_navigation_ui_nav_enabled(mock_toggle_ui_navigation):
+    bot.state._UI_NAV_ENABLED = True
+    bot.enable_ui_navigation()
+    mock_toggle_ui_navigation.assert_not_called()
+
+
+def test_enable_ui_navigation_ui_nav_disabled(mock_toggle_ui_navigation):
+    bot.state._UI_NAV_ENABLED = False
+    bot.enable_ui_navigation()
+    mock_toggle_ui_navigation.assert_called_once()
+
+
+def test_disable_ui_navigation_ui_nav_enabled(mock_toggle_ui_navigation):
+    bot.state._UI_NAV_ENABLED = True
+    bot.disable_ui_navigation()
+    mock_toggle_ui_navigation.assert_called_once()
+
+
+def test_disable_ui_navigation_ui_nav_disabled(mock_toggle_ui_navigation):
+    bot.state._UI_NAV_ENABLED = False
+    bot.disable_ui_navigation()
+    mock_toggle_ui_navigation.assert_not_called()
+
+
 def test_ui_navigate_enables_ui_navigation(mock_toggle_ui_navigation):
     bot.state._UI_NAV_ENABLED = False
     bot.ui_navigate("up")

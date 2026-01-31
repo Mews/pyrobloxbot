@@ -89,11 +89,27 @@ def toggle_shift_lock() -> None:
     state._SHIFT_LOCK_ENABLED = not state.is_shift_lock_enabled()
 
 
+@apply_cooldown
+@require_focus
+def enable_shift_lock() -> None:
+    if not state.is_shift_lock_enabled():
+        toggle_shift_lock()
+
+
+@apply_cooldown
+@require_focus
+def disable_shift_lock() -> None:
+    if state.is_shift_lock_enabled():
+        toggle_shift_lock()
+
+
 __all__ = [
     "reset_player",
     "chat",
     "equip_slot",
     "toggle_shift_lock",
+    "enable_shift_lock",
+    "disable_shift_lock",
     "toggle_inventory",
     "open_inventory",
     "close_inventory",
