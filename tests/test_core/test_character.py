@@ -89,3 +89,22 @@ def test_toggle_shift_lock_different_keybind(mock_press_key):
     mock_press_key.assert_called_once_with("ctrl")
 
     assert bot.state.is_shift_lock_enabled()
+
+
+def test_toggle_inventory(mock_press_key):
+    bot.state._INVENTORY_OPEN = False
+
+    bot.toggle_inventory()
+    mock_press_key.assert_called_once_with(bot.keybinds.toggle_inventory)
+
+    assert bot.state.is_inventory_open()
+
+
+def test_toggle_inventory_different_keybind(mock_press_key):
+    bot.state._INVENTORY_OPEN = False
+
+    bot.keybinds.toggle_inventory = "\\"
+    bot.toggle_inventory()
+    mock_press_key.assert_called_once_with("\\")
+
+    assert bot.state.is_inventory_open()

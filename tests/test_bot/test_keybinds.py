@@ -26,6 +26,8 @@ def assert_keybinds_are_default(keybinds):
 
     assert keybinds.toggle_ui_navigation == "\\"
 
+    assert keybinds.toggle_inventory == "`"
+
     assert keybinds.ui_navigate_up == "up"
     assert keybinds.ui_navigate_left == "left"
     assert keybinds.ui_navigate_right == "right"

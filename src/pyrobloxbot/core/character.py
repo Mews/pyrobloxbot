@@ -62,6 +62,13 @@ def equip_slot(slot: int) -> None:
 
 @apply_cooldown
 @require_focus
+def toggle_inventory() -> None:
+    press_key(keybinds.toggle_inventory)
+    state._INVENTORY_OPEN = not state._INVENTORY_OPEN
+
+
+@apply_cooldown
+@require_focus
 def toggle_shift_lock() -> None:
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
     press_key(keybinds.toggle_shift_lock)
@@ -73,4 +80,5 @@ __all__ = [
     "chat",
     "equip_slot",
     "toggle_shift_lock",
+    "toggle_inventory",
 ]
