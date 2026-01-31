@@ -22,6 +22,9 @@ There is also a global failsafe that can be triggered using _**control + m**_ to
 
 If you have any issues while using the library, please [ask a question!](CONTRIBUTING.md#i-have-a-question)
 
+All feature suggestions are welcome! Find out [how to request a feature](CONTRIBUTING.md#suggesting-enhancements).
+
+
 ## Installation
 
 Install pyrobloxbot using ```pip install pyrobloxbot```

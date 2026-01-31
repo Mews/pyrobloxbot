@@ -66,14 +66,8 @@ Once it's filed, a maintainer will look at it, try to reproduce it, and decide t
 
 ### Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for pyrobloxbot, **including completely new features and minor improvements to existing functionality**.
-
-#### Before Submitting an Enhancement
-
-- Make sure that you are using the latest version.
-- Read the [documentation](https://pyrobloxbot.readthedocs.io/en/latest/) carefully and find out if the functionality is already covered, maybe by an individual configuration.
-- Perform a [search](https://github.com/Mews/pyrobloxbot/issues) to see if the enhancement has already been suggested. If it has, add a comment to the existing issue instead of opening a new one.
-- Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature.
+This section guides you through submitting an enhancement suggestion for pyrobloxbot.<br>
+Enhancements can range from **completely new features to minor improvements to existing functionality**, and all suggestions are welcome.
 
 #### How Do I Submit a Good Enhancement Suggestion?
 
@@ -84,6 +78,7 @@ To submit a feature request:
 - Make sure to follow the template and describe your feature in detail
 - Add all the information that might be relevant to your request
 
+Someone will then review it, and if its deemed as fiting for the project it'll get implemented whenever possible.
 
 ### Your First Code Contribution
 The first thing you'll need to do is [fork the repository](https://github.com/Mews/pyrobloxbot/fork). This will create a copy of the repository in your account, which you can edit.
