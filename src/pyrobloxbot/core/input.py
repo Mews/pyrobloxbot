@@ -30,11 +30,9 @@ def hold_key(*keys: KEYBOARD_KEYS, duration: float) -> None:
     :param duration: How long to hold for, in seconds
     :type duration: float
     """
-    for key in keys:
-        key_down(key)
+    key_down(*keys)
     wait(duration)
-    for key in keys:
-        key_up(key)
+    key_up(*keys)
 
 
 keyboard_action = press_key

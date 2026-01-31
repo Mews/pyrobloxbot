@@ -49,11 +49,11 @@ def test_hold_key_multiple(mock_key_down, mock_key_up, mock_wait):
 
     bot.hold_key(*keys, duration=10)
 
-    mock_key_down.assert_has_calls([call(key) for key in keys])
+    mock_key_down.assert_called_once_with("w", "a", "s", "d")
 
     mock_wait.assert_called_once_with(10)
 
-    mock_key_up.assert_has_calls([call(key) for key in keys])
+    mock_key_up.assert_called_once_with("w", "a", "s", "d")
 
 
 def test_aliases():
