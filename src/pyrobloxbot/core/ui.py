@@ -5,6 +5,7 @@ from ..constants.ui_actions import (
     UI_NAVIGATE_LEFT_ACTIONS,
     UI_NAVIGATE_RIGHT_ACTIONS,
     UI_NAVIGATE_UP_ACTIONS,
+    UI_CLICK_ACTIONS,
 )
 from .input import press_key
 from .decorators import require_focus, requires_ui_navigation_mode, apply_cooldown
@@ -54,6 +55,9 @@ def ui_navigate(*actions: UI_ACTIONS) -> None:
         elif a in get_args(UI_NAVIGATE_DOWN_ACTIONS):
             press_key(keybinds.ui_navigate_down)
 
+        elif a in get_args(UI_CLICK_ACTIONS):
+            press_key(keybinds.ui_click)
+
         else:
             raise InvalidUiActionException("Action must be one of " + str(UI_ACTIONS))
 
@@ -99,7 +103,7 @@ def ui_navigate_down(times: int = 1) -> None:
 @requires_ui_navigation_mode
 def ui_click() -> None:
     """Click on currently selected ui element"""
-    press_key(keybinds.ui_click)
+    ui_navigate("c")
 
 
 @apply_cooldown
