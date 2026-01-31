@@ -4,30 +4,8 @@ from unittest.mock import patch, MagicMock, call
 import pyrobloxbot as bot
 
 
-@patch("pyrobloxbot.core.decorators.GetForegroundWindow")
-@patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Roblox")
-def test_require_focus_window_already_active(_, __):
-    @bot.decorators.require_focus
-    def dummy_function():
-        return "success"
-
-    assert dummy_function() == "success"
-
-
-@patch("pyrobloxbot.core.decorators.GetForegroundWindow")
-@patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Not Roblox")
-@patch("pyrobloxbot.core.decorators.getWindowsWithTitle", return_value=[])
-def test_require_focus_no_roblox_window(_, __, ___):
-    @bot.decorators.require_focus
-    def dummy_function():
-        return "success"
-
-    with pytest.raises(bot.exceptions.NoRobloxWindowException):
-        dummy_function()
-
-
 @pytest.fixture
-def mock_window_env():
+def mock_roblox_not_active_window_env():
     patches = [
         patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None"),
         patch("pyrobloxbot.core.decorators.pydirectinput"),
@@ -50,7 +28,73 @@ def mock_window_env():
         p.stop()
 
 
-def test_require_focus_window_not_already_active(mock_window_env):
+@pytest.fixture
+def mock_roblox_active_window_env():
+    patches = [
+        patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None"),
+        patch("pyrobloxbot.core.decorators.pydirectinput"),
+        patch("pyrobloxbot.core.decorators.getWindowsWithTitle"),
+        patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Roblox"),
+        patch("pyrobloxbot.core.decorators.GetForegroundWindow"),
+    ]
+
+    mocks = [p.start() for p in patches]
+
+    yield {
+        "getActiveWindow": mocks[0],
+        "pydirectinput": mocks[1],
+        "getWindowsWithTitle": mocks[2],
+        "GetWindowText": mocks[3],
+        "GetForegroundWindow": mocks[4],
+    }
+
+    for p in patches:
+        p.stop()
+
+
+@pytest.fixture
+def mock_roblox_not_open_window_env():
+    patches = [
+        patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None"),
+        patch("pyrobloxbot.core.decorators.pydirectinput"),
+        patch("pyrobloxbot.core.decorators.getWindowsWithTitle", return_value=[]),
+        patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Not Roblox"),
+        patch("pyrobloxbot.core.decorators.GetForegroundWindow"),
+    ]
+
+    mocks = [p.start() for p in patches]
+
+    yield {
+        "getActiveWindow": mocks[0],
+        "pydirectinput": mocks[1],
+        "getWindowsWithTitle": mocks[2],
+        "GetWindowText": mocks[3],
+        "GetForegroundWindow": mocks[4],
+    }
+
+    for p in patches:
+        p.stop()
+
+
+def test_require_focus_window_already_active(mock_roblox_active_window_env):
+    @bot.decorators.require_focus
+    def dummy_function():
+        return "success"
+
+    assert dummy_function() == "success"
+
+
+def test_require_focus_no_roblox_window(mock_roblox_not_open_window_env):
+    @bot.decorators.require_focus
+    def dummy_function():
+        return "success"
+
+    with pytest.raises(bot.exceptions.NoRobloxWindowException):
+        dummy_function()
+
+
+def test_require_focus_window_not_already_active(mock_roblox_not_active_window_env):
+    mock_window_env = mock_roblox_not_active_window_env
     mock_window = MagicMock()
     mock_window.title = "Roblox"
 
@@ -66,7 +110,11 @@ def test_require_focus_window_not_already_active(mock_window_env):
     mock_window.activate.assert_called_once()
 
 
-def test_require_focus_window_not_already_active_with_maximize_option(mock_window_env):
+def test_require_focus_window_not_already_active_with_maximize_option(
+    mock_roblox_not_active_window_env,
+):
+    mock_window_env = mock_roblox_not_active_window_env
+
     mock_window = MagicMock()
     mock_window.title = "Roblox"
 
@@ -84,7 +132,11 @@ def test_require_focus_window_not_already_active_with_maximize_option(mock_windo
     mock_window.activate.assert_called_once()
 
 
-def test_require_focus_window_not_already_active_with_restore_option(mock_window_env):
+def test_require_focus_window_not_already_active_with_restore_option(
+    mock_roblox_not_active_window_env,
+):
+    mock_window_env = mock_roblox_not_active_window_env
+
     mock_window = MagicMock()
     mock_window.title = "Roblox"
 
