@@ -158,6 +158,50 @@ def test_require_focus_window_not_already_active_with_restore_option(
     mock_prev_window.activate.assert_called_once()
 
 
+def test_require_focus_roblox_is_active_with_force_focus_false(
+    mock_roblox_active_window_env,
+):
+    bot.options.force_focus = False
+
+    @bot.decorators.require_focus
+    def dummy_function():
+        return "success"
+
+    assert dummy_function() == "success"
+
+
+def test_require_focus_roblox_isnt_active_with_force_focus_false(
+    mock_roblox_not_active_window_env,
+):
+    bot.options.force_focus = False
+
+    dummy_func = MagicMock()
+
+    @bot.decorators.require_focus
+    def dummy_function():
+        dummy_func()
+        return "success"
+
+    assert dummy_function() is None
+    dummy_func.assert_not_called()
+
+
+def test_require_focus_roblox_not_open_with_force_focus_false(
+    mock_roblox_not_open_window_env,
+):
+    bot.options.force_focus = False
+
+    dummy_func = MagicMock()
+
+    @bot.decorators.require_focus
+    def dummy_function():
+        dummy_func()
+        return "success"
+
+    assert dummy_function() is None
+    dummy_func.assert_not_called()
+
+
 @patch("pyrobloxbot.decorators.state")
 def test_resets_state(mock_state):
     @bot.decorators.resets_state

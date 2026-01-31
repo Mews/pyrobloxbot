@@ -22,6 +22,9 @@ def require_focus(fn):
         if GetWindowText(GetForegroundWindow()) == "Roblox":
             return fn(*args, **kwargs)
 
+        elif not options.force_focus:
+            return None
+
         else:
             rblx_window = None
             previous_window = getActiveWindow()

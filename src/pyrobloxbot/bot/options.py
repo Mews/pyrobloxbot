@@ -9,6 +9,8 @@ class _BotOptions:
 
     action_cooldown: float = 0
 
+    force_focus: bool = True
+
     def _reset(self):
         self.__init__()
 
