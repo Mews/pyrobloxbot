@@ -73,11 +73,19 @@ def test_equip_slot_invalid_slot(slot):
 
 
 def test_toggle_shift_lock(mock_press_key):
+    bot.state._SHIFT_LOCK_ENABLED = False
+
     bot.toggle_shift_lock()
     mock_press_key.assert_called_once_with(bot.keybinds.toggle_shift_lock)
 
+    assert bot.state.is_shift_lock_enabled()
+
 
 def test_toggle_shift_lock_different_keybind(mock_press_key):
+    bot.state._SHIFT_LOCK_ENABLED = False
+
     bot.keybinds.toggle_shift_lock = "ctrl"
     bot.toggle_shift_lock()
     mock_press_key.assert_called_once_with("ctrl")
+
+    assert bot.state.is_shift_lock_enabled()
