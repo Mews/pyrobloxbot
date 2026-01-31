@@ -92,14 +92,14 @@ def toggle_shift_lock() -> None:
 @apply_cooldown
 @require_focus
 def enable_shift_lock() -> None:
-    if not state._SHIFT_LOCK_ENABLED:
+    if not state.is_shift_lock_enabled():
         toggle_shift_lock()
 
 
 @apply_cooldown
 @require_focus
 def disable_shift_lock() -> None:
-    if state._SHIFT_LOCK_ENABLED:
+    if state.is_shift_lock_enabled():
         toggle_shift_lock()
 
 
