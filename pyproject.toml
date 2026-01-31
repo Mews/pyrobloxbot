@@ -31,9 +31,9 @@ dependencies = [
   "pywin32==311",
   "keyboard==0.13.5",
   "pynput==1.8.1",
-  "pyautogui==0.9.54",
   "opencv-python==4.13.0.90",
   "pillow==12.1.0",
+  "pyscreeze==1.0.1",
 ]
 
 
