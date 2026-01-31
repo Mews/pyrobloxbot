@@ -28,6 +28,12 @@ def mock_toggle_inventory(mock_press_key):
         yield m
 
 
+@pytest.fixture
+def mock_toggle_shift_lock(mock_press_key):
+    with patch("pyrobloxbot.core.character.toggle_shift_lock") as m:
+        yield m
+
+
 def test_reset_player(mock_press_key, mock_wait):
     bot.reset_player(3)
 
@@ -95,6 +101,30 @@ def test_toggle_shift_lock_different_keybind(mock_press_key):
     mock_press_key.assert_called_once_with("ctrl")
 
     assert bot.state.is_shift_lock_enabled()
+
+
+def test_enable_shift_lock_disabled(mock_toggle_shift_lock):
+    bot.state._SHIFT_LOCK_ENABLED = False
+    bot.enable_shift_lock()
+    mock_toggle_shift_lock.assert_called_once()
+
+
+def test_enable_shift_lock_enabled(mock_toggle_shift_lock):
+    bot.state._SHIFT_LOCK_ENABLED = True
+    bot.enable_shift_lock()
+    mock_toggle_shift_lock.assert_not_called()
+
+
+def test_disable_shift_lock_disabled(mock_toggle_shift_lock):
+    bot.state._SHIFT_LOCK_ENABLED = False
+    bot.disable_shift_lock()
+    mock_toggle_shift_lock.assert_not_called()
+
+
+def test_disable_shift_lock_enabled(mock_toggle_shift_lock):
+    bot.state._SHIFT_LOCK_ENABLED = True
+    bot.disable_shift_lock()
+    mock_toggle_shift_lock.assert_called_once()
 
 
 def test_toggle_inventory(mock_press_key):
