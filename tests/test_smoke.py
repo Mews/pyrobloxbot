@@ -58,6 +58,8 @@ def test_other_exports_included_by_default(export):
         "leave_game",
         "launch_game",
         "toggle_ui_navigation",
+        "enable_ui_navigation",
+        "disable_ui_navigation",
         "ui_navigate",
         "ui_navigate_up",
         "ui_navigate_down",

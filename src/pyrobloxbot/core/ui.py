@@ -32,6 +32,20 @@ def toggle_ui_navigation() -> None:
 
 @apply_cooldown
 @require_focus
+def enable_ui_navigation() -> None:
+    if not state.is_ui_nav_enabled():
+        toggle_ui_navigation()
+
+
+@apply_cooldown
+@require_focus
+def disable_ui_navigation() -> None:
+    if state.is_ui_nav_enabled():
+        toggle_ui_navigation()
+
+
+@apply_cooldown
+@require_focus
 @requires_ui_navigation_mode
 def ui_navigate(*actions: UI_ACTIONS) -> None:
     """Navigates through roblox ui in specified direction
@@ -148,6 +162,8 @@ def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
 
 __all__ = [
     "toggle_ui_navigation",
+    "enable_ui_navigation",
+    "disable_ui_navigation",
     "ui_navigate",
     "ui_navigate_up",
     "ui_navigate_down",
