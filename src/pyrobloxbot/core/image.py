@@ -1,5 +1,6 @@
 from .decorators import require_focus
-import pyautogui
+import pyscreeze
+from PIL import ImageGrab
 
 
 @require_focus
@@ -17,9 +18,12 @@ def image_is_visible(image_path: str, confidence: float = 0.9) -> bool:
     """
 
     try:
-        pyautogui.locateOnScreen(image_path, confidence=confidence)
+        screen = ImageGrab.grab(all_screens=True)
+        pyscreeze.locate(
+            needleImage=image_path, haystackImage=screen, confidence=confidence
+        )
         return True
-    except pyautogui.ImageNotFoundException:
+    except pyscreeze.ImageNotFoundException:
         return False
 
 
