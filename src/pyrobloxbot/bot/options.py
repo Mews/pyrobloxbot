@@ -9,6 +9,10 @@ class _BotOptions:
 
     action_cooldown: float = 0
 
+    force_focus: bool = True
+
+    key_press_cooldown: float = 0
+
     def _reset(self):
         self.__init__()
 

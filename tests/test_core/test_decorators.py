@@ -4,30 +4,8 @@ from unittest.mock import patch, MagicMock, call
 import pyrobloxbot as bot
 
 
-@patch("pyrobloxbot.core.decorators.GetForegroundWindow")
-@patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Roblox")
-def test_require_focus_window_already_active(_, __):
-    @bot.decorators.require_focus
-    def dummy_function():
-        return "success"
-
-    assert dummy_function() == "success"
-
-
-@patch("pyrobloxbot.core.decorators.GetForegroundWindow")
-@patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Not Roblox")
-@patch("pyrobloxbot.core.decorators.getWindowsWithTitle", return_value=[])
-def test_require_focus_no_roblox_window(_, __, ___):
-    @bot.decorators.require_focus
-    def dummy_function():
-        return "success"
-
-    with pytest.raises(bot.exceptions.NoRobloxWindowException):
-        dummy_function()
-
-
 @pytest.fixture
-def mock_window_env():
+def mock_roblox_not_active_window_env():
     patches = [
         patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None"),
         patch("pyrobloxbot.core.decorators.pydirectinput"),
@@ -50,7 +28,73 @@ def mock_window_env():
         p.stop()
 
 
-def test_require_focus_window_not_already_active(mock_window_env):
+@pytest.fixture
+def mock_roblox_active_window_env():
+    patches = [
+        patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None"),
+        patch("pyrobloxbot.core.decorators.pydirectinput"),
+        patch("pyrobloxbot.core.decorators.getWindowsWithTitle"),
+        patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Roblox"),
+        patch("pyrobloxbot.core.decorators.GetForegroundWindow"),
+    ]
+
+    mocks = [p.start() for p in patches]
+
+    yield {
+        "getActiveWindow": mocks[0],
+        "pydirectinput": mocks[1],
+        "getWindowsWithTitle": mocks[2],
+        "GetWindowText": mocks[3],
+        "GetForegroundWindow": mocks[4],
+    }
+
+    for p in patches:
+        p.stop()
+
+
+@pytest.fixture
+def mock_roblox_not_open_window_env():
+    patches = [
+        patch("pyrobloxbot.core.decorators.getActiveWindow", return_value="Not None"),
+        patch("pyrobloxbot.core.decorators.pydirectinput"),
+        patch("pyrobloxbot.core.decorators.getWindowsWithTitle", return_value=[]),
+        patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Not Roblox"),
+        patch("pyrobloxbot.core.decorators.GetForegroundWindow"),
+    ]
+
+    mocks = [p.start() for p in patches]
+
+    yield {
+        "getActiveWindow": mocks[0],
+        "pydirectinput": mocks[1],
+        "getWindowsWithTitle": mocks[2],
+        "GetWindowText": mocks[3],
+        "GetForegroundWindow": mocks[4],
+    }
+
+    for p in patches:
+        p.stop()
+
+
+def test_require_focus_window_already_active(mock_roblox_active_window_env):
+    @bot.decorators.require_focus
+    def dummy_function():
+        return "success"
+
+    assert dummy_function() == "success"
+
+
+def test_require_focus_no_roblox_window(mock_roblox_not_open_window_env):
+    @bot.decorators.require_focus
+    def dummy_function():
+        return "success"
+
+    with pytest.raises(bot.exceptions.NoRobloxWindowException):
+        dummy_function()
+
+
+def test_require_focus_window_not_already_active(mock_roblox_not_active_window_env):
+    mock_window_env = mock_roblox_not_active_window_env
     mock_window = MagicMock()
     mock_window.title = "Roblox"
 
@@ -66,7 +110,11 @@ def test_require_focus_window_not_already_active(mock_window_env):
     mock_window.activate.assert_called_once()
 
 
-def test_require_focus_window_not_already_active_with_maximize_option(mock_window_env):
+def test_require_focus_window_not_already_active_with_maximize_option(
+    mock_roblox_not_active_window_env,
+):
+    mock_window_env = mock_roblox_not_active_window_env
+
     mock_window = MagicMock()
     mock_window.title = "Roblox"
 
@@ -84,7 +132,11 @@ def test_require_focus_window_not_already_active_with_maximize_option(mock_windo
     mock_window.activate.assert_called_once()
 
 
-def test_require_focus_window_not_already_active_with_restore_option(mock_window_env):
+def test_require_focus_window_not_already_active_with_restore_option(
+    mock_roblox_not_active_window_env,
+):
+    mock_window_env = mock_roblox_not_active_window_env
+
     mock_window = MagicMock()
     mock_window.title = "Roblox"
 
@@ -104,6 +156,50 @@ def test_require_focus_window_not_already_active_with_restore_option(mock_window
     mock_window.activate.assert_called_once()
 
     mock_prev_window.activate.assert_called_once()
+
+
+def test_require_focus_roblox_is_active_with_force_focus_false(
+    mock_roblox_active_window_env,
+):
+    bot.options.force_focus = False
+
+    @bot.decorators.require_focus
+    def dummy_function():
+        return "success"
+
+    assert dummy_function() == "success"
+
+
+def test_require_focus_roblox_isnt_active_with_force_focus_false(
+    mock_roblox_not_active_window_env,
+):
+    bot.options.force_focus = False
+
+    dummy_func = MagicMock()
+
+    @bot.decorators.require_focus
+    def dummy_function():
+        dummy_func()
+        return "success"
+
+    assert dummy_function() is None
+    dummy_func.assert_not_called()
+
+
+def test_require_focus_roblox_not_open_with_force_focus_false(
+    mock_roblox_not_open_window_env,
+):
+    bot.options.force_focus = False
+
+    dummy_func = MagicMock()
+
+    @bot.decorators.require_focus
+    def dummy_function():
+        dummy_func()
+        return "success"
+
+    assert dummy_function() is None
+    dummy_func.assert_not_called()
 
 
 @patch("pyrobloxbot.decorators.state")
@@ -187,7 +283,7 @@ def test_requires_ui_navigation_mode_already_enabled(mock_toggle_ui_navigation):
 
 
 def test_apply_cooldown(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
@@ -199,7 +295,7 @@ def test_apply_cooldown(mock_wait):
 
 
 def test_apply_cooldown_zero_cooldown(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
@@ -211,7 +307,7 @@ def test_apply_cooldown_zero_cooldown(mock_wait):
 
 
 def test_apply_cooldown_negative_cooldown(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
@@ -223,11 +319,11 @@ def test_apply_cooldown_negative_cooldown(mock_wait):
 
 
 def test_apply_cooldown_nested_only_waits_once(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function2():
         return dummy_function()
 
@@ -239,15 +335,15 @@ def test_apply_cooldown_nested_only_waits_once(mock_wait):
 
 
 def test_apply_cooldown_nested_thrice_only_waits_once(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function2():
         return dummy_function()
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function3():
         return dummy_function2()
 
@@ -266,11 +362,11 @@ def test_apply_cooldown_nested_through_decorator_only_waits_once(mock_wait):
 
         return wrapper
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "decorating"
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     @dummy_decorator
     def dummy_function2():
         return "success"
@@ -282,8 +378,8 @@ def test_apply_cooldown_nested_through_decorator_only_waits_once(mock_wait):
     mock_wait.assert_called_once_with(10)
 
 
-def test_apply_cooldown_fail_resets_COOLDOWN_SET():
-    @bot.decorators.apply_cooldown
+def test_apply_cooldown_fail_resets_COOLDOWN_SET(mock_wait):
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         raise Exception
 
@@ -293,12 +389,12 @@ def test_apply_cooldown_fail_resets_COOLDOWN_SET():
     assert not bot.state._COOLDOWN_SET
 
 
-def test_apply_cooldown_nested_fail_resets_COOLDOWN_SET():
-    @bot.decorators.apply_cooldown
+def test_apply_cooldown_nested_fail_resets_COOLDOWN_SET(mock_wait):
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         raise Exception
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function2():
         return dummy_function()
 
@@ -308,3 +404,39 @@ def test_apply_cooldown_nested_fail_resets_COOLDOWN_SET():
         dummy_function2()
 
     assert not bot.state._COOLDOWN_SET
+
+
+def test_apply_cooldown_per_key(mock_wait):
+    @bot.decorators.apply_cooldown(per_key=True)
+    def dummy_function():
+        return "success"
+
+    bot.options.key_press_cooldown = 9.5
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_called_once_with(9.5)
+
+
+def test_apply_cooldown_per_key_0_key_press_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown(per_key=True)
+    def dummy_function():
+        return "success"
+
+    bot.options.key_press_cooldown = 0
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_not_called()
+
+
+def test_apply_cooldown_per_key_negative_key_press_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown(per_key=True)
+    def dummy_function():
+        return "success"
+
+    bot.options.key_press_cooldown = -1
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_not_called()
