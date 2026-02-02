@@ -8,7 +8,7 @@ import os
 @apply_cooldown()
 @require_focus
 @resets_state
-def leave_game(interval: float = 0.5) -> None:
+def leave_game(interval: float = 0) -> None:
     """Leaves the current game
 
     :param interval: How long between each keyboard input, in seconds, defaults to 0.5

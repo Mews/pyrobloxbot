@@ -8,7 +8,7 @@ import pyperclip
 
 @apply_cooldown()
 @require_focus
-def reset_player(interval: float = 0.5) -> None:
+def reset_player(interval: float = 0) -> None:
     """Resets player character
 
     :param interval: How long between each keyboard input, in seconds, defaults to 0.5
