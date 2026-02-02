@@ -15,7 +15,7 @@ from ..utils import wait
 from typing import get_args
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def toggle_ui_navigation() -> None:
     """Toggles ui navigation mode.
@@ -30,21 +30,21 @@ def toggle_ui_navigation() -> None:
     press_key(keybinds.toggle_ui_navigation)
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def enable_ui_navigation() -> None:
     if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def disable_ui_navigation() -> None:
     if state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate(*actions: UI_ACTIONS) -> None:
@@ -76,7 +76,7 @@ def ui_navigate(*actions: UI_ACTIONS) -> None:
             raise InvalidUiActionException("Action must be one of " + str(UI_ACTIONS))
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_up(times: int = 1) -> None:
@@ -85,7 +85,7 @@ def ui_navigate_up(times: int = 1) -> None:
         ui_navigate("u")
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_left(times: int = 1) -> None:
@@ -94,7 +94,7 @@ def ui_navigate_left(times: int = 1) -> None:
         ui_navigate("l")
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_right(times: int = 1) -> None:
@@ -103,7 +103,7 @@ def ui_navigate_right(times: int = 1) -> None:
         ui_navigate("r")
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_down(times: int = 1) -> None:
@@ -112,7 +112,7 @@ def ui_navigate_down(times: int = 1) -> None:
         ui_navigate("d")
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_click() -> None:
@@ -120,7 +120,7 @@ def ui_click() -> None:
     ui_navigate("c")
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
@@ -141,7 +141,7 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
         wait(interval)
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 @requires_ui_navigation_mode
 def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:

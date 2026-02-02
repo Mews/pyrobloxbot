@@ -13,6 +13,7 @@ def assert_options_are_default(options):
     assert not options.restore_focus_after_action
     assert options.action_cooldown == 0
     assert options.force_focus
+    assert options.key_press_cooldown == 0
 
 
 def test_default_values(options):
@@ -24,5 +25,6 @@ def test__reset(options):
     options.restore_focus_after_action = True
     options.action_cooldown = 10.5
     options.force_focus = False
+    options.key_press_cooldown = 10.5
     options._reset()
     assert_options_are_default(options)

@@ -96,28 +96,46 @@ def requires_ui_navigation_mode(fn):
     return wrapper
 
 
-def apply_cooldown(fn):
+def apply_cooldown(per_key: bool = False):  # type: ignore[no-untyped-def]
     """This decorator applies the cooldown defined in bot.options.action_cooldown at the end of the decorated function"""
 
-    @wraps(fn)
-    def wrapper(*args, **kwargs):
-        if state._COOLDOWN_SET:
-            return fn(*args, **kwargs)
+    def decorator(fn):
+        if not per_key:
 
-        state._COOLDOWN_SET = True
+            @wraps(fn)
+            def wrapper(*args, **kwargs):
+                if state._COOLDOWN_SET:
+                    return fn(*args, **kwargs)
 
-        try:
-            retv = fn(*args, **kwargs)
+                state._COOLDOWN_SET = True
 
-            if options.action_cooldown > 0:
-                wait(options.action_cooldown)
+                try:
+                    retv = fn(*args, **kwargs)
 
-            return retv
+                    if options.action_cooldown > 0:
+                        wait(options.action_cooldown)
 
-        finally:
-            state._COOLDOWN_SET = False
+                    return retv
 
-    return wrapper
+                finally:
+                    state._COOLDOWN_SET = False
+
+            return wrapper
+
+        if per_key:
+
+            @wraps(fn)
+            def wrapper(*args, **kwargs):
+                retv = fn(*args, **kwargs)
+
+                if options.key_press_cooldown > 0:
+                    wait(options.key_press_cooldown)
+
+                return retv
+
+            return wrapper
+
+    return decorator
 
 
 __all__ = [

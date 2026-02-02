@@ -6,7 +6,7 @@ from ..bot.bot import keybinds, state
 import pyperclip
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def reset_player(interval: float = 0.5) -> None:
     """Resets player character
@@ -21,7 +21,7 @@ def reset_player(interval: float = 0.5) -> None:
     press_key("enter")
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def chat(message: str) -> None:
     """Sends a message in chat
@@ -45,7 +45,7 @@ def chat(message: str) -> None:
     pyperclip.copy(previousClipboard)
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def equip_slot(slot: int) -> None:
     """Equip a given item slot
@@ -60,28 +60,28 @@ def equip_slot(slot: int) -> None:
     press_key(str(slot))
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def toggle_inventory() -> None:
     press_key(keybinds.toggle_inventory)
     state._INVENTORY_OPEN = not state._INVENTORY_OPEN
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def open_inventory() -> None:
     if not state.is_inventory_open():
         toggle_inventory()
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def close_inventory() -> None:
     if state.is_inventory_open():
         toggle_inventory()
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def toggle_shift_lock() -> None:
     """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
@@ -89,14 +89,14 @@ def toggle_shift_lock() -> None:
     state._SHIFT_LOCK_ENABLED = not state.is_shift_lock_enabled()
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def enable_shift_lock() -> None:
     if not state.is_shift_lock_enabled():
         toggle_shift_lock()
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def disable_shift_lock() -> None:
     if state.is_shift_lock_enabled():

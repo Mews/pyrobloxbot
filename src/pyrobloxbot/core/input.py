@@ -6,7 +6,8 @@ from ..utils import wait
 from .decorators import require_focus, apply_cooldown
 
 
-@apply_cooldown
+@apply_cooldown()
+@apply_cooldown(per_key=True)
 @require_focus
 def press_key(*keys: KEYBOARD_KEYS) -> None:
     """Presses one or more keyboard keys
@@ -18,7 +19,7 @@ def press_key(*keys: KEYBOARD_KEYS) -> None:
         pydirectinput.press(key)
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def hold_key(*keys: KEYBOARD_KEYS, duration: float) -> None:
     """Holds one or more keyboard keys for a given time
@@ -42,7 +43,7 @@ hold_keyboard_action = hold_key
 """An alias for the hold_key function"""
 
 
-@apply_cooldown
+@apply_cooldown()
 @require_focus
 def key_down(*keys: KEYBOARD_KEYS) -> None:
     """Holds down a key in a non blocking way
@@ -56,7 +57,8 @@ def key_down(*keys: KEYBOARD_KEYS) -> None:
         pydirectinput.keyDown(key)
 
 
-@apply_cooldown
+@apply_cooldown()
+@apply_cooldown(per_key=True)
 @require_focus
 def key_up(*keys: KEYBOARD_KEYS) -> None:
     """Releases a key

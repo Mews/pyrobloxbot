@@ -283,7 +283,7 @@ def test_requires_ui_navigation_mode_already_enabled(mock_toggle_ui_navigation):
 
 
 def test_apply_cooldown(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
@@ -295,7 +295,7 @@ def test_apply_cooldown(mock_wait):
 
 
 def test_apply_cooldown_zero_cooldown(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
@@ -307,7 +307,7 @@ def test_apply_cooldown_zero_cooldown(mock_wait):
 
 
 def test_apply_cooldown_negative_cooldown(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
@@ -319,11 +319,11 @@ def test_apply_cooldown_negative_cooldown(mock_wait):
 
 
 def test_apply_cooldown_nested_only_waits_once(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function2():
         return dummy_function()
 
@@ -335,15 +335,15 @@ def test_apply_cooldown_nested_only_waits_once(mock_wait):
 
 
 def test_apply_cooldown_nested_thrice_only_waits_once(mock_wait):
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "success"
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function2():
         return dummy_function()
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function3():
         return dummy_function2()
 
@@ -362,11 +362,11 @@ def test_apply_cooldown_nested_through_decorator_only_waits_once(mock_wait):
 
         return wrapper
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         return "decorating"
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     @dummy_decorator
     def dummy_function2():
         return "success"
@@ -378,8 +378,8 @@ def test_apply_cooldown_nested_through_decorator_only_waits_once(mock_wait):
     mock_wait.assert_called_once_with(10)
 
 
-def test_apply_cooldown_fail_resets_COOLDOWN_SET():
-    @bot.decorators.apply_cooldown
+def test_apply_cooldown_fail_resets_COOLDOWN_SET(mock_wait):
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         raise Exception
 
@@ -389,12 +389,12 @@ def test_apply_cooldown_fail_resets_COOLDOWN_SET():
     assert not bot.state._COOLDOWN_SET
 
 
-def test_apply_cooldown_nested_fail_resets_COOLDOWN_SET():
-    @bot.decorators.apply_cooldown
+def test_apply_cooldown_nested_fail_resets_COOLDOWN_SET(mock_wait):
+    @bot.decorators.apply_cooldown()
     def dummy_function():
         raise Exception
 
-    @bot.decorators.apply_cooldown
+    @bot.decorators.apply_cooldown()
     def dummy_function2():
         return dummy_function()
 
@@ -404,3 +404,39 @@ def test_apply_cooldown_nested_fail_resets_COOLDOWN_SET():
         dummy_function2()
 
     assert not bot.state._COOLDOWN_SET
+
+
+def test_apply_cooldown_per_key(mock_wait):
+    @bot.decorators.apply_cooldown(per_key=True)
+    def dummy_function():
+        return "success"
+
+    bot.options.key_press_cooldown = 9.5
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_called_once_with(9.5)
+
+
+def test_apply_cooldown_per_key_0_key_press_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown(per_key=True)
+    def dummy_function():
+        return "success"
+
+    bot.options.key_press_cooldown = 0
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_not_called()
+
+
+def test_apply_cooldown_per_key_negative_key_press_cooldown(mock_wait):
+    @bot.decorators.apply_cooldown(per_key=True)
+    def dummy_function():
+        return "success"
+
+    bot.options.key_press_cooldown = -1
+
+    assert dummy_function() == "success"
+
+    mock_wait.assert_not_called()
