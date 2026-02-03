@@ -1,6 +1,6 @@
 from .input import press_key
 from .decorators import require_focus, resets_state, apply_cooldown
-from ..utils import wait
+from ..utils import wait, build_roblox_uri
 
 import os
 
@@ -23,7 +23,7 @@ def leave_game(interval: float = 0) -> None:
 
 @apply_cooldown()
 @resets_state
-def launch_game(game_id: int) -> None:
+def join_game(game_id: int) -> None:
     """Launches a roblox game
 
     There can be a few seconds of delay between calling this function and the game opening
@@ -31,8 +31,35 @@ def launch_game(game_id: int) -> None:
     :param game_id: The id of the roblox game to launch
     :type game_id: int
     """
-    command = "start roblox://placeId=" + str(game_id)
+    uri = build_roblox_uri(placeId=game_id, type="InGame")
+    command = f'start "" "{uri}"'
     os.system(command=command)
 
 
-__all__ = ["leave_game", "launch_game"]
+@apply_cooldown()
+@resets_state
+def join_user(user_id: int) -> None:
+    uri = build_roblox_uri(userId=user_id, type="FollowUser")
+    command = f'start "" "{uri}"'
+    os.system(command=command)
+
+
+@apply_cooldown()
+@resets_state
+def join_private_server(game_id: int, private_server_link_code: int) -> None:
+    uri = build_roblox_uri(
+        placeId=game_id, linkCode=private_server_link_code, type="InGame"
+    )
+    command = f'start "" "{uri}"'
+    os.system(command=command)
+
+
+@apply_cooldown()
+@resets_state
+def join_server(game_id: int, job_id: str) -> None:
+    uri = build_roblox_uri(placeId=game_id, gameInstanceId=job_id, type="InGame")
+    command = f'start "" "{uri}"'
+    os.system(command=command)
+
+
+__all__ = ["leave_game", "join_game", "join_user", "join_private_server", "join_server"]
