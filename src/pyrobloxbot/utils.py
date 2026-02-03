@@ -1,5 +1,13 @@
-from time import sleep
+import time
 from typing import Optional
+from pynput import keyboard
+
+
+def sleep(seconds: float) -> None:
+    start = time.perf_counter()
+
+    while time.perf_counter() - start < seconds:
+        time.sleep(0.05)
 
 
 def wait(seconds: float) -> None:
@@ -47,3 +55,9 @@ def build_roblox_uri(
         params.append(f"type={type}")
 
     return "roblox://experiences/start?" + "&".join(params)
+
+
+def parse_special_key_for_pynput(key: str) -> str:
+    if hasattr(keyboard.Key, key):
+        return f"<{key}>"
+    return key

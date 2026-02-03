@@ -1,16 +1,29 @@
 import pytest
+from unittest.mock import patch, MagicMock
 from pyrobloxbot.bot.keybinds import _BotKeybinds
-from unittest.mock import patch
 
 
-@pytest.fixture
-def mock_keyboard():
-    with patch("pyrobloxbot.bot.keybinds.keyboard") as m:
+@pytest.fixture(autouse=True)
+def mock_util_pynput_key_parse():
+    with patch("pyrobloxbot.bot.keybinds.parse_special_key_for_pynput") as m:
+        m.side_effect = {
+            "ctrl": "<ctrl>",
+            "m": "m",
+            "shift": "<shift>",
+            "y": "y",
+            "x": "x",
+        }.get
+        yield m
+
+
+@pytest.fixture(autouse=True)
+def mock_interrupt_main():
+    with patch("pyrobloxbot.bot.keybinds._thread.interrupt_main") as m:
         yield m
 
 
 @pytest.fixture
-def keybinds(mock_keyboard):
+def keybinds(mock_pynput_keyboard, mock_util_pynput_key_parse, mock_interrupt_main):
     return _BotKeybinds()
 
 
@@ -41,33 +54,69 @@ def test_default_keybinds(keybinds):
     assert_keybinds_are_default(keybinds)
 
 
-def test_failsafe_enabled(keybinds, mock_keyboard):
-    assert keybinds._FAILSAFE_HOTKEY == "ctrl+m"
+def test_failsafe_enabled(keybinds, mock_pynput_keyboard, mock_interrupt_main):
+    mock_pynput_keyboard.GlobalHotKeys.reset_mock()
 
-    import _thread
+    mock_listener = MagicMock()
+    mock_pynput_keyboard.GlobalHotKeys.return_value = mock_listener
 
-    mock_keyboard.add_hotkey.assert_called_once_with("ctrl+m", _thread.interrupt_main)
+    keybinds = _BotKeybinds()
+
+    assert keybinds._FAILSAFE_HOTKEY == "<ctrl>+m"
+    assert keybinds._FAILSAFE_LISTENER is mock_listener
+    mock_pynput_keyboard.GlobalHotKeys.assert_called_once_with(
+        {"<ctrl>+m": mock_interrupt_main}
+    )
+
+    mock_listener.start.assert_called_once()
+    assert mock_listener.daemon
 
 
-def test_set_failsafe_hotkey(keybinds, mock_keyboard):
-    default_hotkey = "ctrl+m"
-    expected_new_hotkey = "ctrl+shift+y"
+def test_set_failsafe_hotkey(keybinds, mock_pynput_keyboard, mock_interrupt_main):
+    old_listener = MagicMock()
+    new_listener = MagicMock()
+
+    mock_pynput_keyboard.GlobalHotKeys.side_effect = [old_listener, new_listener]
+
+    keybinds = _BotKeybinds()
 
     keybinds.set_failsafe_hotkey("ctrl", "shift", "y")
 
-    assert keybinds._FAILSAFE_HOTKEY == expected_new_hotkey
+    assert keybinds._FAILSAFE_HOTKEY == "<ctrl>+<shift>+y"
+    old_listener.stop.assert_called_once()
+    new_listener.start.assert_called_once()
+    assert keybinds._FAILSAFE_LISTENER is new_listener
 
-    mock_keyboard.clear_hotkey.assert_called_once_with(default_hotkey)
-
-    import _thread
-
-    mock_keyboard.add_hotkey.assert_called_with(
-        expected_new_hotkey, _thread.interrupt_main
+    mock_pynput_keyboard.GlobalHotKeys.assert_any_call(
+        {"<ctrl>+<shift>+y": mock_interrupt_main}
     )
 
-    assert (
-        mock_keyboard.add_hotkey.call_count == 2
-    )  # the one is __post_init__ and the one we tested
+
+def test__reset_resets_failsafe_fields(keybinds, mock_pynput_keyboard):
+    first_listener = MagicMock()
+    second_listener = MagicMock()
+    third_listener = MagicMock()
+
+    mock_pynput_keyboard.GlobalHotKeys.side_effect = [
+        first_listener,
+        second_listener,
+        third_listener,
+    ]
+
+    keybinds = _BotKeybinds()
+
+    assert keybinds._FAILSAFE_LISTENER is first_listener
+    assert keybinds._FAILSAFE_HOTKEY == "<ctrl>+m"
+
+    keybinds.set_failsafe_hotkey("shift", "x")
+
+    assert keybinds._FAILSAFE_LISTENER is second_listener
+    assert keybinds._FAILSAFE_HOTKEY == "<shift>+x"
+
+    keybinds._reset()
+
+    assert keybinds._FAILSAFE_LISTENER is third_listener
+    assert keybinds._FAILSAFE_HOTKEY == "<ctrl>+m"
 
 
 def test__reset(keybinds):
