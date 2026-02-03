@@ -74,6 +74,7 @@ def test_other_exports_included_by_default(export):
         "toggle_inventory",
         "open_inventory",
         "close_inventory",
+        "restore_focus",
     ],
 )
 def test__all__is_complete(export):
