@@ -75,6 +75,7 @@ def test_other_exports_included_by_default(export):
         "open_inventory",
         "close_inventory",
         "restore_focus",
+        "wait",
     ],
 )
 def test__all__is_complete(export):
@@ -102,7 +103,6 @@ def test__all__is_complete(export):
         "InvalidSlotNumberException",
         "InvalidWalkDirectionException",
         "InvalidUiActionException",
-        "wait",
         "KEYBOARD_KEYS",
         "WALK_DIRECTIONS",
         "UI_ACTIONS",

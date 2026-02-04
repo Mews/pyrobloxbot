@@ -85,3 +85,6 @@ For more info see the documentation for pyrobloxbot.keybinds.set_failsafe_hotkey
         sys.excepthook = failsafe_excepthook
     finally:
         _thread.interrupt_main()
+
+
+__all__ = ["wait"]
