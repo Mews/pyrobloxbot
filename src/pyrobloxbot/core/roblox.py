@@ -27,7 +27,7 @@ def leave_game(interval: float = 0) -> None:
 @apply_cooldown()
 @resets_state
 def join_game(game_id: int) -> None:
-    """Launches a roblox game.
+    """Launches a Roblox game.
 
     Note:
         The time it takes for the game to launch is entirely variable.

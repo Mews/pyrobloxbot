@@ -100,7 +100,7 @@ def toggle_shift_lock() -> None:
     """Toggles shift lock.
 
     Note:
-        Shift lock switch must be enabled in roblox settings"""
+        Shift lock switch must be enabled in Roblox settings"""
     press_key(keybinds.toggle_shift_lock)
     state._SHIFT_LOCK_ENABLED = not state.is_shift_lock_enabled()
 
@@ -112,7 +112,7 @@ def enable_shift_lock() -> None:
     If shift lock is already enabled, does nothing.
 
     Note:
-        Shift lock switch must be enabled in roblox settings.
+        Shift lock switch must be enabled in Roblox settings.
     """
     if not state.is_shift_lock_enabled():
         toggle_shift_lock()
@@ -125,7 +125,7 @@ def disable_shift_lock() -> None:
     If shift lock is already disabled, does nothing.
 
     Note:
-        Shift lock switch must be enabled in roblox settings.
+        Shift lock switch must be enabled in Roblox settings.
     """
     if state.is_shift_lock_enabled():
         toggle_shift_lock()

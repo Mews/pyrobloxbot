@@ -34,11 +34,11 @@ def build_roblox_uri(
     gameInstanceId: Optional[str] = None,
     type: Optional[str] = None,
 ) -> str:
-    """Utility for generating roblox uris with parameters
+    """Utility for generating Roblox uris with parameters
 
     Args:
         placeId (int, optional): The id of the game. This is required for everything except joining a user's game
-        userId (int, optional): The id of a roblox user. If you're allowed to join them,
+        userId (int, optional): The id of a Roblox user. If you're allowed to join them,
             either because they added you as a friend or their joins are public, you'll join their game
         linkCode (int, optional): The code for a private server. This is not the code that appears
             in the invite link for a private server.
@@ -51,7 +51,7 @@ def build_roblox_uri(
         type (str, optional): The type of join, either "InGame" or "FollowUser"
 
     Returns:
-        str: A roblox uri that can be passed to start
+        str: A Roblox uri that can be passed to start
 
     """
     params = []

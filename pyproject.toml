@@ -8,7 +8,7 @@ version = "1.0.9"
 authors = [
   { name="Mews", email="ar754456@gmail.com" },
 ]
-description = "A python library to control the roblox character and interact with game ui through keyboard inputs"
+description = "A python library to control the Roblox character and interact with game ui through keyboard inputs"
 
 keywords = ["roblox", "bot", "keyboard"]
 

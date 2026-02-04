@@ -1,5 +1,5 @@
 class NoRobloxWindowException(Exception):
-    """Raised when a function can't find a roblox window to focus"""
+    """Raised when a function can't find a Roblox window to focus"""
 
     pass
 

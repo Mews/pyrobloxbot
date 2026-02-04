@@ -13,7 +13,7 @@ def image_is_visible(image_path: str, confidence: float = 0.9) -> bool:
         This means that a screenshot taken on one monitor might not be the same
         physical size as taken in another monitor, meaning the method might not find it.
 
-        It is recommended to use screenshots taken on the monitor where roblox will be running.
+        It is recommended to use screenshots taken on the monitor where Roblox will be running.
 
     Args:
         image_path (str): The path of the image to check

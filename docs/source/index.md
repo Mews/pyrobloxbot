@@ -1,6 +1,6 @@
 # pyrobloxbot
 
-pyrobloxbot is an open-source package for marking roblox bots that interact with the game strictly through the keyboard.
+pyrobloxbot is an open-source package for making Roblox bots that interact with the game strictly through the keyboard.
 
 It simplifies this process by providing features like:
 - Methods for most actions your character can make, like movement, chatting, resetting

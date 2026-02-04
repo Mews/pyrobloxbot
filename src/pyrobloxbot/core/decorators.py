@@ -9,11 +9,11 @@ from ..utils import wait
 
 
 def require_focus(fn):
-    """Decorator that ensures the roblox window is in focus before running the decorated function.
+    """Decorator that ensures the Roblox window is in focus before running the decorated function.
 
     It is affected by the options ``force_focus`` and ``maximize_roblox_window``.
 
-    If ``maximize_roblox_window`` is set to ``True``, the decorator will maximize the roblox window on top of activating it before
+    If ``maximize_roblox_window`` is set to ``True``, the decorator will maximize the Roblox window on top of activating it before
     running the decorated function.
 
     If ``force_focus`` is set to ``False``, instead of activating the Roblox window, the decorator will only check if
@@ -47,7 +47,7 @@ def require_focus(fn):
 
             # Raise error if roblox isn't open
             if rblx_window is None:
-                raise NoRobloxWindowException("You must have roblox opened")
+                raise NoRobloxWindowException("You must have Roblox opened")
 
             # Set focus to roblox window
             else:
@@ -90,7 +90,7 @@ def resets_state(fn):
 
 
 def requires_ui_navigation_mode(fn):
-    """This decorator ensures ui navigation mode is enabled on roblox before running the decorated function.
+    """This decorator ensures ui navigation mode is enabled on Roblox before running the decorated function.
 
     After the function is done, it returns to the original state, meaning if ui navigation was disabled before
     the function was called it'll go back to being disabled, if it was already enabled it'll stay enabled.
