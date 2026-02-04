@@ -10,10 +10,10 @@ from .decorators import require_focus, apply_cooldown
 @apply_cooldown(per_key=True)
 @require_focus
 def press_key(*keys: KEYBOARD_KEYS) -> None:
-    """Presses one or more keyboard keys
+    """Presses the given keys in order
 
-    :param keys: The keys to be pressed
-    :type keys: KEYBOARD_KEYS
+    Args:
+        *keys (KEYBOARD_KEYS): The keys to be pressed
     """
     for key in keys:
         pydirectinput.press(key)
@@ -22,14 +22,11 @@ def press_key(*keys: KEYBOARD_KEYS) -> None:
 @apply_cooldown()
 @require_focus
 def hold_key(*keys: KEYBOARD_KEYS, duration: float) -> None:
-    """Holds one or more keyboard keys for a given time
+    """Hold the given keys for a given duration
 
-    If more than one key is provided, all keys will be held and released simultaneously
-
-    :param keys: The keys to be held
-    :type keys: KEYBOARD_KEYS
-    :param duration: How long to hold for, in seconds
-    :type duration: float
+    Args:
+        *keys (KEYBOARD_KEYS): The keys to hold
+        duration (float): How long to hold the keys for
     """
     key_down(*keys)
     wait(duration)
@@ -46,12 +43,12 @@ hold_keyboard_action = hold_key
 @apply_cooldown()
 @require_focus
 def key_down(*keys: KEYBOARD_KEYS) -> None:
-    """Holds down a key in a non blocking way
+    """Puts down the given keys, in a non blocking way.
 
-    The key will be held until key_up is called for the same key
+    The keys will remain pressed until :func:`pyrobloxbot.key_up` is called for them.
 
-    :param key: The key to be held down
-    :type key: KEYBOARD_KEYS
+    Args:
+        *keys (KEYBOARD_KEYS): The keys to put down
     """
     for key in keys:
         pydirectinput.keyDown(key)
@@ -61,10 +58,10 @@ def key_down(*keys: KEYBOARD_KEYS) -> None:
 @apply_cooldown(per_key=True)
 @require_focus
 def key_up(*keys: KEYBOARD_KEYS) -> None:
-    """Releases a key
+    """Releases the given keys.
 
-    :param key: The key to be released
-    :type key: KEYBOARD_KEYS
+    Args:
+        *keys (KEYBOARD_KEYS): The keys to release.
     """
     for key in keys:
         pydirectinput.keyUp(key)

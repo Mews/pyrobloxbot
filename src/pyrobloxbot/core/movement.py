@@ -16,15 +16,16 @@ from typing import get_args
 @apply_cooldown()
 @require_focus
 def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
-    """Walks in one or more directions for a given time
+    """Makes the character walk in the given directions for a certain time.
 
-    If more than one direction is given it will walk diagonally
+    Args:
+        *directions (WALK_DIRECTIONS): The directions to walk in.
+            If two perpendicular directions are given, the bot won't move in either.
 
-    :param directions: The directions to walk in
-    :type directions: WALK_DIRECTIONS
-    :param duration: How long to walk for, in seconds
-    :type duration: float
-    :raises InvalidWalkDirectionException: Raised when given directions aren't one of literals.WALK_DIRECTIONS
+        duration (float): How long to walk for.
+
+    Raises:
+        InvalidWalkDirectionException: Raised when the directions aren't one of :data:`pyrobloxbot.constants.WALK_DIRECTIONS`
     """
 
     keys = set()
@@ -57,10 +58,10 @@ def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
 @apply_cooldown()
 @require_focus
 def walk_forward(duration: float) -> None:
-    """Walks forward for a given time
+    """Walks forward for a given time.
 
-    :param duration: How long to walk for, in seconds
-    :type duration: float
+    Args:
+        duration (float): How long to walk for.
     """
     walk("f", duration=duration)
 
@@ -68,10 +69,10 @@ def walk_forward(duration: float) -> None:
 @apply_cooldown()
 @require_focus
 def walk_left(duration: float) -> None:
-    """Walks left for a given time
+    """Walks left for a given time.
 
-    :param duration: How long to walk for, in seconds
-    :type duration: float
+    Args:
+        duration (float): How long to walk for.
     """
     walk("l", duration=duration)
 
@@ -79,10 +80,10 @@ def walk_left(duration: float) -> None:
 @apply_cooldown()
 @require_focus
 def walk_right(duration: float) -> None:
-    """Walks right for a given time
+    """Walks right for a given time.
 
-    :param duration: How long to walk for, in seconds
-    :type duration: float
+    Args:
+        duration (float): How long to walk for.
     """
     walk("r", duration=duration)
 
@@ -90,10 +91,10 @@ def walk_right(duration: float) -> None:
 @apply_cooldown()
 @require_focus
 def walk_back(duration: float) -> None:
-    """Walks back for a given time
+    """Walks backwards for a given time.
 
-    :param duration: How long to walk for, in seconds
-    :type duration: float
+    Args:
+        duration (float): How long to walk for.
     """
     walk("b", duration=duration)
 
@@ -101,12 +102,11 @@ def walk_back(duration: float) -> None:
 @apply_cooldown()
 @require_focus
 def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
-    """Jumps for a given number of times
+    """Jumps a given number of times.
 
-    :param number_of_jumps: How many times to jump, defaults to 1
-    :type number_of_jumps: int
-    :param interval: How much time between jumps, in seconds, defaults to 0
-    :type interval: float
+    Args:
+        number_of_jumps (int, optional): How many times to jump. Defaults to ``1``.
+        interval (float, optional): How long between each jump. Defaults to ``0``.
     """
     for i in range(number_of_jumps):
         press_key(keybinds.jump)
@@ -118,10 +118,10 @@ def jump(number_of_jumps: int = 1, interval: float = 0) -> None:
 @apply_cooldown()
 @require_focus
 def jump_continuous(duration: float) -> None:
-    """Holds jump for a given time
+    """Holds jump for a given time.
 
-    :param duration: How long to hold jump for, in seconds
-    :type duration: float
+    Args:
+        duration (float): How long to hold jump for.
     """
     hold_key(keybinds.jump, duration=duration)
 

@@ -13,6 +13,17 @@ def sleep(seconds: float) -> None:
 
 
 def wait(seconds: float) -> None:
+    """Suspend execution for a given number of seconds.
+
+    Important:
+        You should use this method instead of ``time.sleep`` for manually adding delays in your bot.
+
+        This is because the failsafe will only work reliably if you use this method. Otherwise, hitting the failsafe
+        hotkey while ``time.sleep`` is running will cause the failsafe to not be triggered.
+
+    Args:
+        seconds (float): How long to wait for.
+    """
     sleep(seconds)
 
 

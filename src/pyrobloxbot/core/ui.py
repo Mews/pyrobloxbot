@@ -18,13 +18,10 @@ from typing import get_args
 @apply_cooldown()
 @require_focus
 def toggle_ui_navigation() -> None:
-    """Toggles ui navigation mode.
+    """Toggles the ui navigation mode.
 
-    This is called by all ui navigation functions if ui navigation mode is disabled.
-
-    You can change the key used to toggle this mode by changing the module's UI_NAV_KEY variable
-
-    The "UI Navigation Toggle" setting must be enabled on Roblox
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
     """
     state._UI_NAV_ENABLED = not state.is_ui_nav_enabled()
     press_key(keybinds.toggle_ui_navigation)
@@ -33,6 +30,13 @@ def toggle_ui_navigation() -> None:
 @apply_cooldown()
 @require_focus
 def enable_ui_navigation() -> None:
+    """Enables the ui navigation mode.
+    Does nothing if it's already enabled.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+    """
+
     if not state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
@@ -40,6 +44,12 @@ def enable_ui_navigation() -> None:
 @apply_cooldown()
 @require_focus
 def disable_ui_navigation() -> None:
+    """Disables the ui navigation mode.
+    Does nothing if it's already disabled.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+    """
     if state.is_ui_nav_enabled():
         toggle_ui_navigation()
 
@@ -48,11 +58,17 @@ def disable_ui_navigation() -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate(*actions: UI_ACTIONS) -> None:
-    """Navigates through roblox ui in specified direction
+    """Executes the given ui actions in order.
 
-    :param direction: The direction to navigate in
-    :type direction: UI_ACTIONS
-    :raises InvalidUiDirectionException: Raised if direction isn't one of
+    This function is used for doing entire ui navigation sequences in a single function.
+
+    The actions can include navigating in any of the cardinal directions and clicking on the selected ui element.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Raises:
+        InvalidUiActionException: Raised when any of the actions provided isn't in :data:`pyrobloxbot.constants.UI_ACTIONS`
     """
     for action in actions:
         a = action.lower().strip()
@@ -80,7 +96,14 @@ def ui_navigate(*actions: UI_ACTIONS) -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_up(times: int = 1) -> None:
-    """Navigate up in ui elements"""
+    """Navigates up in ui elements.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Args:
+        times (int, optional): How many times to navigate up. Defaults to ``1``.
+    """
     for _ in range(times):
         ui_navigate("u")
 
@@ -89,7 +112,14 @@ def ui_navigate_up(times: int = 1) -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_left(times: int = 1) -> None:
-    """Navigate left in ui elements"""
+    """Navigates left in ui elements.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Args:
+        times (int, optional): How many times to navigate left. Defaults to ``1``.
+    """
     for _ in range(times):
         ui_navigate("l")
 
@@ -98,7 +128,14 @@ def ui_navigate_left(times: int = 1) -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_right(times: int = 1) -> None:
-    """Navigate right in ui elements"""
+    """Navigates right in ui elements.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Args:
+        times (int, optional): How many times to navigate right. Defaults to ``1``.
+    """
     for _ in range(times):
         ui_navigate("r")
 
@@ -107,7 +144,14 @@ def ui_navigate_right(times: int = 1) -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_navigate_down(times: int = 1) -> None:
-    """Navigate down in ui elements"""
+    """Navigates down in ui elements.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Args:
+        times (int, optional): How many times to navigate down. Defaults to ``1``.
+    """
     for _ in range(times):
         ui_navigate("d")
 
@@ -116,7 +160,11 @@ def ui_navigate_down(times: int = 1) -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_click() -> None:
-    """Click on currently selected ui element"""
+    """Click on the currently selected ui element.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+    """
     ui_navigate("c")
 
 
@@ -124,15 +172,19 @@ def ui_click() -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
-    """Scrolls up through selected ui element
+    """Scrolls up through selected ui element.
 
-    The ui element itself has to be scrollable
+    The ui element itself has to be scrollable. This means you have to have selected the scrollable frame, not one of the
+    elements inside it.
 
-    :param ticks: How many times to scroll
-    :type ticks: int
-    :param interval: The delay between each input, defaults to 0.1\n
-                  A lower delay will scroll faster but at some point can lose precision
-    :type interval: float, optional
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Args:
+        ticks (int): How many times to scroll
+        interval (float, optional): The delay between each input. Defaults to ``0.1``.
+
+            A lower delay will scroll faster but at some point can lose precision.
     """
     kb = Controller()
     for _ in range(ticks):
@@ -145,13 +197,19 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
 @require_focus
 @requires_ui_navigation_mode
 def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
-    """Scrolls down in selected ui element
+    """Scrolls down through selected ui element.
 
-    :param ticks: How many times to scroll
-    :type ticks: int
-    :param interval: The delay between each input, defaults to 0.1\n
-                  A lower delay will scroll faster but at some point can lose precision
-    :type interval: float, optional
+    The ui element itself has to be scrollable. This means you have to have selected the scrollable frame, not one of the
+    elements inside it.
+
+    Note:
+        The "UI Navigation Toggle" setting must be enabled on Roblox.
+
+    Args:
+        ticks (int): How many times to scroll
+        interval (float, optional): The delay between each input. Defaults to ``0.1``.
+
+            A lower delay will scroll faster but at some point can lose precision.
     """
     kb = Controller()
     for _ in range(ticks):
