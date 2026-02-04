@@ -5,20 +5,14 @@
 [![PyPI Version](https://img.shields.io/pypi/v/pyrobloxbot?label=pypi%20package)](https://pypi.python.org/pypi/pyrobloxbot)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pyrobloxbot)](https://pypi.python.org/pypi/pyrobloxbot)
 
-A python library to control the roblox character and interact with game ui through keyboard inputs
+A Python library to control the Roblox character and interact with game UI strictly through keyboard inputs
 
-This library uses ```pydirectinput``` to control the keyboard
+It aims to streamline the process of creating a Roblox bot, by providing useful features such as:
+- Methods for most actions your character can make, including movement, chatting, resetting, etc
+- Methods for navigating a game's UI through the keyboard exclusively, making it robust
+- Highly customizable, can make all kinds of bots for different use cases
 
-It has a decorator to ensure that the roblox window is in focus before sending keyboard inputs
-
-There is also a global failsafe that can be triggered using _**control + m**_ to avoid your bot getting out of control
--   The failsafe hotkey can be changed using `set_failsafe_hotkey`
-
-    Example:
-    ```python
-    #Sets the failsafe hotkey to control + shift + y
-    set_failsafe_hotkey("ctrl", "shift", "y")
-    ```
+For more information, read the [documentation](https://pyrobloxbot.readthedocs.io/en/latest/index.html)!
 
 If you have any issues while using the library, please [ask a question!](CONTRIBUTING.md#i-have-a-question)
 
@@ -43,7 +37,5 @@ bot.walk_forward(5)
 #Reset player character
 bot.reset_player()
 ```
-
-## [Documentation](https://pyrobloxbot.readthedocs.io/en/latest/pyrobloxbot.html)
 
 ## [Changelog](CHANGELOG.md)
