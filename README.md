@@ -12,6 +12,7 @@ It aims to streamline the process of creating a Roblox bot, by providing useful 
 - Methods for navigating a game's UI through the keyboard exclusively, making it robust
 - Methods for joining games, joining users and joining private servers
 - Highly customizable, can make all kinds of bots for different use cases
+- A global failsafe to avoid your bot going rogue
 
 For more information, read the [documentation](https://pyrobloxbot.readthedocs.io/en/latest/index.html)!
 
