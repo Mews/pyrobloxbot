@@ -17,13 +17,13 @@ def mock_util_pynput_key_parse():
 
 
 @pytest.fixture(autouse=True)
-def mock_interrupt_main():
-    with patch("pyrobloxbot.bot.keybinds._thread.interrupt_main") as m:
+def mock_failsafe_function():
+    with patch("pyrobloxbot.bot.keybinds._failsafe") as m:
         yield m
 
 
 @pytest.fixture
-def keybinds(mock_pynput_keyboard, mock_util_pynput_key_parse, mock_interrupt_main):
+def keybinds(mock_pynput_keyboard, mock_util_pynput_key_parse, mock_failsafe_function):
     return _BotKeybinds()
 
 
@@ -54,7 +54,7 @@ def test_default_keybinds(keybinds):
     assert_keybinds_are_default(keybinds)
 
 
-def test_failsafe_enabled(keybinds, mock_pynput_keyboard, mock_interrupt_main):
+def test_failsafe_enabled(keybinds, mock_pynput_keyboard, mock_failsafe_function):
     mock_pynput_keyboard.GlobalHotKeys.reset_mock()
 
     mock_listener = MagicMock()
@@ -65,14 +65,14 @@ def test_failsafe_enabled(keybinds, mock_pynput_keyboard, mock_interrupt_main):
     assert keybinds._FAILSAFE_HOTKEY == "<ctrl>+m"
     assert keybinds._FAILSAFE_LISTENER is mock_listener
     mock_pynput_keyboard.GlobalHotKeys.assert_called_once_with(
-        {"<ctrl>+m": mock_interrupt_main}
+        {"<ctrl>+m": mock_failsafe_function}
     )
 
     mock_listener.start.assert_called_once()
     assert mock_listener.daemon
 
 
-def test_set_failsafe_hotkey(keybinds, mock_pynput_keyboard, mock_interrupt_main):
+def test_set_failsafe_hotkey(keybinds, mock_pynput_keyboard, mock_failsafe_function):
     old_listener = MagicMock()
     new_listener = MagicMock()
 
@@ -88,7 +88,7 @@ def test_set_failsafe_hotkey(keybinds, mock_pynput_keyboard, mock_interrupt_main
     assert keybinds._FAILSAFE_LISTENER is new_listener
 
     mock_pynput_keyboard.GlobalHotKeys.assert_any_call(
-        {"<ctrl>+<shift>+y": mock_interrupt_main}
+        {"<ctrl>+<shift>+y": mock_failsafe_function}
     )
 
 

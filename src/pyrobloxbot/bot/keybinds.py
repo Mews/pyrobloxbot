@@ -1,8 +1,7 @@
 from dataclasses import dataclass, field
 from ..constants import KEYBOARD_KEYS
-from ..utils import parse_special_key_for_pynput
+from ..utils import parse_special_key_for_pynput, _failsafe
 from pynput import keyboard
-import _thread
 
 
 @dataclass
@@ -50,7 +49,7 @@ class _BotKeybinds:
         self._FAILSAFE_HOTKEY = "+".join(parsed_keys)
 
         self._FAILSAFE_LISTENER = keyboard.GlobalHotKeys(
-            {self._FAILSAFE_HOTKEY: _thread.interrupt_main}
+            {self._FAILSAFE_HOTKEY: _failsafe}
         )
         self._FAILSAFE_LISTENER.daemon = True
         self._FAILSAFE_LISTENER.start()
