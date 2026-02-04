@@ -1,5 +1,15 @@
-from time import sleep
+import time
 from typing import Optional
+from pynput import keyboard
+import _thread
+import sys
+
+
+def sleep(seconds: float) -> None:
+    start = time.perf_counter()
+
+    while time.perf_counter() - start < seconds:
+        time.sleep(0.05)
 
 
 def wait(seconds: float) -> None:
@@ -47,3 +57,34 @@ def build_roblox_uri(
         params.append(f"type={type}")
 
     return "roblox://experiences/start?" + "&".join(params)
+
+
+def parse_special_key_for_pynput(key: str) -> str:
+    if hasattr(keyboard.Key, key):
+        return f"<{key}>"
+    return key
+
+
+def _failsafe():
+    try:
+        old_hook = sys.excepthook
+
+        def failsafe_excepthook(exc_type, exc, tb):
+            old_hook(exc_type, exc, tb)
+
+            from .bot.bot import keybinds
+
+            if exc_type is KeyboardInterrupt:
+                failsafe_hotkey = keybinds._FAILSAFE_HOTKEY
+                print(f"""Failsafe triggered ({failsafe_hotkey})
+If you didn't mean for this to happen, you might have pressed {failsafe_hotkey} on accident, or made your bot press it
+You can change the failsafe hotkey through set_failsafe_hotkey
+For more info see the documentation for pyrobloxbot.keybinds.set_failsafe_hotkey
+""")
+
+        sys.excepthook = failsafe_excepthook
+    finally:
+        _thread.interrupt_main()
+
+
+__all__ = ["wait"]

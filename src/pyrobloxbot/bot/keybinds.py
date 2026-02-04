@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from ..constants import KEYBOARD_KEYS
-import keyboard
-import _thread
+from ..utils import parse_special_key_for_pynput, _failsafe
+from pynput import keyboard
 
 
 @dataclass
@@ -28,6 +28,7 @@ class _BotKeybinds:
     open_chat: str = "/"
 
     _FAILSAFE_HOTKEY: str = field(init=False, default="")
+    _FAILSAFE_LISTENER: keyboard.GlobalHotKeys = field(init=False, default=None)
 
     def __post_init__(self):
         self.set_failsafe_hotkey("ctrl", "m")
@@ -40,13 +41,18 @@ class _BotKeybinds:
         :param keys: The key combination for triggering the failsafe
         :type keys: KEYBOARD_KEYS
         """
+        if self._FAILSAFE_LISTENER is not None:
+            self._FAILSAFE_LISTENER.stop()
 
-        if self._FAILSAFE_HOTKEY:
-            keyboard.clear_hotkey(self._FAILSAFE_HOTKEY)
+        parsed_keys = [parse_special_key_for_pynput(key) for key in keys]
 
-        self._FAILSAFE_HOTKEY = "+".join(keys)
+        self._FAILSAFE_HOTKEY = "+".join(parsed_keys)
 
-        keyboard.add_hotkey(self._FAILSAFE_HOTKEY, _thread.interrupt_main)
+        self._FAILSAFE_LISTENER = keyboard.GlobalHotKeys(
+            {self._FAILSAFE_HOTKEY: _failsafe}
+        )
+        self._FAILSAFE_LISTENER.daemon = True
+        self._FAILSAFE_LISTENER.start()
 
     def _reset(self):
         self.__init__()

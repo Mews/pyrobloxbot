@@ -19,6 +19,13 @@ def mock_wait():
 
 
 @pytest.fixture(autouse=True)
+def mock_pynput_keyboard():
+    with patch("pyrobloxbot.bot.keybinds.keyboard") as m:
+        with patch("pyrobloxbot.utils.keyboard") as _:
+            yield m
+
+
+@pytest.fixture(autouse=True)
 def reset_bot():
     bot.state._reset()
     bot.keybinds._reset()
