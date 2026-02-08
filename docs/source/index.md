@@ -11,11 +11,19 @@ It simplifies this process by providing features like:
 
 
 ```{toctree}
-:maxdepth: 1
+:maxdepth: 2
 :caption: Getting Started
 
 guides/instalation
 guides/starting
 api_references/api_references
 faq
+```
+
+```{toctree}
+:maxdepth: 1
+:caption: Usage Guides
+
+guides/keybinds
+guides/options
 ```
