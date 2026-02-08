@@ -9,6 +9,8 @@ It simplifies this process by providing features like:
 - Highly customizable bots, by changing different options to fit your use case
 - A global failsafe to avoid your bot going rogue
 
+```{include} guides/instalation.md
+```
 
 ```{toctree}
 :maxdepth: 2
