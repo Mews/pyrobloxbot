@@ -21,7 +21,7 @@ faq
 ```
 
 ```{toctree}
-:maxdepth: 1
+:maxdepth: 2
 :caption: Usage Guides
 
 guides/keybinds

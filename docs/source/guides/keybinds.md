@@ -1,27 +1,55 @@
 # Changing keybinds
 
-On some games and for some keyboard languages, you might find that the default keybinds don't work.
+```{admonition} Note
+See the [keybinds api reference](../api_references/pyrobloxbot.keybinds.md) for all available keybinds.
+```
 
-Imagine a game where:
-- Chat is opened with `-` instead of `/`
-- Shift lock is toggled with `control` instead of `shift`
-- And that, due to our keyboard language, the ui navigation mode is toggled with `~` instead of `\`
+The `pyrobloxbot.keybinds` field serves two purposes:
 
-We could still make our bot work, by doing:
+1. Changing the keys used for each action
+2. Changing the failsafe hotkey
+
+## Changing keybinds
+
+Often you'll find that some games change the default keys used for some actions.
+Some common examples include opening the chat with `-` instead of `/`, and using the control key to toggle shift lock.
+
+To make bots for these games, you might then need to change the key that the bot uses for these actions.
+
+`pyrobloxbot` provides a way to do this through the `keybinds` field.
+
 ```python
 import pyrobloxbot as bot
 
-bot.keybinds.open_chat = "-"
-bot.keybinds.toggle_shift_lock = "ctrl"
-bot.keybinds.toggle_ui_navigation = "~"
+bot.keybinds.open_chat = '-'
+bot.keybinds.toggle_shift_lock = 'ctrl'
 
 ...
 ```
 
-`pyrobloxbot.keybinds` is also used for changing the failsafe hotkey, through {py:meth}`~pyrobloxbot.bot.keybinds._BotKeybinds.set_failsafe_hotkey`.
+In the above example, we change the bot's open chat and toggle shift lock keybinds.
+This means that if we later do:
+```python
+bot.chat("Hello world!") # This will use '-' to open the chat instead of '/'
+bot.enable_shift_lock() # This will press control instead of shift
+```
 
-`pyrobloxbot.keybinds` is itself an instance of {py:class}`~pyrobloxbot.bot.keybinds._BotKeybinds` that gets used by the rest of package and can be accessed by the user.
+A list of all the available keybinds can be found in the [api reference](../api_references/pyrobloxbot.keybinds.md).
 
-Any changes to the keybinds should be done through `pyrobloxbot.keybinds`.
+## Changing the failsafe hotkey
 
-See the [keybinds api reference](../api_references/pyrobloxbot.keybinds.md) for all available keybinds.
+`pyrobloxbot` comes with a global failsafe that can be triggered through a keyboard hotkey (`control+m` by default) to avoid your bot going rogue.
+However, your bot might for whatever reason need to input the default hotkey, or you might be using another app while your bot is running that has you
+pressing the default hotkey.
+
+You can change the failsafe hotkey through the keybinds field.
+
+```python
+import pyrobloxbot as bot
+
+bot.keybinds.set_failsafe_hotkey("ctrl", "shift", "y")
+
+...
+```
+
+In the above code example, after the `set_failsafe_hotkey` method is executed, hitting `control+m` will no longer trigger the failsafe, only `control+shift+y` will.
