@@ -17,7 +17,7 @@ UI_CLICK_ACTIONS = typing.Literal["click", "c"]
 
 
 #: Valid strings to pass to ui_navigate
-UI_ACTIONS = (
+UI_ACTIONS: typing.TypeAlias = (
     UI_NAVIGATE_UP_ACTIONS
     | UI_NAVIGATE_LEFT_ACTIONS
     | UI_NAVIGATE_RIGHT_ACTIONS

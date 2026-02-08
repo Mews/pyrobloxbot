@@ -13,7 +13,7 @@ WALK_LEFT_DIRECTIONS = typing.Literal["l", "left"]
 WALK_RIGHT_DIRECTIONS = typing.Literal["r", "right"]
 
 #: Valid strings to pass to walk
-WALK_DIRECTIONS = (
+WALK_DIRECTIONS: typing.TypeAlias = (
     WALK_FORWARD_DIRECTIONS
     | WALK_BACK_DIRECTIONS
     | WALK_LEFT_DIRECTIONS
