@@ -1,4 +1,4 @@
-# Instalation guide
+# Installation guide
 
 `pyrobloxbot` can be installed using pip, by doing:
 

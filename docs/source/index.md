@@ -9,14 +9,14 @@ It simplifies this process by providing features like:
 - Highly customizable bots, by changing different options to fit your use case
 - A global failsafe to avoid your bot going rogue
 
-```{include} guides/instalation.md
+```{include} guides/installation.md
 ```
 
 ```{toctree}
 :maxdepth: 2
 :caption: Getting Started
 
-guides/instalation
+guides/installation
 guides/starting
 api_references/api_references
 faq
