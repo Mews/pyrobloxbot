@@ -62,9 +62,12 @@ def require_focus(fn):
 
             retv = fn(*args, **kwargs)
 
-            if options.restore_focus_after_action:
+            if options.restore_focus_after_action and previous_window is not None:
                 pydirectinput.press("altleft")
                 previous_window.activate()
+
+                while getActiveWindow() is None:
+                    pass
 
             return retv
 
