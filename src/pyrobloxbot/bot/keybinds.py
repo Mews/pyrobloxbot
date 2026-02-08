@@ -34,12 +34,12 @@ class _BotKeybinds:
         self.set_failsafe_hotkey("ctrl", "m")
 
     def set_failsafe_hotkey(self, *keys: KEYBOARD_KEYS) -> None:
-        """Changes hotkey required to trigger the failsafe
+        """Changes the hotkey required to trigger the failsafe
 
-        The default hotkey is control + m
+        The default hotkey is ``control + m``
 
-        :param keys: The key combination for triggering the failsafe
-        :type keys: KEYBOARD_KEYS
+        Args:
+            *keys (KEYBOARD_KEYS): The new keys whose combination triggers the failsafe.
         """
         if self._FAILSAFE_LISTENER is not None:
             self._FAILSAFE_LISTENER.stop()

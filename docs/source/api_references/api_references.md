@@ -5,6 +5,7 @@
 
 ./pyrobloxbot
 ./pyrobloxbot.options
-./pyrobloxbot.decorators
+./pyrobloxbot.keybinds
 ./pyrobloxbot.constants
+./pyrobloxbot.decorators
 ```
