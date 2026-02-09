@@ -4,7 +4,7 @@
 See the [options api reference](../api_references/pyrobloxbot.options.md) for all available options.
 ```
 
-`pyrobloxbot` comes pre-configured for a particular use case. This tends to be longer running bots, that you leave running uninterrupted and without intervention for a while.
+pyrobloxbot comes pre-configured for a particular use case. This tends to be longer running bots, that you leave running uninterrupted and without intervention for a while.
 
 However, you can leverage the various `options` provided to have your bot fit various different use cases.
 
@@ -40,13 +40,12 @@ Then it would still spam the `e` key, but you could open another window and it w
 ## "Windowless" / "Headless" bots
 
 ```{admonition} Note
-`pyrobloxbot` doesn't enable you to make truly headless Roblox bots. Read the {ref}`FAQ<faq-windowless>` for more information.
+pyrobloxbot doesn't enable you to make truly headless Roblox bots. Read the {ref}`FAQ<faq-windowless>` for more information.
 ```
 
 You might want to keep using your computer while your bot is running.
 
-If your bot will only be doing one or two actions every once in a while, then you can use the {py:attr}`~pyrobloxbot.bot.options._BotOptions.restore_focus_after_action` option. Setting this to `True` will make
-`pyrobloxbot` restore the focus to your window after executing each action (keep in mind the "previous window" can be the Roblox window).
+If your bot will only be doing one or two actions every once in a while, then you can use the {py:attr}`~pyrobloxbot.bot.options._BotOptions.restore_focus_after_action` option. Setting this to `True` will make pyrobloxbot restore the focus to your window after executing each action (keep in mind the "previous window" can be the Roblox window).
 
 For example, you might want a very simple anti afk bot.
 If you did:
