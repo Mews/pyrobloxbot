@@ -30,4 +30,5 @@ autodoc_mock_imports = [
     "pillow",
     "pyscreeze",
     "win32gui",
+    "PIL",
 ]
