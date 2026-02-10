@@ -21,5 +21,12 @@ html_theme_options = {
 }
 
 autodoc_mock_imports = [
+    "pydirectinput",
+    "pygetwindow",
+    "pyperclip",
     "pywin32",
+    "pynput",
+    "opencv-python",
+    "pillow",
+    "pyscreeze",
 ]
