@@ -19,3 +19,7 @@ html_theme_options = {
     "collapse_navigation": False,
     "navigation_depth": 3,
 }
+
+autodoc_mock_imports = [
+    "pywin32",
+]
