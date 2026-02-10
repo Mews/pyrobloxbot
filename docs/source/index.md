@@ -28,4 +28,7 @@ faq
 
 guides/keybinds
 guides/options
+guides/image_recognition
+guides/ui_nav
+guides/joining_games
 ```
