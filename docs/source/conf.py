@@ -29,4 +29,5 @@ autodoc_mock_imports = [
     "opencv-python",
     "pillow",
     "pyscreeze",
+    "win32gui",
 ]
