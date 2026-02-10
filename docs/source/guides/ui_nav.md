@@ -10,6 +10,7 @@ Perhaps you have even already come across (and hated) the feature that enables y
 
 You might have accidentally enabled this and got very annoyed at it, but it is a godsend for making Roblox bots, because it lets us reliably (with some exceptions) automate ui interactions through the keyboard.
 
+(guide-ui-navigation)=
 ## UI navigation
 
 The best way to do ui navigation (unless you specifically need to scroll up and down through a page, more on that later) is using the {py:func}`~pyrobloxbot.ui_navigate` method.

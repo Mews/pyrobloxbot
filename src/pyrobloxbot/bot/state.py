@@ -17,7 +17,7 @@ class _BotState:
         Important:
             There are cases where this can become disconnected from what's actually true in game.
 
-            For more information, see :ref:`starting-ui-navigation`.
+            For more information, see :ref:`guide-ui-navigation`.
 
         Returns:
             bool: Whether or not the ui navigation mode is enabled.
