@@ -1,7 +1,7 @@
 # Anti-AFK bot
 
 ```{note}
-The code for this example is available at https://github.com/Mews/pyrobloxbot-examples/blob/main/anti-afk/main.py.
+The code for this example is available at https://github.com/Mews/pyrobloxbot-examples/blob/main/anti-afk/main.py
 ```
 
 We've learned how to use the features pyrobloxbot has to offer.

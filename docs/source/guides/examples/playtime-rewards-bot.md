@@ -3,7 +3,7 @@
 ```{note}
 This bot was made for the ["Tank Game!"](https://www.roblox.com/games/119789365111500/Tank-Game) game, as of 11/02/2026.
 
-The code for this bot is available in https://github.com/Mews/pyrobloxbot-examples/blob/main/tank-game-playtime-rewards/main.py.
+The code for this bot is available in https://github.com/Mews/pyrobloxbot-examples/blob/main/tank-game-playtime-rewards/main.py
 ```
 
 A lot of games give you rewards for playing the game for a certain time. We can use server hopping to automate farming these rewards.
