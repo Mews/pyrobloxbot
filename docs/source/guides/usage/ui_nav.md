@@ -6,8 +6,12 @@ You might then assume that interacting with ui elements like buttons is impossib
 
 Perhaps you have even already come across (and hated) the feature that enables your bot to do this. The ui navigation mode! When this mode is enabled, using "wasd" or the arrow keys will let you select any ui element on screen, and hitting enter will "click" it.
 
-```{figure} ../../_static/ui_navigation/uinavigation.gif
-:align: center
+```{video} ../../_static/ui_navigation/uinavigation.mp4
+:autoplay:
+:loop:
+:muted:
+:width: 100%
+
 UI navigation mode example (Epic Minigames)
 ```
 

@@ -37,9 +37,11 @@ For this, we actually need the ui navigation mode. The sequence of steps needed 
 
 The whole sequence will look something like this:
 
-```{figure} ../../_static/inventory/inventory_moving.gif
-:height: 200px
-:align: center
+```{video} ../../_static/inventory/inventory_moving.mp4
+:autoplay:
+:loop:
+:muted:
+:width: 100%
 
 Moving things between the inventory and hotbar
 ```
