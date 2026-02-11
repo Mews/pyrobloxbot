@@ -31,7 +31,7 @@ dependencies = [
   "pywin32==311",
   "pynput==1.8.1",
   "opencv-python==4.13.0.90",
-  "pillow==12.1.0",
+  "pillow==12.1.1",
   "pyscreeze==1.0.1",
 ]
 
