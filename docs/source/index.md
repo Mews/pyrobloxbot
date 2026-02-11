@@ -32,3 +32,10 @@ guides/usage/image_recognition
 guides/usage/ui_nav
 guides/usage/joining_games
 ```
+
+```{toctree}
+:maxdepth: 2
+:caption: Advanced Usage
+
+guides/advanced/inventory
+```
