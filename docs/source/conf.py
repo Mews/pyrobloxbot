@@ -32,3 +32,7 @@ autodoc_mock_imports = [
     "win32gui",
     "PIL",
 ]
+
+myst_enable_extensions = [
+    "linkify",
+]
