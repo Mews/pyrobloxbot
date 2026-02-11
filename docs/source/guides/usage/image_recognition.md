@@ -29,7 +29,7 @@ physical size as taken if in another monitor, meaning pyrobloxbot might not find
 It is recommended to use screenshots taken on the monitor where Roblox will be running.
 ```
 
-```{admonition} Tip
+```{tip}
 You might need to identify something that is partially transparent, like text, that will be different depending on what's behind it.
 
 For this case, you can lower the `confidence` argument of {py:func}`pyrobloxbot.image_is_visible`. The default is `0.9`, and the lower it is, the less anything on screen has to match the actual image for it to return `True`.

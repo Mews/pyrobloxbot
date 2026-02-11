@@ -39,7 +39,7 @@ def awesome_movement_sequence():
 awesome_movement_sequence()
 ```
 
-```{admonition} Tip
+```{tip}
 Use the [api reference](../../api_references/api_references.md) to see all the methods `pyrobloxbot` provides.
 ```
 
