@@ -43,7 +43,7 @@ pyrobloxbot allows you to:
 
 Joining a private server and a specific server in particular are a bit more difficult. See [this guide] for more info on how to do so.
 
-Check the [api reference](../api_references/pyrobloxbot.md#pyrobloxbot.join_game) to see how to use all the game joining methods.
+Check the [api reference](../../api_references/pyrobloxbot.md#pyrobloxbot.join_game) to see how to use all the game joining methods.
 
 ```{note}
 Keep in mind you're only able to do any of these things if you'd normally be able to do them from the Roblox app.

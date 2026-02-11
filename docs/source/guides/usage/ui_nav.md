@@ -6,7 +6,7 @@ You might then assume that interacting with ui elements like buttons is impossib
 
 Perhaps you have even already come across (and hated) the feature that enables your bot to do this. The ui navigation mode! When this mode is enabled, using "wasd" or the arrow keys will let you select any ui element on screen, and hitting enter will "click" it.
 
-![UI navigation mode example](../_static/uinavigation.gif)
+![UI navigation mode example](../../_static/uinavigation.gif)
 
 You might have accidentally enabled this and got very annoyed at it, but it is a godsend for making Roblox bots, because it lets us reliably (with some exceptions) automate ui interactions through the keyboard.
 
@@ -79,7 +79,7 @@ To use the scroll functions, it is important that you select the right element. 
 
 | ✅ Correct | ❌ Wrong |
 | :---: | :---: |
-| ![Correct selection example](../_static/correct_scroll_selection.png) | ![Wrong selection example](../_static/wrong_scroll_selection.png) |
+| ![Correct selection example](../../_static/correct_scroll_selection.png) | ![Wrong selection example](../../_static/wrong_scroll_selection.png) |
 | *The correct element to select* | *The wrong element to select* |
 ```
 

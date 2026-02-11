@@ -9,15 +9,15 @@ It simplifies this process by providing features like:
 - Highly customizable bots, by changing different options to fit your use case
 - A global failsafe to avoid your bot going rogue
 
-```{include} guides/installation.md
+```{include} guides/basic/installation.md
 ```
 
 ```{toctree}
 :maxdepth: 2
 :caption: Getting Started
 
-guides/installation
-guides/starting
+guides/basic/installation
+guides/basic/starting
 api_references/api_references
 faq
 ```
@@ -26,9 +26,9 @@ faq
 :maxdepth: 2
 :caption: Usage Guides
 
-guides/keybinds
-guides/options
-guides/image_recognition
-guides/ui_nav
-guides/joining_games
+guides/usage/keybinds
+guides/usage/options
+guides/usage/image_recognition
+guides/usage/ui_nav
+guides/usage/joining_games
 ```

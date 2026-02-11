@@ -1,7 +1,7 @@
 # Changing keybinds
 
 ```{admonition} Note
-See the [keybinds api reference](../api_references/pyrobloxbot.keybinds.md) for all available keybinds.
+See the [keybinds api reference](../../api_references/pyrobloxbot.keybinds.md) for all available keybinds.
 ```
 
 The `pyrobloxbot.keybinds` field serves two purposes:
@@ -34,7 +34,7 @@ bot.chat("Hello world!") # This will use '-' to open the chat instead of '/'
 bot.enable_shift_lock() # This will press control instead of shift
 ```
 
-A list of all the available keybinds can be found in the [api reference](../api_references/pyrobloxbot.keybinds.md).
+A list of all the available keybinds can be found in the [api reference](../../api_references/pyrobloxbot.keybinds.md).
 
 ## Changing the failsafe hotkey
 

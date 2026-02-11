@@ -40,7 +40,7 @@ awesome_movement_sequence()
 ```
 
 ```{admonition} Tip
-Use the [api reference](../api_references/api_references.md) to see all the methods `pyrobloxbot` provides.
+Use the [api reference](../../api_references/api_references.md) to see all the methods `pyrobloxbot` provides.
 ```
 
 ## Identifying what can be botted

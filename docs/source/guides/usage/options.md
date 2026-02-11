@@ -1,7 +1,7 @@
 # Using Options
 
 ```{admonition} Note
-See the [options api reference](../api_references/pyrobloxbot.options.md) for all available options.
+See the [options api reference](../../api_references/pyrobloxbot.options.md) for all available options.
 ```
 
 pyrobloxbot comes pre-configured for a particular use case. This tends to be longer running bots, that you leave running uninterrupted and without intervention for a while.
