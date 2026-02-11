@@ -1,5 +1,13 @@
 # FAQ
 
+## Why pyrobloxbot?
+
+I made pyrobloxbot because I too was into making bots to get an advantage over other people (in this case, my little cousin, who I refused to let beat me in bloxfruits).
+
+It came as a result of the frustration from having to manage multiple libraries for sending keyboard inputs, and needing to make more robust bots more easily.
+
+Initially, I just wanted to make developing bots easier for myself. But as I kept adding features, I thought that this actually might be useful for other people. And so, pyrobloxbot was born.
+
 (faq-windowless)=
 ## "Windowless" / "Headless" bots
 
