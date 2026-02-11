@@ -70,4 +70,10 @@ This can be something as simple as using a private server instead of a public on
 
 **Creativity is the most important skill in bot building.**
 
-You also need to be know what your main focus should be. For example, if your bot will be running for long periods of time unattended, then reliability and robustness shouldn't be neglected.
+Some common techniques you will probably need are:
+- Walking against walls or corners to ensure your position is consistent for the next step.
+- Resetting your character, also to ensure your position is consistent for the next step.
+- Server hopping.
+- Image recognition, usually to wait until you finish joining a game, but also to react to in game events.
+
+You can find applications of these techniques and more in the usage examples.
