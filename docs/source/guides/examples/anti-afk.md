@@ -60,5 +60,5 @@ And we're done!
 
 You can see below the bot moving randomly 5 times, then restoring the focus back to the terminal automatically, and then we terminate the program with the failsafe.
 
-```{image} ../../_static/antiafkbot.gif
+```{image} ../../_static/antiafkbot/antiafkbot.gif
 ```

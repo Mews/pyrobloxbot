@@ -46,4 +46,5 @@ guides/advanced/joining_servers
 :caption: Usage Examples
 
 guides/examples/anti-afk
+guides/examples/playtime-rewards-bot
 ```

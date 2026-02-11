@@ -52,7 +52,7 @@ Server job ids are volatile. Whenever a server shuts down, it's job id will ceas
 If you're lucky, the game you're trying to bot will actually show you the job id for the server you're in somewhere.
 
 For example, if you look around you might find something like this:
-```{figure} ../../_static/serverjobid.png
+```{figure} ../../_static/joining_servers/serverjobid.png
 :height: 200px
 :align: center
 

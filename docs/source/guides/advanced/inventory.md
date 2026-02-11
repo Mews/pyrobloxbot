@@ -17,7 +17,7 @@ Usually, using the {py:func}`~pyrobloxbot.open_inventory` and {py:func}`~pyroblo
 
 Your inventory might then look something like this:
 
-```{image} ../../_static/open_inventory.png
+```{image} ../../_static/inventory/open_inventory.png
 :align: center
 :height: 200px
 ```
@@ -37,7 +37,7 @@ For this, we actually need the ui navigation mode. The sequence of steps needed 
 
 The whole sequence will look something like this:
 
-```{figure} ../../_static/inventory_moving.gif
+```{figure} ../../_static/inventory/inventory_moving.gif
 :height: 200px
 :align: center
 
