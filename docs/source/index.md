@@ -40,3 +40,10 @@ guides/usage/joining_games
 guides/advanced/inventory
 guides/advanced/joining_servers
 ```
+
+```{toctree}
+:maxdepth: 1
+:caption: Usage Examples
+
+guides/examples/anti-afk
+```
