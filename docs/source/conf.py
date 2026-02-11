@@ -7,7 +7,12 @@ copyright = "2026, Mews"
 author = "Mews"
 release = metadata["Version"]
 
-extensions = ["myst_parser", "sphinx.ext.autodoc", "sphinx.ext.napoleon"]
+extensions = [
+    "myst_parser",
+    "sphinx.ext.autodoc",
+    "sphinx.ext.napoleon",
+    "sphinxcontrib.video",
+]
 
 templates_path = ["_templates"]
 exclude_patterns = []  # type: ignore[var-annotated]
@@ -34,5 +39,6 @@ autodoc_mock_imports = [
 ]
 
 myst_enable_extensions = [
+    "dollarmath",
     "linkify",
 ]
