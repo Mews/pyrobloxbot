@@ -2,11 +2,11 @@
 
 ## Why pyrobloxbot?
 
-I made pyrobloxbot because I too was into making bots to get an advantage over other people (in this case, my little cousin, who I refused to let beat me in bloxfruits).
+**pyrobloxbot** was born out of necessity (in this case, beating my cousin on *Blox Fruits*)
 
-It came as a result of the frustration from having to manage multiple libraries for sending keyboard inputs, and needing to make more robust bots more easily.
+I quickly realized that making Roblox bots got annoying due to needing to manage multiple libraries for inputs, image recognition and window handling.
 
-Initially, I just wanted to make developing bots easier for myself. But as I kept adding features, I thought that this actually might be useful for other people. And so, pyrobloxbot was born.
+What started as a personal tool for making my own bots quickly grew into a feature-rich library. I built pyrobloxbot to be the toolkit I whished I had when I started.
 
 (faq-windowless)=
 ## "Windowless" / "Headless" bots
