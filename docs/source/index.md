@@ -39,6 +39,7 @@ guides/usage/joining_games
 
 guides/advanced/inventory
 guides/advanced/joining_servers
+guides/advanced/multi-account
 ```
 
 ```{toctree}
