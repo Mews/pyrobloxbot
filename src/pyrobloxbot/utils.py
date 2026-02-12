@@ -91,6 +91,7 @@ def _failsafe():
 If you didn't mean for this to happen, you might have pressed {failsafe_hotkey} on accident, or made your bot press it
 You can change the failsafe hotkey through set_failsafe_hotkey
 For more info see the documentation for pyrobloxbot.keybinds.set_failsafe_hotkey
+https://pyrobloxbot.readthedocs.io/en/latest/guides/usage/keybinds.html#changing-the-failsafe-hotkey
 """)
 
         sys.excepthook = failsafe_excepthook
