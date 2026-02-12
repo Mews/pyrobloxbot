@@ -47,4 +47,5 @@ guides/advanced/joining_servers
 
 guides/examples/anti-afk
 guides/examples/playtime-rewards-bot
+guides/examples/macros
 ```
