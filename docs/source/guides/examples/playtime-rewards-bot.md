@@ -1,14 +1,14 @@
 # Playtime rewards bot
 
 ```{note}
-This bot was made for the ["Tank Game!"](https://www.roblox.com/games/119789365111500/Tank-Game) game, as of 11/02/2026.
+This bot was made for the [*Tank Game!*](https://www.roblox.com/games/119789365111500/Tank-Game) game, as of 11/02/2026.
 
 The code for this bot is available in https://github.com/Mews/pyrobloxbot-examples/blob/main/tank-game-playtime-rewards/main.py
 ```
 
 A lot of games give you rewards for playing the game for a certain time. We can use server hopping to automate farming these rewards.
 
-We will make a bot for ["Tank Game!"](https://www.roblox.com/games/119789365111500/Tank-Game), to farm it's playtime rewards.
+We will make a bot for [*Tank Game!*](https://www.roblox.com/games/119789365111500/Tank-Game), to farm it's playtime rewards.
 
 The bot will have three steps:
 1. Join a random server.
@@ -26,7 +26,7 @@ When using image recognition, it is important to know what to check for. For exa
 :align: center
 :height: 250px
 
-The lobby of "Tank Game!"
+The lobby of *Tank Game!*
 ```
 
 From that screen, you might think of checking for these screenshots:
@@ -69,7 +69,7 @@ From that screen, you might think of checking for these screenshots:
 ✅ Good!
 <br> Now this is almost perfect! Here, the screenshot only includes the gui element, and nothing else, meaning nothing else happening in the lobby will interfere with it!
 <br> There's only one small problem. Notice that we're checking for a button that says our rank. What if, for whatever reason, our rank changes while we're afk? The bot will freeze indefinitely!
-<br> In reality, in the context of "Tank Game!" this probably would never happen.
+<br> In reality, in the context of *Tank Game!* this probably would never happen.
 ```
 
 ```{figure} ../../_static/playtimerewardsbot/tankgamelobby-crop6.png

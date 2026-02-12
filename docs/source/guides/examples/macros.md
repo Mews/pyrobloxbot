@@ -1,7 +1,7 @@
 # Macros
 
 ```{note}
-This bot is made for the ["surf"](https://www.roblox.com/games/5315066937/surf) game, as of 11/02/2026.
+This bot is made for the [*surf*](https://www.roblox.com/games/5315066937/surf) game, as of 11/02/2026.
 
 The code for this bot is available in https://github.com/Mews/pyrobloxbot-examples/blob/main/surf-macros/main.py
 ```
@@ -12,7 +12,7 @@ You can use pyrobloxbot in conjunction with the keyboard package to make macros 
 You'll need to install the [keyboard](https://pypi.org/project/keyboard/) package.
 ```
 
-For this example, we'll make macros for the ["surf"](https://www.roblox.com/games/5315066937/surf) game. In surf, you often need to type commands in chat to do stuff.
+For this example, we'll make macros for the [*surf*](https://www.roblox.com/games/5315066937/surf) game. In *surf*, you often need to type commands in chat to do stuff.
 We'll make macros for common commands: `/spec`, `/serverlist` and `/style`.
 
 Doing this is very simple. We just need to use `keyboard.add_hotkey` to register a global hotkey. Then we can use the hotkey to call any function.
