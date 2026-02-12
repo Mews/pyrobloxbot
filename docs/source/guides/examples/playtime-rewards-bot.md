@@ -18,6 +18,8 @@ The bot will have three steps:
 
 Lets work on step 1 first. We need to join a random server, and identify when we've actually joined the server.
 
+The reason we need to wait to fully join is because the playtime only starts counting from that point. If we start counting from when we call {py:func}`~pyrobloxbot.join_game` instead, we might try to collect the rewards too early.
+
 When using image recognition, it is important to know what to check for. For example, when we finish joining the game, this is what might be on screen:
 
 ```{figure} ../../_static/playtimerewardsbot/tankgamelobby.png
@@ -74,7 +76,7 @@ From that screen, you might think of checking for these screenshots:
 :align: left
 
 ✅ Good!
-<br> This is perfect! It includes only the gui element, with nothing else, but unlike the previous one, this button will realistically never change. This what we'll use for our bot!
+<br> This is perfect! It includes only the gui element, with nothing else, but unlike the previous one, this button will realistically never change. This is what we'll use for our bot!
 ```
 
 Lets call the screenshot `"index_button.png"`. Then, we can define the function for the first step of our bot:
@@ -97,8 +99,6 @@ def join_server_and_wait():
 Notice we first wait until we leave the previous server, then we wait to join the new server.
 <br>If your internet is fast enough, then you might join the new server fast enough that the bot thinks you never even left the first server. In this case, just remove the first while. For 99.99% of people though, this is the best way to do it.
 
-The reason we need to wait to fully join is because the playtime only starts counting from that point. If we start counting from when we call {py:func}`~pyrobloxbot.join_game` instead, we might try to collect the rewards too early.
-
 Now for step 2, afking until we can collect the rewards.
 
 We'll actually need to decide how long to wait before server hopping. Lets assume we're doing this for the diamonds rewards. Then we see that there are 3 rewards that give us diamonds:
@@ -120,7 +120,7 @@ If we wait for the 11 minute reward, we'll get
 If we wait for the 37 minute reward, we'll get
 <br>$ \frac{1250+2000+3500}{37} \approx 182.43 \text{ diamonds/minute} $.
 
-Clearly, if our goal is to get the most diamonds possible, we want to wait only for the 4 minute reward before server hopping.
+So, if our goal is to get the most diamonds possible, we want to wait only for the 4 minute reward before server hopping.
 
 So, lets write that:
 
