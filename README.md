@@ -5,25 +5,50 @@
 [![PyPI Version](https://img.shields.io/pypi/v/pyrobloxbot?label=pypi%20package)](https://pypi.python.org/pypi/pyrobloxbot)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pyrobloxbot)](https://pypi.python.org/pypi/pyrobloxbot)
 
-A Python library to control the Roblox character and interact with game UI strictly through keyboard inputs
+**pyrobloxbot** is an open-source package for making Roblox bots that interact with the game strictly through the keyboard.
 
-It aims to streamline the process of creating a Roblox bot, by providing useful features such as:
-- Methods for most actions your character can make, including movement, chatting, resetting, etc
-- Methods for navigating a game's UI through the keyboard exclusively, making it robust
-- Methods for joining games, joining users and joining private servers
-- Highly customizable, can make all kinds of bots for different use cases
+It simplifies this process by providing features like:
+- Methods for most actions your character can make, like movement, chatting, resetting, etc
+- Methods to navigate through game ui elements through the keyboard only, to avoid needing the mouse which is unreliable
+- Methods to join games, join users and join private servers
+- Highly customizable bots, by changing different options to fit your use case
 - A global failsafe to avoid your bot going rogue
 
-For more information, read the [documentation](https://pyrobloxbot.readthedocs.io/en/latest/index.html)!
+## Installation guide
 
-If you have any issues while using the library, please [ask a question!](CONTRIBUTING.md#i-have-a-question)
+pyrobloxbot can be installed using pip, by doing:
 
-All feature suggestions are welcome! Find out [how to request a feature](CONTRIBUTING.md#suggesting-enhancements).
+```shell
+pip install pyrobloxbot
+```
 
+> [!NOTE]
+> For now, pyrobloxbot is Windows only. See the [issue tracker](https://github.com/Mews/pyrobloxbot/issues/93) for updates.
 
-## Installation
+## Documentation
 
-Install pyrobloxbot using ```pip install pyrobloxbot```
+Read the documentation at https://pyrobloxbot.readthedocs.io/en/latest/index.html
+
+There you'll find:
+- API references
+- Basic and advanced usage guides
+- Step by step, real life examples
+
+## Have a question?
+
+Don't hesitate to ask!
+
+You can check the [FAQ](https://pyrobloxbot.readthedocs.io/en/latest/faq.html), [open an issue](https://github.com/Mews/pyrobloxbot/issues/new?labels=question), or contact me on discord (mews75)!
+
+## Got an idea?
+
+All feature requests are welcome!
+
+You can submit them on github by [opening an issue](https://github.com/mews/pyrobloxbot/issues/new?template=feature.yml) and using the feature template.
+
+---
+
+Also, feel free to share anything you make with me through my discord (mews75)!
 
 ## Usage/Examples
 
