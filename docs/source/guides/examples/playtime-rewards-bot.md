@@ -5,7 +5,7 @@ This bot was made for the [*Tank Game!*](https://www.roblox.com/games/1197893651
 
 The code for this bot is available in https://github.com/Mews/pyrobloxbot-examples/blob/main/tank-game-playtime-rewards/main.py
 
-The screenshots used for the bot were taken in a 1920x1080, 15.6 inch screen (see why this matters in the [image recognition guide](../usage/image_recognition.md))
+The screenshots used for the bot were taken in a 1920x1080, 15.6 inch screen (see why this matters in the [image recognition guide](screenshots-dpi-aware))
 ```
 
 A lot of games give you rewards for playing the game for a certain time. We can use server hopping to automate farming these rewards.

@@ -21,6 +21,8 @@ This code will wait until the image in `"boss_notification.png"` is visible anyw
 Image recognition is a powerful tool, and is basically the only way to make your bot react to stuff happening in game.
 
 ```{admonition} Important
+:name: screenshots-dpi-aware
+
 Be aware that the screenshots are dpi aware.
 
 This means that a screenshot taken on one monitor might not be the same
