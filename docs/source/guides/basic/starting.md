@@ -52,6 +52,8 @@ First of all, pyrobloxbot will never be like cheats. This is because anything yo
 It also cannot (or at least is very difficult to) automate very complex tasks. If the thing you're looking to bot requires reacting to stuff that isn't consistent, chances are
 it is really hard or even impossible to automate. The most common example of this is interacting with other players. Making a bot that does PvP, for example, is essentially impossible.
 
+**Bots just execute actions blindly!**
+
 pyrobloxbot excels at automating repetitive tasks or tasks that don't require much reaction to the environment. It's biggest strength is in the time you can then have the bot run. Once you have made your bot, and have made it robust enough, you can just run it for hours upon hours without intervention, potentially giving you a huge advantage over other players.
 
 This might sound discouraging, but this still lets you automate a ton of different stuff. You can find some bot examples in the usage and advances guides to inspire you.
