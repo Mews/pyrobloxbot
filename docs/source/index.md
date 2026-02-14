@@ -61,8 +61,10 @@ guides/advanced/multi-account
 ```{toctree}
 :maxdepth: 1
 :caption: Usage Examples
+:titlesonly:
 
 guides/examples/anti-afk
 guides/examples/playtime-rewards-bot
 guides/examples/macros
+guides/examples/factory-raid
 ```
