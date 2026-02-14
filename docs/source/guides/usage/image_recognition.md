@@ -28,6 +28,8 @@ Be aware that the screenshots are dpi aware.
 This means that a screenshot taken on one monitor might not be the same
 physical size as taken if in another monitor, meaning pyrobloxbot might not find it.
 
+Being in fullscreen has the same effect.
+
 It is recommended to use screenshots taken on the monitor where Roblox will be running.
 ```
 

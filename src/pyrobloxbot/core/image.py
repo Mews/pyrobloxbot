@@ -13,6 +13,8 @@ def image_is_visible(image_path: str, confidence: float = 0.9) -> bool:
         This means that a screenshot taken on one monitor might not be the same
         physical size as taken in another monitor, meaning the method might not find it.
 
+        Being in fullscreen has the same effect.
+
         It is recommended to use screenshots taken on the monitor where Roblox will be running.
 
     Args:
