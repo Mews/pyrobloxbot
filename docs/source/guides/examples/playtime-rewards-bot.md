@@ -18,6 +18,8 @@ The bot will have three steps:
 3. Use ui navigation to claim the rewards.
 4. Repeat from step 1.
 
+## Server hopping
+
 Lets work on step 1 first. We need to join a random server, and identify when we've actually joined the server.
 
 The reason we need to wait to fully join is because the playtime only starts counting from that point. If we start counting from when we call {py:func}`~pyrobloxbot.join_game` instead, we might try to collect the rewards too early.
@@ -101,6 +103,8 @@ def join_server_and_wait():
 Notice we first wait until we leave the previous server, then we wait to join the new server.
 <br>If your internet is fast enough, then you might join the new server fast enough that the bot thinks you never even left the first server. In this case, just remove the first while. For 99.99% of people though, this is the best way to do it.
 
+## Afking
+
 Now for step 2, afking until we can collect the rewards.
 
 We'll actually need to decide how long to wait before server hopping. Lets assume we're doing this for the diamonds rewards. Then we see that there are 3 rewards that give us diamonds:
@@ -145,6 +149,8 @@ So far, this what our bot is doing:
 :width: 100%
 ```
 
+## Collecting the rewards
+
 Now all that's left to do is step 3, collecting the rewards we waited for.
 
 The sequence to open the rewards tab and collecting them looks like:
@@ -176,6 +182,8 @@ And our bot is done! Here it is working:
 :muted:
 :width: 100%
 ```
+
+## Extras
 
 One fun feature we might add is showing how many diamonds we've farmed so far.
 
