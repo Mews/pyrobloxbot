@@ -1,4 +1,4 @@
-name: Publish to PyPi
+name: Publish to PyPI
 
 on:
   release:
@@ -14,12 +14,44 @@ jobs:
   call-smoke:
     uses: ./.github/workflows/smoke_test.yaml
 
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Install build tools
+        run: pip install build
+
+      - name: Build wheels
+        run: python -m build
+
+      - name: Store the wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
   publish:
-    needs: [call-lint, call-tests, call-smoke]
-    uses: Mews/.github/.github/workflows/publish-python-package.yaml@main
-    with:
-      python_version: '3.10'
-      os: 'windows-latest'
+    name: Publish to PyPI
+    needs: [build, call-lint, call-tests, call-smoke]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
     permissions:
       id-token: write
       contents: read
+
+    steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
