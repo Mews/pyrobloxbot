@@ -1,7 +1,7 @@
 import typing
 
-"""Valid strings to pass to keyboard_action and hold_keyboard_action"""
-KEYBOARD_KEYS = typing.Literal[
+#: Valid keys to pass to functions
+KEYBOARD_KEYS: typing.TypeAlias = typing.Literal[
     "\t",
     "\n",
     "\r",

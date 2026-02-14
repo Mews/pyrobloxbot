@@ -5,18 +5,28 @@ from PIL import ImageGrab
 
 @require_focus
 def image_is_visible(image_path: str, confidence: float = 0.9) -> bool:
-    """Checks whether a given image is visible in the roblox window
+    """Checks whether a given image is visible on screen.
 
-    :param image_path: The path to the image file to check
-    :type image_path: str
-    :param confidence: How confident the function has to be to return True, must be between 0 and 0.999, defaults to 0.9\n
-                       If this value is too low it may give false positives
+    Important:
+        Be aware that the screenshots are dpi aware.
 
-    :type confidence: float, optional
-    :return: Whether or not the image is visible
-    :rtype: bool
+        This means that a screenshot taken on one monitor might not be the same
+        physical size as taken in another monitor, meaning the method might not find it.
+
+        Being in fullscreen has the same effect.
+
+        It is recommended to use screenshots taken on the monitor where Roblox will be running.
+
+    Args:
+        image_path (str): The path of the image to check
+        confidence (float, optional): How confident the method must be to return ``True``.
+            Be aware that low confidence values (<0.5) might start giving you false positives.
+
+            Defaults to ``0.9``.
+
+    Returns:
+        bool: Whether or not the image is visible.
     """
-
     try:
         screen = ImageGrab.grab(all_screens=True)
         pyscreeze.locate(

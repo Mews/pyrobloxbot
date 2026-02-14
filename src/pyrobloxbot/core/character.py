@@ -9,10 +9,13 @@ import pyperclip
 @apply_cooldown()
 @require_focus
 def reset_player(interval: float = 0) -> None:
-    """Resets player character
+    """Resets the player character.
 
-    :param interval: How long between each keyboard input, in seconds, defaults to 0.5
-    :type interval: float
+    Args:
+        interval (float, optional): How long to wait in between each key press.
+            Defaults to ``0``.
+
+            Usually it should be fine, but change it to a higher value if you find it unreliable.
     """
     press_key("esc")
     wait(interval)
@@ -24,10 +27,10 @@ def reset_player(interval: float = 0) -> None:
 @apply_cooldown()
 @require_focus
 def chat(message: str) -> None:
-    """Sends a message in chat
+    """Sends a message in chat.
 
-    :param message: The message to send
-    :type message: str
+    Args:
+        message (str): The message to send.
     """
     # Open chat
     press_key(keybinds.open_chat)
@@ -48,11 +51,14 @@ def chat(message: str) -> None:
 @apply_cooldown()
 @require_focus
 def equip_slot(slot: int) -> None:
-    """Equip a given item slot
+    """Equips a hotbar slot.
 
-    :param slot: The item slot to equip
-    :type slot: int
-    :raises InvalidSlotNumberException: Raised when slot isn't between 0 and 9
+    Args:
+        slot (int): The number of the slot to equip.
+            Must be between ``0`` and ``9``.
+
+    Raises:
+        InvalidSlotNumberException: Raised when the slot number isn't between ``0`` and ``9``.
     """
     if slot < 0 or slot > 9:
         raise InvalidSlotNumberException("Slots should be between 0 and 9")
@@ -63,6 +69,7 @@ def equip_slot(slot: int) -> None:
 @apply_cooldown()
 @require_focus
 def toggle_inventory() -> None:
+    """Toggles the inventory."""
     press_key(keybinds.toggle_inventory)
     state._INVENTORY_OPEN = not state._INVENTORY_OPEN
 
@@ -70,6 +77,9 @@ def toggle_inventory() -> None:
 @apply_cooldown()
 @require_focus
 def open_inventory() -> None:
+    """Opens the inventory.
+    If the inventory is already open, does nothing.
+    """
     if not state.is_inventory_open():
         toggle_inventory()
 
@@ -77,6 +87,9 @@ def open_inventory() -> None:
 @apply_cooldown()
 @require_focus
 def close_inventory() -> None:
+    """Closes the inventory.
+    If the inventory is already closed, does nothing.
+    """
     if state.is_inventory_open():
         toggle_inventory()
 
@@ -84,7 +97,10 @@ def close_inventory() -> None:
 @apply_cooldown()
 @require_focus
 def toggle_shift_lock() -> None:
-    """Toggles shift lock (Shift lock switch must be enabled in roblox settings)"""
+    """Toggles shift lock.
+
+    Note:
+        Shift lock switch must be enabled in Roblox settings"""
     press_key(keybinds.toggle_shift_lock)
     state._SHIFT_LOCK_ENABLED = not state.is_shift_lock_enabled()
 
@@ -92,6 +108,12 @@ def toggle_shift_lock() -> None:
 @apply_cooldown()
 @require_focus
 def enable_shift_lock() -> None:
+    """Enables shift lock.
+    If shift lock is already enabled, does nothing.
+
+    Note:
+        Shift lock switch must be enabled in Roblox settings.
+    """
     if not state.is_shift_lock_enabled():
         toggle_shift_lock()
 
@@ -99,6 +121,12 @@ def enable_shift_lock() -> None:
 @apply_cooldown()
 @require_focus
 def disable_shift_lock() -> None:
+    """Disables shift lock.
+    If shift lock is already disabled, does nothing.
+
+    Note:
+        Shift lock switch must be enabled in Roblox settings.
+    """
     if state.is_shift_lock_enabled():
         toggle_shift_lock()
 

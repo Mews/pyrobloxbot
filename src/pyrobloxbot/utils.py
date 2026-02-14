@@ -13,6 +13,17 @@ def sleep(seconds: float) -> None:
 
 
 def wait(seconds: float) -> None:
+    """Suspend execution for a given number of seconds.
+
+    Important:
+        You should use this method instead of ``time.sleep`` for manually adding delays in your bot.
+
+        This is because the failsafe will only work reliably if you use this method. Otherwise, hitting the failsafe
+        hotkey while ``time.sleep`` is running will cause the failsafe to not be triggered.
+
+    Args:
+        seconds (float): How long to wait for.
+    """
     sleep(seconds)
 
 
@@ -23,11 +34,11 @@ def build_roblox_uri(
     gameInstanceId: Optional[str] = None,
     type: Optional[str] = None,
 ) -> str:
-    """Utility for generating roblox uris with parameters
+    """Utility for generating Roblox uris with parameters
 
     Args:
         placeId (int, optional): The id of the game. This is required for everything except joining a user's game
-        userId (int, optional): The id of a roblox user. If you're allowed to join them,
+        userId (int, optional): The id of a Roblox user. If you're allowed to join them,
             either because they added you as a friend or their joins are public, you'll join their game
         linkCode (int, optional): The code for a private server. This is not the code that appears
             in the invite link for a private server.
@@ -40,7 +51,7 @@ def build_roblox_uri(
         type (str, optional): The type of join, either "InGame" or "FollowUser"
 
     Returns:
-        str: A roblox uri that can be passed to start
+        str: A Roblox uri that can be passed to start
 
     """
     params = []
@@ -80,6 +91,7 @@ def _failsafe():
 If you didn't mean for this to happen, you might have pressed {failsafe_hotkey} on accident, or made your bot press it
 You can change the failsafe hotkey through set_failsafe_hotkey
 For more info see the documentation for pyrobloxbot.keybinds.set_failsafe_hotkey
+https://pyrobloxbot.readthedocs.io/en/latest/guides/usage/keybinds.html#changing-the-failsafe-hotkey
 """)
 
         sys.excepthook = failsafe_excepthook

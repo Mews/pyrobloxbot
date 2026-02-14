@@ -5,29 +5,51 @@
 [![PyPI Version](https://img.shields.io/pypi/v/pyrobloxbot?label=pypi%20package)](https://pypi.python.org/pypi/pyrobloxbot)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pyrobloxbot)](https://pypi.python.org/pypi/pyrobloxbot)
 
-A python library to control the roblox character and interact with game ui through keyboard inputs
+**pyrobloxbot** is an open-source package for making Roblox bots that interact with the game strictly through the keyboard.
 
-This library uses ```pydirectinput``` to control the keyboard
+It simplifies this process by providing features like:
+- Methods for most actions your character can make, like movement, chatting, resetting, etc
+- Methods to navigate through game ui elements through the keyboard only, to avoid needing the mouse which is unreliable
+- Methods to join games, join users and join private servers
+- Highly customizable bots, by changing different options to fit your use case
+- A global failsafe to avoid your bot going rogue
 
-It has a decorator to ensure that the roblox window is in focus before sending keyboard inputs
+## Installation guide
 
-There is also a global failsafe that can be triggered using _**control + m**_ to avoid your bot getting out of control
--   The failsafe hotkey can be changed using `set_failsafe_hotkey`
+pyrobloxbot can be installed using pip, by doing:
 
-    Example:
-    ```python
-    #Sets the failsafe hotkey to control + shift + y
-    set_failsafe_hotkey("ctrl", "shift", "y")
-    ```
+```shell
+pip install pyrobloxbot
+```
 
-If you have any issues while using the library, please [ask a question!](CONTRIBUTING.md#i-have-a-question)
+> [!NOTE]
+> For now, pyrobloxbot is Windows only. See the [issue tracker](https://github.com/Mews/pyrobloxbot/issues/93) for updates.
 
-All feature suggestions are welcome! Find out [how to request a feature](CONTRIBUTING.md#suggesting-enhancements).
+## Documentation
 
+Read the documentation at https://pyrobloxbot.readthedocs.io/en/latest/index.html
 
-## Installation
+There you'll find:
+- API references
+- Basic and advanced usage guides
+- Step by step, real life examples
+- Pieces of wisdom I've gathered after making tens of bots with pyrobloxbot
 
-Install pyrobloxbot using ```pip install pyrobloxbot```
+## Have a question?
+
+Don't hesitate to ask!
+
+You can check the [FAQ](https://pyrobloxbot.readthedocs.io/en/latest/faq.html), [open an issue](https://github.com/Mews/pyrobloxbot/issues/new?labels=question), or contact me on discord (mews75)!
+
+## Got an idea?
+
+All feature requests are welcome!
+
+You can submit them on github by [opening an issue](https://github.com/mews/pyrobloxbot/issues/new?template=feature.yml) and using the feature template.
+
+---
+
+Also, feel free to share anything you make with me through my discord (mews75)!
 
 ## Usage/Examples
 
@@ -44,6 +66,4 @@ bot.walk_forward(5)
 bot.reset_player()
 ```
 
-## [Documentation](https://pyrobloxbot.readthedocs.io/en/latest/pyrobloxbot.html)
-
-## [Changelog](https://github.com/Mews/py-roblox-bot/blob/main/CHANGELOG.md)
+## [Changelog](CHANGELOG.md)
