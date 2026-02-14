@@ -22,7 +22,7 @@ The bot will have three steps:
 
 Lets work on step 1 first. We need to join a random server, and identify when we've actually joined the server.
 
-The reason we need to wait to fully join is because the playtime only starts counting from that point. If we start counting from when we call {py:func}`~pyrobloxbot.join_game` instead, we might try to collect the rewards too early.
+The reason we need to wait to fully join is because the playtime only starts counting from that point. If we start counting from when we call {py:func}`pyrobloxbot.join_game` instead, we might try to collect the rewards too early.
 
 When using image recognition, it is important to know what to check for. For example, when we finish joining the game, this is what might be on screen:
 

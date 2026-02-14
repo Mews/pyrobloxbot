@@ -56,7 +56,7 @@ it is really hard or even impossible to automate. The most common example of thi
 
 pyrobloxbot excels at automating repetitive tasks or tasks that don't require much reaction to the environment. It's biggest strength is in the time you can then have the bot run. Once you have made your bot, and have made it robust enough, you can just run it for hours upon hours without intervention, potentially giving you a huge advantage over other players.
 
-This might sound discouraging, but this still lets you automate a ton of different stuff. You can find some bot examples in the usage and advances guides to inspire you.
+This might sound discouraging, but this still lets you automate a ton of different stuff. You can find some bot examples in the usage examples to inspire you.
 
 ## Bot building basics
 

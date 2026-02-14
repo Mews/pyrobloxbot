@@ -1,7 +1,7 @@
 # Moving items from the inventory
 
 pyrobloxbot offers method to open and close the normal Roblox inventory, through:
-<br>{py:func}`~pyrobloxbot.open_inventory`/{py:func}`~pyrobloxbot.close_inventory`/{py:func}`~pyrobloxbot.toggle_inventory`
+<br>{py:func}`pyrobloxbot.open_inventory`/{py:func}`pyrobloxbot.close_inventory`/{py:func}`pyrobloxbot.toggle_inventory`
 
 However, just opening the inventory isn't very useful in and of itself.
 
@@ -13,7 +13,7 @@ pyrobloxbot doesn't provide a method to do this, because, as you'll soon see, th
 
 The first step is actually accessing the inventory.
 
-Usually, using the {py:func}`~pyrobloxbot.open_inventory` and {py:func}`~pyrobloxbot.close_inventory` functions is easier, but you might prefer using {py:func}`~pyrobloxbot.toggle_inventory` instead.
+Usually, using the {py:func}`pyrobloxbot.open_inventory` and {py:func}`pyrobloxbot.close_inventory` functions is easier, but you might prefer using {py:func}`pyrobloxbot.toggle_inventory` instead.
 
 Your inventory might then look something like this:
 
@@ -50,7 +50,7 @@ Moving things between the inventory and hotbar
 
 So, now how do we code this up?
 
-The key is that we'll rely on the {py:func}`~pyrobloxbot.key_down` and {py:func}`~pyrobloxbot.key_up` functions to hold the enter key while navigating the ui.
+The key is that we'll rely on the {py:func}`pyrobloxbot.key_down` and {py:func}`pyrobloxbot.key_up` functions to hold the enter key while navigating the ui.
 
 An example of moving an item from the hotbar to the inventory might then look something like this:
 

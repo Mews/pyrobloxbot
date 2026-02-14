@@ -20,21 +20,21 @@ You might have accidentally enabled this and got very annoyed at it, but it is a
 (guide-ui-navigation)=
 ## UI navigation
 
-The best way to do ui navigation (unless you specifically need to scroll up and down through a page, more on that later) is using the {py:func}`~pyrobloxbot.ui_navigate` method.
+The best way to do ui navigation (unless you specifically need to scroll up and down through a page, more on that later) is using the {py:func}`pyrobloxbot.ui_navigate` method.
 
-The first you'll need to do is figure out the sequence of actions (navigating in some direction or clicking) to do what you want. The best way to do this is simply to try it out manually:
+The first thing you'll need to do is figure out the sequence of actions (navigating in some direction or clicking) to do what you want. The best way to do this is simply to try it out manually:
 
 1. Ensure you're figuring things out from what would be previously selected. If, before navigating, your bot had the ui navigation mode turned off, then you want to figure out what element is selected when it gets turned on and work from that one.
 2. Use the arrow keys to navigate around until you reach the element you want to click.
 3. Repeat 2. if you need to click multiple elements.
 4. Write down the sequence of arrow keys you pressed.
 
-Then you can write your ui navigation sequence using {py:func}`~pyrobloxbot.ui_navigate`.
+Then you can write your ui navigation sequence using {py:func}`pyrobloxbot.ui_navigate`.
 
 For example, say there's some game where you want to open a shop, sell an item, and close the shop, and you've determined the sequence to do that, from having the ui navigation mode off, is:
 <br>`down` -> `down` -> `click` -> `right` -> `up` -> `click` -> `up` -> `click`
 
-Then you can simply call {py:func}`~pyrobloxbot.ui_navigate` with those arguments, and it will execute that sequence:
+Then you can simply call {py:func}`pyrobloxbot.ui_navigate` with those arguments, and it will execute that sequence:
 ```python
 import pyrobloxbot as bot
 
@@ -76,7 +76,7 @@ This is pretty unfortunate, and for now there doesn't seem to be any solution, a
 
 ## Scrolling
 
-Like mentioned before, the only action that can't be done using {py:func}`~pyrobloxbot.ui_navigate` is scrolling. To do this, you instead need to activate the ui navigation mode using {py:func}`~pyrobloxbot.enable_ui_navigation`, and then disable it after the sequence is done using {py:func}`~pyrobloxbot.disable_ui_navigation`.
+Like mentioned before, the only action that can't be done using {py:func}`pyrobloxbot.ui_navigate` is scrolling. To do this, you instead need to activate the ui navigation mode using {py:func}`pyrobloxbot.enable_ui_navigation`, and then disable it after the sequence is done using {py:func}`pyrobloxbot.disable_ui_navigation`.
 
 For example, you could do:
 ```python
@@ -101,7 +101,7 @@ To use the scroll functions, it is important that you select the right element. 
 ```
 
 ````{tip}
-{py:func}`~pyrobloxbot.enable_ui_navigation` and {py:func}`~pyrobloxbot.disable_ui_navigation` also need to be used if for whatever reason you want to use the other ui navigation methods instead of {py:func}`~pyrobloxbot.ui_navigate`.
+{py:func}`pyrobloxbot.enable_ui_navigation` and {py:func}`pyrobloxbot.disable_ui_navigation` also need to be used if for whatever reason you want to use the other ui navigation methods instead of {py:func}`pyrobloxbot.ui_navigate`.
 
 This is because pyrobloxbot will reset the ui navigation mode's state to whatever it was before running a ui navigation function, which means that if it was turned off before, it will be turned back off after running the function.
 

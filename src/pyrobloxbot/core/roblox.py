@@ -13,9 +13,9 @@ def leave_game(interval: float = 0) -> None:
 
     Args:
         interval (float, optional): How long to wait in between each key press.
-        Defaults to ``0``.
+            Defaults to ``0``.
 
-        Usually it should be fine, but change it to a higher value if you find it unreliable.
+            Usually it should be fine, but change it to a higher value if you find it unreliable.
     """
     press_key("esc")
     wait(interval)

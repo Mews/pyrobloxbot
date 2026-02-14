@@ -10,7 +10,7 @@ However, you can leverage the various `options` provided to have your bot fit va
 
 ## Waiting in background
 
-You can have your bot run only when the Roblox window is in focus, and stop otherwise, using the {py:attr}`~pyrobloxbot.bot.options._BotOptions.force_focus` option.
+You can have your bot run only when the Roblox window is in focus, and stop otherwise, using the {py:attr}`pyrobloxbot.options.force_focus<pyrobloxbot.bot.options._BotOptions.force_focus>` option.
 
 Setting this option to `False` makes it so that actions get ignored if Roblox isn't is focus (read the {py:attr}`api reference<pyrobloxbot.bot.options._BotOptions.force_focus>` for more information).
 
@@ -45,7 +45,7 @@ pyrobloxbot doesn't enable you to make truly headless Roblox bots. Read the {ref
 
 You might want to keep using your computer while your bot is running.
 
-If your bot will only be doing one or two actions every once in a while, then you can use the {py:attr}`~pyrobloxbot.bot.options._BotOptions.restore_focus_after_action` option. Setting this to `True` will make pyrobloxbot restore the focus to your window after executing each action (keep in mind the "previous window" can be the Roblox window).
+If your bot will only be doing one or two actions every once in a while, then you can use the {py:attr}`pyrobloxbot.options.restore_focus_after_action<pyrobloxbot.bot.options._BotOptions.restore_focus_after_action>` option. Setting this to `True` will make pyrobloxbot restore the focus to your window after executing each action (keep in mind the "previous window" can be the Roblox window).
 
 For example, you might want a very simple anti afk bot.
 If you did:
