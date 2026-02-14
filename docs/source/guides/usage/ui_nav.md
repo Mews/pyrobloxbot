@@ -41,6 +41,16 @@ import pyrobloxbot as bot
 bot.ui_navigate("down", "down", "click", "right", "up", "click", "up", "click")
 ```
 
+```{tip}
+:name: tip-ui-elements-seem-unclickable
+
+Sometimes you might find that hitting enter doesn't actually click the selected element!
+
+This is because in some, due to how the ui elements are organized, the element you're selecting might not actually be clickable for some reason.
+
+One thing you can try in this situation is navigating in some direction after selecting it and trying to click.
+```
+
 ```{warning}
 The ui navigation mode is somewhat neglected by Roblox, and so it's behavior can vary from game to game.
 
