@@ -33,6 +33,7 @@ There you'll find:
 - API references
 - Basic and advanced usage guides
 - Step by step, real life examples
+- Pieces of wisdom I've gathered after making tens of bots with pyrobloxbot
 
 ## Have a question?
 
