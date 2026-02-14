@@ -47,7 +47,7 @@ class _BotOptions:
     """This option tells pyrobloxbot to put the Roblox window in focus before sending keyboard inputs.
 
     If set to ``False``, pyrobloxbot will still check if the Roblox window is in focus.
-    If it's not, it will simply not send any keyboard inputs.
+    If it's not, it will simply not execute the function.
 
     Important:
         Be aware that if pyrobloxbot skips executing a function because Roblox isn't in focus, the function's return value will be ``None``.

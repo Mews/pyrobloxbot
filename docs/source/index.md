@@ -28,6 +28,8 @@ You can submit them on github by [opening an issue](https://github.com/mews/pyro
 
 Also, feel free to share anything you make with me through my discord (mews75)!
 
+# Sections
+
 ```{toctree}
 :maxdepth: 2
 :caption: Getting Started

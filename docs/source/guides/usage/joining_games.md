@@ -8,6 +8,8 @@ Depending on the game and whether or not you have a private server, you might no
 
 So, if you plan on having your bot run for really long periods of time unattended, a good practice would be to rejoin whatever game you are every once in a while, to undo anything unpredictable that might have happened to your character.
 
+Mostly though, these methods are used for server hopping.
+
 ```{tip}
 You can join a Roblox game (even if its the same game) while already being inside a game.
 ```

@@ -8,8 +8,6 @@ The code for this bot is available in https://github.com/Mews/pyrobloxbot-exampl
 The screenshots used for the bot were taken in a 1920x1080, 15.6 inch screen (see why this matters in the [image recognition guide](screenshots-dpi-aware))
 ```
 
-Roblox bots can give you a small advantage, or a huge advantage over other players.
-
 In this example, we'll make a bot that farms factory raids on a private server in *Blox Fruits*, letting us get tons of fruit rolls automatically.
 
 The basic premise will be the following:

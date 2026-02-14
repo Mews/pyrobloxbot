@@ -91,6 +91,8 @@ bot.ui_navigate("down", "down", "click")
 bot.disable_ui_navigation() # Required to continue moving around and whatnot
 ```
 
+Its also worth checking if you're able to scroll down just by selecting one of the elements and navigating up and now, eliminating the need to use {py:func}`pyrobloxbot.ui_scroll_up` and {py:func}`pyrobloxbot.ui_scroll_down`.
+
 ```{note}
 To use the scroll functions, it is important that you select the right element. <br>You must select the container that is actually scrollable, not one of the elements inside it:
 

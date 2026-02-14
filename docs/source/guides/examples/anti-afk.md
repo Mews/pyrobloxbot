@@ -12,7 +12,7 @@ The first thing is we need to define the goal for our bot, and how it will accom
 
 Our objective for this bot is just to move randomly every 5 minutes or so, to avoid getting kicked for inactivity.
 
-Now we can start coding.
+After that, we can start coding.
 
 I usually import pyrobloxbot like this:
 ```python
