@@ -1,7 +1,7 @@
 
 # pyrobloxbot
 
-[![Documentation badge](https://readthedocs.org/projects/pyrobloxbot/badge/?version=latest&style=flat-default)](https://pyrobloxbot.readthedocs.io/en/latest/pyrobloxbot.html)
+[![Documentation badge](https://readthedocs.org/projects/pyrobloxbot/badge/?version=latest&style=flat-default)](https://pyrobloxbot.readthedocs.io/en/latest/index.html)
 [![PyPI Version](https://img.shields.io/pypi/v/pyrobloxbot?label=pypi%20package)](https://pypi.python.org/pypi/pyrobloxbot)
 [![PyPI Downloads](https://img.shields.io/pypi/dm/pyrobloxbot)](https://pypi.python.org/pypi/pyrobloxbot)
 
