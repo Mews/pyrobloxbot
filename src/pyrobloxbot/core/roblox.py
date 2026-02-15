@@ -1,6 +1,7 @@
 from .input import press_key
 from .decorators import require_focus, resets_state, apply_cooldown
 from ..utils import wait, build_roblox_uri
+from ..exceptions import RobloxApiException
 
 import os
 import typing
@@ -109,12 +110,45 @@ def join_server(game_id: int, job_id: str) -> None:
     os.system(command=command)
 
 
-def find_servers(game_id: int) -> typing.List[str]:
-    api_url = f"https://games.roblox.com/v1/games/{game_id}/servers/Public"
+def find_servers(
+    game_id: int,
+    limit: typing.Literal[10, 25, 50, 100] = 10,
+    descending: bool = True,
+    ignore_full_servers: bool = True,
+) -> typing.List[str]:
+    """Queries the Roblox api to find server ids for the given game.
+
+    Important:
+        Be careful about using this function too often, because Roblox tends to rate limit you relatively quickly.
+
+    Args:
+        game_id (int): The id of the game to find servers in.
+        limit (int, optional): How many server ids to query for. Can only be `10`, `25`, `50` or 100`
+            Defaults to `10`.
+        descending (bool, optional): If `True`, prioritizes fuller servers. If `False`, prioritizes emptier servers.
+            Defaults to `True`.
+        ignore_full_servers (bool, optional): Whether or not to ignore full servers in the results.
+            Defaults to `True`.
+
+    Returns:
+        typing.List[str]: A list of server ids.
+    """
+
+    api_url = f"https://games.roblox.com/v1/games/{game_id}/servers/Public?sortOrder={'Desc' if descending else 'Asc'}&excludeFullGames={'true' if ignore_full_servers else 'false'}&limit={limit}"
 
     response = requests.get(api_url)
 
-    data = response.json()["data"]
+    json = response.json()
+
+    if "errors" in json:
+        raise RobloxApiException(str(json))
+
+    response.raise_for_status()
+
+    if "data" not in json:
+        raise RobloxApiException
+
+    data = json["data"]
 
     return [element["id"] for element in data]
 

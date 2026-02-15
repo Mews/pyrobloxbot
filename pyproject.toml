@@ -72,6 +72,7 @@ testpaths = ["tests"]
 files = ["src"]
 ignore_missing_imports = true
 disallow_incomplete_defs = true
+disable_error_code = ["import-untyped"]
 
 [tool.ruff]
 target-version = "py310"

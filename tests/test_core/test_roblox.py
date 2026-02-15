@@ -2,6 +2,7 @@ import pytest
 from unittest.mock import patch, call
 
 import pyrobloxbot as bot
+import pyrobloxbot.exceptions
 
 
 @pytest.fixture
@@ -148,5 +149,63 @@ def test_find_servers(mock_requests_get):
         "14b4b25a-f889-4ee4-82f3-3a747d14c288",
     ]
     mock_requests_get.assert_called_once_with(
-        "https://games.roblox.com/v1/games/12345/servers/Public"
+        "https://games.roblox.com/v1/games/12345/servers/Public?sortOrder=Desc&excludeFullGames=true&limit=10"
     )
+
+
+def test_find_servers_different_parameters(mock_requests_get):
+    mock_requests_get.return_value.status_code = 200
+    mock_requests_get.return_value.json.return_value = {
+        "data": [
+            {
+                "id": "1e2bbbeb-0013-4b65-b9aa-59b20188cc72",
+                "maxPlayers": 16,
+                "playing": 15,
+                "playerTokens": [
+                    "6AF7DC66B74887E0A69406D8EDF6FB02",
+                    "52314C46653DDEAF25EE4B0338683914",
+                    "57AE283C8409EE457A7C43FC42D8C868",
+                    "638EB82FA026CFD7D9A6E88B23297950",
+                    "C939314F88DBCF77E7F9243AE36846A7",
+                ],
+                "players": [],
+                "fps": 59.993824,
+                "ping": 56,
+            },
+        ]
+    }
+
+    bot.find_servers(12345, limit=50, descending=False, ignore_full_servers=False)
+
+    mock_requests_get.assert_called_once_with(
+        "https://games.roblox.com/v1/games/12345/servers/Public?sortOrder=Asc&excludeFullGames=false&limit=50"
+    )
+
+
+def test_find_servers_api_error(mock_requests_get):
+    mock_requests_get.return_value.status_code = 400
+    mock_requests_get.return_value.json.return_value = {
+        "errors": [
+            {"code": 0, "message": "Allowed values: 10, 25, 50, 100", "field": "limit"}
+        ]
+    }
+
+    with pytest.raises(pyrobloxbot.exceptions.RobloxApiException):
+        bot.find_servers(12345)
+
+
+def test_find_servers_http_error(mock_requests_get):
+    mock_requests_get.return_value.status_code = 400
+    mock_requests_get.return_value.json.return_value = {"data": {}}
+
+    bot.find_servers(12345)
+
+    mock_requests_get.return_value.raise_for_status.assert_called_once()
+
+
+def test_find_servers_no_data(mock_requests_get):
+    mock_requests_get.return_value.status_code = 200
+    mock_requests_get.return_value.json.return_value = {}
+
+    with pytest.raises(pyrobloxbot.exceptions.RobloxApiException):
+        bot.find_servers(12345)
