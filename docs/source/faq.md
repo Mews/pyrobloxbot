@@ -20,6 +20,19 @@ Making truly headless Roblox bots is an incredibly complex task.
 
 The closest you might be able to get is by [using the restore_focus_after_action option](options-guide-windowless) or the {py:class}`pyrobloxbot.restore_focus` decorator. You might also pair these tools with minimizing the Roblox window, to make it never actually visible on screen, but it will still be active, and any keys you hit on your keyboard will be sent to Roblox.
 
+## Error code from Windows: 0 - The operation completed successfully
+
+Sometimes, when trying to put Roblox in focus, you might get the following error message:
+```powershell
+Error code from Windows: 0 - The operation completed successfully
+```
+
+This error is thrown by Windows when it for any reason recognizes a window can be activated, but it refuses to, and doesn't provide a reason.
+
+This can mostly be fixed by pressing the *alt* key before activating the window (which pyrobloxbot already does)
+
+However, you'll still get this error if a "special" window is open when pyrobloxbot tries putting Roblox in focus, like the Windows menu, or during *alt tab*.
+
 (faq-keyboard-only)=
 ## Why only use the keyboard?
 
