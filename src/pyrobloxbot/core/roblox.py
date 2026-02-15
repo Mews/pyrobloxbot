@@ -3,6 +3,8 @@ from .decorators import require_focus, resets_state, apply_cooldown
 from ..utils import wait, build_roblox_uri
 
 import os
+import typing
+import requests
 
 
 @apply_cooldown()
@@ -107,4 +109,21 @@ def join_server(game_id: int, job_id: str) -> None:
     os.system(command=command)
 
 
-__all__ = ["leave_game", "join_game", "join_user", "join_private_server", "join_server"]
+def find_servers(game_id: int) -> typing.List[str]:
+    api_url = f"https://games.roblox.com/v1/games/{game_id}/servers/Public"
+
+    response = requests.get(api_url)
+
+    data = response.json()["data"]
+
+    return [element["id"] for element in data]
+
+
+__all__ = [
+    "leave_game",
+    "join_game",
+    "join_user",
+    "join_private_server",
+    "join_server",
+    "find_servers",
+]

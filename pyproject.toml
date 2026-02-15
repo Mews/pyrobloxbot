@@ -33,6 +33,7 @@ dependencies = [
   "opencv-python==4.13.0.90",
   "pillow==12.1.1",
   "pyscreeze==1.0.1",
+  "requests==2.32.5",
 ]
 
 
