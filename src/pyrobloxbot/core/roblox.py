@@ -32,7 +32,7 @@ def join_game(game_id: int) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         game_id (int): The id of the game to join.
@@ -53,7 +53,7 @@ def join_user(user_id: int) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         user_id (int): The id of the user to join.
@@ -75,7 +75,7 @@ def join_private_server(game_id: int, private_server_link_code: int) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         game_id (int): The id of the private server's game.
@@ -96,7 +96,7 @@ def join_server(game_id: int, job_id: str) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         game_id (int): The server's game id.
