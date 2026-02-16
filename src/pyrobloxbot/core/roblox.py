@@ -123,12 +123,13 @@ def find_servers(
 
     Args:
         game_id (int): The id of the game to find servers in.
-        limit (int, optional): How many server ids to query for. Can only be `10`, `25`, `50` or 100`
-            Defaults to `10`.
-        descending (bool, optional): If `True`, prioritizes fuller servers. If `False`, prioritizes emptier servers.
-            Defaults to `True`.
-        ignore_full_servers (bool, optional): Whether or not to ignore full servers in the results.
-            Defaults to `True`.
+        limit (int, optional): How many server ids to query for. Can only be ``10``, ``25``, ``50`` or ``100``. Defaults to ``10``.
+        descending (bool, optional): If ``True``, prioritizes fuller servers. If `False`, prioritizes emptier servers. Defaults to ``True``.
+        ignore_full_servers (bool, optional): Whether or not to ignore full servers in the results. Defaults to ``True``.
+
+    Raises:
+        RobloxApiException: Raised whenever the Roblox api responds with an error.
+        requests.HTTPError: Raised whenever there's an error during the HTTP request.
 
     Returns:
         typing.List[str]: A list of server ids.
