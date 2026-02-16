@@ -1,6 +1,7 @@
 from ..constants import KEYBOARD_KEYS
 
 import pydirectinput
+import mouse
 
 from ..utils import wait
 from .decorators import require_focus, apply_cooldown
@@ -67,6 +68,22 @@ def key_up(*keys: KEYBOARD_KEYS) -> None:
         pydirectinput.keyUp(key)
 
 
+@apply_cooldown()
+@apply_cooldown(per_key=True)
+@require_focus
+def mouse_left_click():
+    """Press the left mouse button wherever the mouse is."""
+    mouse.click(mouse.LEFT)
+
+
+@apply_cooldown()
+@apply_cooldown(per_key=True)
+@require_focus
+def mouse_right_click():
+    """Press the right mouse button wherever the mouse is."""
+    mouse.click(mouse.RIGHT)
+
+
 __all__ = [
     "press_key",
     "hold_key",
@@ -74,4 +91,6 @@ __all__ = [
     "hold_keyboard_action",
     "key_down",
     "key_up",
+    "mouse_left_click",
+    "mouse_right_click",
 ]
