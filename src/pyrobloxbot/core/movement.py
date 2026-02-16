@@ -7,7 +7,6 @@ from ..constants.walk_directions import (
 )
 from .input import key_down, key_up, press_key, hold_key
 from .decorators import require_focus, apply_cooldown
-from ..exceptions import InvalidWalkDirectionException
 from ..utils import wait
 from ..bot.bot import keybinds
 from typing import get_args
@@ -25,7 +24,7 @@ def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
         duration (float): How long to walk for.
 
     Raises:
-        InvalidWalkDirectionException: Raised when the directions aren't one of :data:`pyrobloxbot.constants.WALK_DIRECTIONS`
+        ValueError: Raised when the directions aren't one of :data:`pyrobloxbot.constants.WALK_DIRECTIONS`
     """
 
     keys = set()
@@ -42,9 +41,7 @@ def walk(*directions: WALK_DIRECTIONS, duration: float) -> None:
         elif d in get_args(WALK_BACK_DIRECTIONS):
             keys.add(keybinds.walk_back)
         else:
-            raise InvalidWalkDirectionException(
-                "Direction must be one of " + str(WALK_DIRECTIONS)
-            )
+            raise ValueError("Direction must be one of " + str(WALK_DIRECTIONS))
 
     for key in keys:
         key_down(key)

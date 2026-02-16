@@ -4,24 +4,6 @@ class NoRobloxWindowException(Exception):
     pass
 
 
-class InvalidSlotNumberException(Exception):
-    """Raised by equip_slot when slot isn't between 0 and 9"""
-
-    pass
-
-
-class InvalidWalkDirectionException(Exception):
-    """Raised by walk when given a direction that isn't in constants.WALK_DIRECTIONS"""
-
-    pass
-
-
-class InvalidUiActionException(Exception):
-    """Raised by ui_navigate when given a action that isn't in constants.UI_ACTIONS"""
-
-    pass
-
-
 class RobloxApiException(Exception):
     """Raised when an error occurs in a call to the Roblox api"""
 
@@ -30,8 +12,5 @@ class RobloxApiException(Exception):
 
 __all__ = [
     "NoRobloxWindowException",
-    "InvalidSlotNumberException",
-    "InvalidWalkDirectionException",
-    "InvalidUiActionException",
     "RobloxApiException",
 ]

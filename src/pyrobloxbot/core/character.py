@@ -1,4 +1,3 @@
-from ..exceptions import InvalidSlotNumberException
 from .input import press_key, hold_key
 from .decorators import require_focus, apply_cooldown
 from ..utils import wait
@@ -58,10 +57,10 @@ def equip_slot(slot: int) -> None:
             Must be between ``0`` and ``9``.
 
     Raises:
-        InvalidSlotNumberException: Raised when the slot number isn't between ``0`` and ``9``.
+        ValueError: Raised when the slot number isn't between ``0`` and ``9``.
     """
     if slot < 0 or slot > 9:
-        raise InvalidSlotNumberException("Slots should be between 0 and 9")
+        raise ValueError("Slots should be between 0 and 9")
 
     press_key(str(slot))
 
