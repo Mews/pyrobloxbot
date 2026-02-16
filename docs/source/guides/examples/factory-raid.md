@@ -234,7 +234,7 @@ In theory, we could just get our character back on top of the core, but the simp
 
 This is also why we made sure to have the sword in the third slot, so we can equip it.
 
-We also need a separate library, like `pyautogui`, to left click the mouse, since there's no way to use the sword main attack using the keyboard.
+We also need to left click the mouse, since there's no way to use the sword main attack using the keyboard. For this we'll use {py:func}`pyrobloxbot.mouse_left_click`
 
 ```{note}
 In this case, using the mouse is fine and reliable for two reasons:
@@ -254,8 +254,6 @@ We can't use our `raid_going_on` function to hit the mouse left button until the
 So, our `kill_core` function might look like this:
 
 ```python
-import pyautogui
-
 def kill_core():
     bot.walk("f", "r", duration=2.5)
 
@@ -271,7 +269,7 @@ def kill_core():
     bot.equip_slot(3)
 
     for _ in range(100):
-        pyautogui.click()
+        bot.mouse_left_click()
 ```
 
 Hooray! We managed to complete an entire factory raid automatically!

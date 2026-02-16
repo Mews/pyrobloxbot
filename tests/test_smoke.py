@@ -77,6 +77,8 @@ def test_other_exports_included_by_default(export):
         "restore_focus",
         "wait",
         "find_servers",
+        "mouse_left_click",
+        "mouse_right_click",
     ],
 )
 def test__all__is_complete(export):
