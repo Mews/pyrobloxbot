@@ -5,14 +5,20 @@ import pyrobloxbot as bot
 
 
 @pytest.fixture
-def mock_getActiveWindow():
-    with patch("pyrobloxbot.core.ctxmanagers.getActiveWindow") as m:
+def mock_GetForegroundWindow():
+    with patch("pyrobloxbot.core.ctxmanagers.win32gui.GetForegroundWindow") as m:
         yield m
 
 
-def test_restore_focus(mock_getActiveWindow):
-    mock_window = MagicMock()
-    mock_getActiveWindow.return_value = mock_window
+@pytest.fixture
+def mock_SetForegroundWindow():
+    with patch("pyrobloxbot.core.ctxmanagers.win32gui.SetForegroundWindow") as m:
+        yield m
+
+
+def test_restore_focus(mock_GetForegroundWindow, mock_SetForegroundWindow):
+    mock_hwnd = MagicMock()
+    mock_GetForegroundWindow.return_value = mock_hwnd
 
     def dummy_function():
         return "success"
@@ -20,4 +26,4 @@ def test_restore_focus(mock_getActiveWindow):
     with bot.restore_focus():
         assert dummy_function() == "success"
 
-    mock_window.activate.assert_called_once()
+    mock_SetForegroundWindow.assert_called_once_with(mock_hwnd)

@@ -1,4 +1,4 @@
-from pygetwindow import getActiveWindow
+import win32gui
 
 
 class restore_focus:
@@ -16,10 +16,10 @@ class restore_focus:
     """
 
     def __enter__(self):
-        self.previous_window = getActiveWindow()
+        self.previous_window = win32gui.GetForegroundWindow()
 
     def __exit__(self, exc_type, exc_value, exc_traceback):
-        self.previous_window.activate()
+        win32gui.SetForegroundWindow(self.previous_window)
 
 
 __all__ = ["restore_focus"]
