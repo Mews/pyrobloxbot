@@ -80,7 +80,7 @@ def test_equip_slot(slot, mock_press_key):
 
 @pytest.mark.parametrize("slot", [-1, 10, "hi", None])
 def test_equip_slot_invalid_slot(slot):
-    with pytest.raises(bot.exceptions.InvalidSlotNumberException):
+    with pytest.raises(ValueError):
         bot.equip_slot(10)
 
 

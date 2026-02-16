@@ -163,7 +163,7 @@ def test_ui_navigate_multiple_actions_changed_hotkeys(mock_press_key):
 
 
 def test_ui_navigate_invalid_action(mock_press_key):
-    with pytest.raises(bot.exceptions.InvalidUiActionException):
+    with pytest.raises(ValueError):
         bot.ui_navigate("Hello world!")
 
 

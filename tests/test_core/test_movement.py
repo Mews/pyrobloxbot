@@ -137,7 +137,7 @@ def test_walk_multiple_directions(mock_key_up, mock_key_down, mock_wait):
 
 
 def test_walk_invalid_direction():
-    with pytest.raises(bot.exceptions.InvalidWalkDirectionException):
+    with pytest.raises(ValueError):
         bot.walk("f", "l", "Hello world!", "b", "r", duration=2)
 
 

@@ -1,4 +1,3 @@
-from ..exceptions import InvalidUiActionException
 from ..constants.ui_actions import (
     UI_ACTIONS,
     UI_NAVIGATE_DOWN_ACTIONS,
@@ -68,7 +67,7 @@ def ui_navigate(*actions: UI_ACTIONS) -> None:
         The "UI Navigation Toggle" setting must be enabled on Roblox.
 
     Raises:
-        InvalidUiActionException: Raised when any of the actions provided isn't in :data:`pyrobloxbot.constants.UI_ACTIONS`
+        ValueError: Raised when any of the actions provided isn't in :data:`pyrobloxbot.constants.UI_ACTIONS`
     """
     for action in actions:
         a = action.lower().strip()
@@ -89,7 +88,7 @@ def ui_navigate(*actions: UI_ACTIONS) -> None:
             press_key(keybinds.ui_click)
 
         else:
-            raise InvalidUiActionException("Action must be one of " + str(UI_ACTIONS))
+            raise ValueError("Action must be one of " + str(UI_ACTIONS))
 
 
 @apply_cooldown()
