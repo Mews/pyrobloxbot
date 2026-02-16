@@ -76,6 +76,7 @@ def test_other_exports_included_by_default(export):
         "close_inventory",
         "restore_focus",
         "wait",
+        "find_servers",
     ],
 )
 def test__all__is_complete(export):

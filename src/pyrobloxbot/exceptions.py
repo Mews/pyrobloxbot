@@ -22,9 +22,16 @@ class InvalidUiActionException(Exception):
     pass
 
 
+class RobloxApiException(Exception):
+    """Raised when an error occurs in a call to the Roblox api"""
+
+    pass
+
+
 __all__ = [
     "NoRobloxWindowException",
     "InvalidSlotNumberException",
     "InvalidWalkDirectionException",
     "InvalidUiActionException",
+    "RobloxApiException",
 ]

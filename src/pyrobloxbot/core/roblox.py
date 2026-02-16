@@ -1,8 +1,11 @@
 from .input import press_key
 from .decorators import require_focus, resets_state, apply_cooldown
 from ..utils import wait, build_roblox_uri
+from ..exceptions import RobloxApiException
 
 import os
+import typing
+import requests
 
 
 @apply_cooldown()
@@ -32,7 +35,7 @@ def join_game(game_id: int) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         game_id (int): The id of the game to join.
@@ -53,7 +56,7 @@ def join_user(user_id: int) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         user_id (int): The id of the user to join.
@@ -75,7 +78,7 @@ def join_private_server(game_id: int, private_server_link_code: int) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         game_id (int): The id of the private server's game.
@@ -96,7 +99,7 @@ def join_server(game_id: int, job_id: str) -> None:
     Note:
         The time it takes for the game to launch is entirely variable.
 
-        It is usually recomended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
+        It is usually recommended to use :func:`pyrobloxbot.image_is_visible` to detect when the game has finished launching.
 
     Args:
         game_id (int): The server's game id.
@@ -107,4 +110,55 @@ def join_server(game_id: int, job_id: str) -> None:
     os.system(command=command)
 
 
-__all__ = ["leave_game", "join_game", "join_user", "join_private_server", "join_server"]
+def find_servers(
+    game_id: int,
+    limit: typing.Literal[10, 25, 50, 100] = 10,
+    descending: bool = True,
+    ignore_full_servers: bool = True,
+) -> typing.List[str]:
+    """Queries the Roblox api to find server ids for the given game.
+
+    Important:
+        Be careful about using this function too often, because Roblox tends to rate limit you relatively quickly.
+
+    Args:
+        game_id (int): The id of the game to find servers in.
+        limit (int, optional): How many server ids to query for. Can only be ``10``, ``25``, ``50`` or ``100``. Defaults to ``10``.
+        descending (bool, optional): If ``True``, prioritizes fuller servers. If `False`, prioritizes emptier servers. Defaults to ``True``.
+        ignore_full_servers (bool, optional): Whether or not to ignore full servers in the results. Defaults to ``True``.
+
+    Raises:
+        RobloxApiException: Raised whenever the Roblox api responds with an error.
+        requests.HTTPError: Raised whenever there's an error during the HTTP request.
+
+    Returns:
+        typing.List[str]: A list of server ids.
+    """
+
+    api_url = f"https://games.roblox.com/v1/games/{game_id}/servers/Public?sortOrder={'Desc' if descending else 'Asc'}&excludeFullGames={'true' if ignore_full_servers else 'false'}&limit={limit}"
+
+    response = requests.get(api_url)
+
+    json = response.json()
+
+    if "errors" in json:
+        raise RobloxApiException(str(json))
+
+    response.raise_for_status()
+
+    if "data" not in json:
+        raise RobloxApiException
+
+    data = json["data"]
+
+    return [element["id"] for element in data]
+
+
+__all__ = [
+    "leave_game",
+    "join_game",
+    "join_user",
+    "join_private_server",
+    "join_server",
+    "find_servers",
+]

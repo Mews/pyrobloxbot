@@ -56,7 +56,6 @@ guides/usage/joining_games
 :caption: Advanced Usage
 
 guides/advanced/inventory
-guides/advanced/joining_servers
 guides/advanced/multi-account
 ```
 
