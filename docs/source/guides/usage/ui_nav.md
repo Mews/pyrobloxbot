@@ -1,8 +1,8 @@
 # UI interactions
 
-pyrobloxbot controls the Roblox character using the keyboard exclusively. You'll find that it doesn't provide any methods to control the mouse. (See the [FAQ](faq-keyboard-only) to understand why)
+pyrobloxbot controls the Roblox character mostly by using only the keyboard. (See the [FAQ](faq-keyboard-only) to understand why)
 
-You might then assume that interacting with ui elements like buttons is impossible, but this is not the case.
+You might then assume that interacting with ui elements like buttons using only pyrobloxbot is impossible, since we can't move the mouse, but this is not the case.
 
 Perhaps you have even already come across (and hated) the feature that enables your bot to do this. The ui navigation mode! When this mode is enabled, using "wasd" or the arrow keys will let you select any ui element on screen, and hitting enter will "click" it.
 

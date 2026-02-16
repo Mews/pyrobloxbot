@@ -13,7 +13,7 @@ What started as a personal tool for making my own bots quickly grew into a featu
 
 pyrobloxbot does not enable you to make truly headless Roblox bots in the traditional sense.
 
-This is a consequence of the fundamental way pyrobloxbot sends inputs. Because the bot interacts through Roblox by "faking" keyboard inputs, the Roblox window must at some
+This is a consequence of the fundamental way pyrobloxbot sends inputs. Because the bot interacts with Roblox by "faking" keyboard inputs, the Roblox window must at some
 point be in focus for the inputs to register.
 
 Making truly headless Roblox bots is an incredibly complex task.
@@ -43,4 +43,5 @@ It also can lead to worse consequences if for whatever reason there's a mistake 
 As such, I made the decision to only use the keyboard when making my bots, and that later transferred over to pyrobloxbot.
 
 This doesn't mean that you can't use the mouse in **your** bots, or even that its a bad idea. Sometimes it really is the only way to bot something, and I myself have resorted to using the mouse for some bots.
-<br> It just means that pyrobloxbot doesn't support it.
+
+In fact, pyrobloxbot even provides methods for left and right clicking the mouse.
