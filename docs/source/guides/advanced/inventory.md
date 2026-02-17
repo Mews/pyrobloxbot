@@ -61,7 +61,7 @@ bot.open_inventory() # First of all, our inventory has to be open
 
 # You also need to explicitly enable ui navigation mode
 # To avoid it being reset mid moving operation
-bot.enable_ui_navigation()
+bot.toggle_ui_navigation()
 
 # This is just an example of a sequence you might use to select a hotbar slot
 # In reality, you'll have to figure out a sequence that works in your game
@@ -76,7 +76,7 @@ bot.ui_navigate("up", "right") # Here we select the inventory and navigate right
 bot.key_up("enter")
 
 bot.close_inventory() # After everything is done, we can close the inventory
-bot.disable_ui_navigation() # And disable the ui navigation mode
+bot.toggle_ui_navigation() # And disable the ui navigation mode
 ```
 
 ```{note}

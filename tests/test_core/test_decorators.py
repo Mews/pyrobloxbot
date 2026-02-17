@@ -363,6 +363,8 @@ def mock_toggle_ui_navigation():
 def test_requires_ui_navigation_mode_final_state_is_starting_state(
     mock_toggle_ui_navigation, initial_nav_state, function_behavior
 ):
+    bot.options.auto_ui_navigation_mode = True
+
     @bot.decorators.requires_ui_navigation_mode
     def dummy_function():
         if function_behavior == "fail":
@@ -385,6 +387,8 @@ def test_requires_ui_navigation_mode_final_state_is_starting_state(
 
 
 def test_requires_ui_navigation_mode(mock_toggle_ui_navigation):
+    bot.options.auto_ui_navigation_mode = True
+
     @bot.decorators.requires_ui_navigation_mode
     def dummy_function():
         return "success"
@@ -392,6 +396,20 @@ def test_requires_ui_navigation_mode(mock_toggle_ui_navigation):
     bot.state._UI_NAV_ENABLED = False
     assert dummy_function() == "success"
     assert mock_toggle_ui_navigation.call_count == 2
+
+
+def test_requires_ui_navigation_mode_auto_ui_navigation_mode_false(
+    mock_toggle_ui_navigation,
+):
+    bot.options.auto_ui_navigation_mode = False
+
+    @bot.decorators.requires_ui_navigation_mode
+    def dummy_function():
+        return "success"
+
+    bot.state._UI_NAV_ENABLED = False
+    assert dummy_function() == "success"
+    assert mock_toggle_ui_navigation.call_count == 0
 
 
 def test_requires_ui_navigation_mode_already_enabled(mock_toggle_ui_navigation):

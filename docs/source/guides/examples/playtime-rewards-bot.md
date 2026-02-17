@@ -163,7 +163,9 @@ But we might as well collect the other rewards that are less time.
 So, we create the following function:
 ```python
 def open_tab_and_collect_rewards():
+    bot.toggle_ui_navigation()
     bot.ui_navigate("down", "click", "left", "left", "click", "left", "click", "left", "click")
+    # No need to toggle it back off, we're leaving the server right after
 ```
 
 And now we just call everything in a loop (we'll use the failsafe to turn off the bot)

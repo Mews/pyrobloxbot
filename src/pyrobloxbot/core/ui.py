@@ -32,6 +32,14 @@ def enable_ui_navigation() -> None:
     """Enables the ui navigation mode.
     Does nothing if it's already enabled.
 
+    Warning:
+        This function relies on pyrobloxbot's internal tracking of whether the ui navigation mode is enabled in game.
+
+        This can sometimes get desynced from what's actually real in game,
+        because clicking certain ui elements can turn off the ui navigation mode, and there's no way to track that automatically.
+
+        Be careful of desyncs when using this function.
+
     Note:
         The "UI Navigation Toggle" setting must be enabled on Roblox.
     """
@@ -45,6 +53,14 @@ def enable_ui_navigation() -> None:
 def disable_ui_navigation() -> None:
     """Disables the ui navigation mode.
     Does nothing if it's already disabled.
+
+    Warning:
+        This function relies on pyrobloxbot's internal tracking of whether the ui navigation mode is enabled in game.
+
+        This can sometimes get desynced from what's actually real in game,
+        because clicking certain ui elements can turn off the ui navigation mode, and there's no way to track that automatically.
+
+        Be careful of desyncs when using this function.
 
     Note:
         The "UI Navigation Toggle" setting must be enabled on Roblox.
@@ -64,7 +80,7 @@ def ui_navigate(*actions: UI_ACTIONS) -> None:
     The actions can include navigating in any of the cardinal directions and clicking on the selected ui element.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Raises:
         ValueError: Raised when any of the actions provided isn't in :data:`pyrobloxbot.constants.UI_ACTIONS`
@@ -98,7 +114,7 @@ def ui_navigate_up(times: int = 1) -> None:
     """Navigates up in ui elements.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Args:
         times (int, optional): How many times to navigate up. Defaults to ``1``.
@@ -114,7 +130,7 @@ def ui_navigate_left(times: int = 1) -> None:
     """Navigates left in ui elements.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Args:
         times (int, optional): How many times to navigate left. Defaults to ``1``.
@@ -130,7 +146,7 @@ def ui_navigate_right(times: int = 1) -> None:
     """Navigates right in ui elements.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Args:
         times (int, optional): How many times to navigate right. Defaults to ``1``.
@@ -146,7 +162,7 @@ def ui_navigate_down(times: int = 1) -> None:
     """Navigates down in ui elements.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Args:
         times (int, optional): How many times to navigate down. Defaults to ``1``.
@@ -162,7 +178,7 @@ def ui_click() -> None:
     """Click on the currently selected ui element.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
     """
     ui_navigate("c")
 
@@ -177,7 +193,7 @@ def ui_scroll_up(ticks: int, interval: float = 0.1) -> None:
     elements inside it.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Args:
         ticks (int): How many times to scroll
@@ -202,7 +218,7 @@ def ui_scroll_down(ticks: int, interval: float = 0.1) -> None:
     elements inside it.
 
     Note:
-        The "UI Navigation Toggle" setting must be enabled on Roblox.
+        The ui navigation mode must be enabled.
 
     Args:
         ticks (int): How many times to scroll
