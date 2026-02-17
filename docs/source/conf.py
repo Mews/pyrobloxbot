@@ -34,7 +34,9 @@ autodoc_mock_imports = [
     "pillow",
     "pyscreeze",
     "win32gui",
+    "win32con",
     "PIL",
+    "mouse",
 ]
 
 myst_enable_extensions = [
