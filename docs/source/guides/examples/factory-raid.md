@@ -302,7 +302,10 @@ def store_fruit():
     bot.equip_slot(6)
     bot.press_key("backspace")
     bot.wait(3)
+
+    bot.toggle_ui_navigation()
     bot.ui_navigate("down", "up", "click")
+    bot.toggle_ui_navigation()
 
     # Be absolutely sure the fruit finished storing
     # Because resetting will delete the fruit

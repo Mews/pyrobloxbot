@@ -111,7 +111,12 @@ class _BotOptions:
         This can sometimes get desynced from what's actually real in game,
         because clicking certain ui elements can turn off the ui navigation mode, and there's no way to track that automatically.
 
-        Be careful of desyncs when using this option.
+        Be very careful of desyncs when using this option, as they'll almost always cause your bot to break completely!
+
+        Important:
+            It's also important to note that, even if you enable this option,
+            you still need to manually enable and disable the ui navigation mode if you want to use more than one ui navigation method in sequence
+            (read more in the ui navigation usage guide)
 
     Defaults to ``False``.
     """
