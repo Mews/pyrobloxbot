@@ -30,15 +30,48 @@ def require_focus(fn):
     # Fast check to see if roblox window is already focused
     @wraps(fn)
     def wrapper(*args, **kwargs):
-        # Roblox is in focus. No action
-        if win32gui.GetWindowText(win32gui.GetForegroundWindow()) == "Roblox":
+        # No target window specified, any Roblox is in focus. No action
+        if (
+            options.target_roblox_window is None
+            and win32gui.GetWindowText(win32gui.GetForegroundWindow()) == "Roblox"
+        ):
+            return fn(*args, **kwargs)
+
+        # Target window specified, target window is in focus. No Action
+        elif (
+            options.target_roblox_window is not None
+            and win32gui.GetForegroundWindow() == options.target_roblox_window
+        ):
             return fn(*args, **kwargs)
 
         # Roblox isn't in focus, and force_focus is False. Return None
         elif not options.force_focus:
             return None
 
-        # Roblox isn't in focus, and force_focus is True. Put Roblox in focus.
+        # Roblox isn't in focus, force_focus is True, and a target window has been specified. Put the target window in focus.
+        elif options.target_roblox_window is not None:
+            previous_window = win32gui.GetForegroundWindow()
+
+            pydirectinput.press("altleft")
+            if options.maximize_roblox_window:
+                win32gui.ShowWindow(options.target_roblox_window, win32con.SW_MAXIMIZE)
+            win32gui.SetForegroundWindow(options.target_roblox_window)
+
+            while win32gui.GetForegroundWindow() == 0:
+                pass
+
+            retv = fn(*args, **kwargs)
+
+            if options.restore_focus_after_action and previous_window != 0:
+                pydirectinput.press("altleft")
+                win32gui.SetForegroundWindow(previous_window)
+
+                while win32gui.GetForegroundWindow() == 0:
+                    pass
+
+            return retv
+
+        # Roblox isn't in focus, force_focus is True and no target window is specified. Put Roblox in focus using window title.
         else:
             rblx_window = get_window_with_roblox_title()
             previous_window = win32gui.GetForegroundWindow()
@@ -60,7 +93,7 @@ def require_focus(fn):
 
             retv = fn(*args, **kwargs)
 
-            if options.restore_focus_after_action and previous_window is not None:
+            if options.restore_focus_after_action and previous_window != 0:
                 pydirectinput.press("altleft")
                 win32gui.SetForegroundWindow(previous_window)
 
