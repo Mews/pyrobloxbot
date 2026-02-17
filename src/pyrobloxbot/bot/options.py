@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import typing
 
 
 @dataclass
@@ -86,6 +87,19 @@ class _BotOptions:
     You might find this option useful if for any reason quick keyboard inputs are getting skipped for you.
 
     Defaults to ``0``.
+    """
+
+    target_roblox_window: typing.Optional[int] = None
+    """This option is used to set the handle of the window pyrobloxbot considers as the Roblox window.
+
+    A window handle is a unique integer that identifies a window, and you can get it using :py:func:`pyrobloxbot.wait_for_focus`
+
+    If the target handle is set to ``None``, pyrobloxbot will instead use any window with the exact title ``"Roblox"`` as the Roblox window.
+
+    Note:
+        Window handles are volatile. If you close an app and reopen it, it's handle will likely have changed.
+
+    Defaults to ``None``.
     """
 
     def _reset(self):

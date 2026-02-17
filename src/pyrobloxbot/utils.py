@@ -3,6 +3,7 @@ from typing import Optional
 from pynput import keyboard
 import _thread
 import sys
+import win32gui
 
 
 def sleep(seconds: float) -> None:
@@ -97,6 +98,21 @@ https://pyrobloxbot.readthedocs.io/en/latest/guides/usage/keybinds.html#changing
         sys.excepthook = failsafe_excepthook
     finally:
         _thread.interrupt_main()
+
+
+def get_window_with_roblox_title():
+    windows_with_roblox_title = set()
+
+    def for_each_window(hwnd, ctx):
+        if win32gui.GetWindowText(hwnd) == "Roblox":
+            ctx.add(hwnd)
+
+    win32gui.EnumWindows(for_each_window, windows_with_roblox_title)
+
+    if len(windows_with_roblox_title) == 0:
+        return None
+
+    return windows_with_roblox_title.pop()
 
 
 __all__ = ["wait"]

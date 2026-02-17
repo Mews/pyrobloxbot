@@ -13,6 +13,7 @@ It simplifies this process by providing features like:
 - Methods to join games, join users and join private servers
 - Highly customizable bots, by changing different options to fit your use case
 - A global failsafe to avoid your bot going rogue
+- Support for multi account bots
 
 ## Installation guide
 

@@ -6,8 +6,10 @@ import pyrobloxbot as bot
 @pytest.fixture(autouse=True)
 def mock_active_window():
     with (
-        patch("pyrobloxbot.core.decorators.GetForegroundWindow"),
-        patch("pyrobloxbot.core.decorators.GetWindowText", return_value="Roblox"),
+        patch("pyrobloxbot.core.decorators.win32gui.GetForegroundWindow"),
+        patch(
+            "pyrobloxbot.core.decorators.win32gui.GetWindowText", return_value="Roblox"
+        ),
     ):
         yield
 

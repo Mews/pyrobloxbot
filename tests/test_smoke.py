@@ -79,6 +79,7 @@ def test_other_exports_included_by_default(export):
         "find_servers",
         "mouse_left_click",
         "mouse_right_click",
+        "wait_for_focus",
     ],
 )
 def test__all__is_complete(export):

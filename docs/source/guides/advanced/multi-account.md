@@ -6,33 +6,53 @@ The challenge in making these comes from the fact that pyrobloxbot checks for th
 
 There are two ways of making multi account bots.
 
-## Using an android emulator
-
-You can use an android emulator, like BlueStacks, to have multiple Roblox accounts open at once.
-
-**✅ Pros**
-
-- Easier to setup.
-- Requires no changes when using pyrobloxbot.
-- More robust.
-
-**❌ Cons**
-
-- Only the account actually open on Roblox can be botted. The ones open on the emulator can be setup manually initially, but then can't be interacted with using pyrobloxbot.
-- Lower limit for how many accounts you can open, emulators use a lot of ram.
-
 ## Using a multiple Roblox instances client
+
+pyrobloxbot provides built-in support for multi account bots using this method.
 
 You can use a tool like [Avaluate/MultipleRobloxInstances](https://github.com/Avaluate/MultipleRobloxInstances) or [ic3w0lf22/Roblox-Account-Manager](https://github.com/ic3w0lf22/Roblox-Account-Manager) to have multiple Roblox accounts open at once.
 
-If you then set {py:attr}`pyrobloxbot.options.force_focus<pyrobloxbot.bot.options._BotOptions.force_focus>` to `False`, you can use pyrobloxbot to alt tab around your open Roblox instances.
+Then, we'll need to get the *handle* of every Roblox window we'll use. A handle is just an integer that identifies an open window. To get the handles, we use {py:func}`pyrobloxbot.wait_for_focus`.
 
-```{important}
-It is important that you're aware that the order in which you cycle through windows in alt tab depends on when they were last accessed.
+We can have a script like so:
+```python
+import pyrobloxbot as bot
 
-This means that if before you start your bot you open the Roblox instances in a different order, or interact with them, then the order that your bot expects might be different than the real one.
+print("Select the main window")
+main_window = bot.wait_for_focus()
 
-This issue is more apparent if you have more than two Roblox instances open.
+print("Select the alt window")
+alt_window = bot.wait_for_focus()
+```
+
+Where the program will print `"Select the main window"` and wait for you to select any Roblox window. It will then store the handle of the Roblox window you selected in `main_window`. Same thing for the `alt_window`. You can repeat this for as many windows as you have.
+
+```{note}
+You only need to get the handles for the windows you'll need to control.
+```
+
+Then, you use the {py:attr}`pyrobloxbot.options.target_roblox_window<pyrobloxbot.bot.options._BotOptions.target_roblox_window>` option to change which window pyrobloxbot uses.
+
+For example, you could then do:
+```python
+bot.options.target_roblox_window = main_window
+
+bot.jump()
+
+bot.options.target_roblox_window = alt_window
+
+bot.jump()
+```
+
+Which will make the character in the main window jump, then the character in the alt window.
+
+```{video} ../../_static/multi_account/example.mp4
+:autoplay:
+:loop:
+:muted:
+:width: 100%
+
+The above example being ran.
 ```
 
 **✅ Pros**
@@ -42,4 +62,18 @@ This issue is more apparent if you have more than two Roblox instances open.
 
 **❌ Cons**
 
-- More flaky, due to needing to alt tab around.
+- Requires manually registering all the Roblox windows every time the bot is ran.
+
+## Using an android emulator
+
+You can use an android emulator, like BlueStacks, to have multiple Roblox accounts open at once.
+
+**✅ Pros**
+
+- Easier to setup.
+- Requires no changes when using pyrobloxbot.
+
+**❌ Cons**
+
+- Only the account actually open on Roblox can be botted. The ones open on the emulator can be setup manually initially, but then can't be interacted with using pyrobloxbot.
+- Lower limit for how many accounts you can open, emulators use a lot of ram.
