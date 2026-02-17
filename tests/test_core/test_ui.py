@@ -77,18 +77,6 @@ def test_disable_ui_navigation_ui_nav_disabled(mock_toggle_ui_navigation):
     mock_toggle_ui_navigation.assert_not_called()
 
 
-def test_ui_navigate_enables_ui_navigation(mock_toggle_ui_navigation):
-    bot.state._UI_NAV_ENABLED = False
-    bot.ui_navigate("up")
-    mock_toggle_ui_navigation.assert_called_once()
-
-
-def test_ui_navigate_dont_enable_ui_navigation_already_on(mock_toggle_ui_navigation):
-    bot.state._UI_NAV_ENABLED = True
-    bot.ui_navigate("up")
-    mock_toggle_ui_navigation.assert_not_called()
-
-
 @pytest.mark.parametrize("action", ["up", "u"])
 def test_ui_navigate_up_actions(action, mock_press_key):
     bot.ui_navigate(action)
@@ -207,53 +195,9 @@ def test_ui_navigate_right_multiple_times(mock_ui_navigate):
     mock_ui_navigate.assert_has_calls([call("r")] * 10)
 
 
-def test_ui_click_enables_ui_navigation(mock_toggle_ui_navigation, mock_ui_navigate):
-    bot.state._UI_NAV_ENABLED = False
-    bot.ui_click()
-    mock_toggle_ui_navigation.assert_called_once()
-
-
-def test_ui_click_doesnt_enable_ui_navigation_already_on(mock_toggle_ui_navigation):
-    bot.state._UI_NAV_ENABLED = True
-    bot.ui_click()
-    mock_toggle_ui_navigation.assert_not_called()
-
-
 def test_ui_click(mock_ui_navigate):
     bot.ui_click()
     mock_ui_navigate.assert_called_once_with("c")
-
-
-def test_ui_scroll_up_enables_ui_navigation(
-    mock_toggle_ui_navigation, mock_pynput_Controller
-):
-    bot.state._UI_NAV_ENABLED = False
-    bot.ui_scroll_up(1)
-    mock_toggle_ui_navigation.assert_called_once()
-
-
-def test_ui_scroll_up_doesnt_enable_ui_navigation_already_on(
-    mock_toggle_ui_navigation, mock_pynput_Controller
-):
-    bot.state._UI_NAV_ENABLED = True
-    bot.ui_scroll_up(1)
-    mock_toggle_ui_navigation.assert_not_called()
-
-
-def test_ui_scroll_down_enables_ui_navigation(
-    mock_toggle_ui_navigation, mock_pynput_Controller
-):
-    bot.state._UI_NAV_ENABLED = False
-    bot.ui_scroll_down(1)
-    mock_toggle_ui_navigation.assert_called_once()
-
-
-def test_ui_scroll_down_doesnt_enable_ui_navigation_already_on(
-    mock_toggle_ui_navigation, mock_pynput_Controller
-):
-    bot.state._UI_NAV_ENABLED = True
-    bot.ui_scroll_down(1)
-    mock_toggle_ui_navigation.assert_not_called()
 
 
 def test_ui_scroll_up(mock_pynput_Controller, mock_pynput_Key, mock_wait):

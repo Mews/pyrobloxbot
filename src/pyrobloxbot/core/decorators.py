@@ -134,6 +134,9 @@ def requires_ui_navigation_mode(fn):
 
     @wraps(fn)
     def wrapper(*args, **kwargs):
+        if not options.auto_ui_navigation_mode:
+            return fn(*args, **kwargs)
+
         from . import ui
 
         original_is_ui_nav_enabled = state.is_ui_nav_enabled()

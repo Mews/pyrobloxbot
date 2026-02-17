@@ -102,6 +102,20 @@ class _BotOptions:
     Defaults to ``None``.
     """
 
+    auto_ui_navigation_mode: bool = False
+    """This option is used so that actions that need the ui navigation mode to be enabled turn it on automatically, then reset it back to whatever state it was before.
+
+    Warning:
+        This option relies on pyrobloxbot's internal tracking of whether the ui navigation mode is enabled in game.
+
+        This can sometimes get desynced from what's actually real in game,
+        because clicking certain ui elements can turn off the ui navigation mode, and there's no way to track that automatically.
+
+        Be careful of desyncs when using this option.
+
+    Defaults to ``False``.
+    """
+
     def _reset(self):
         self.__init__()
 

@@ -32,6 +32,14 @@ def enable_ui_navigation() -> None:
     """Enables the ui navigation mode.
     Does nothing if it's already enabled.
 
+    Warning:
+        This function relies on pyrobloxbot's internal tracking of whether the ui navigation mode is enabled in game.
+
+        This can sometimes get desynced from what's actually real in game,
+        because clicking certain ui elements can turn off the ui navigation mode, and there's no way to track that automatically.
+
+        Be careful of desyncs when using this function.
+
     Note:
         The "UI Navigation Toggle" setting must be enabled on Roblox.
     """
@@ -45,6 +53,14 @@ def enable_ui_navigation() -> None:
 def disable_ui_navigation() -> None:
     """Disables the ui navigation mode.
     Does nothing if it's already disabled.
+
+    Warning:
+        This function relies on pyrobloxbot's internal tracking of whether the ui navigation mode is enabled in game.
+
+        This can sometimes get desynced from what's actually real in game,
+        because clicking certain ui elements can turn off the ui navigation mode, and there's no way to track that automatically.
+
+        Be careful of desyncs when using this function.
 
     Note:
         The "UI Navigation Toggle" setting must be enabled on Roblox.
