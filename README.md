@@ -67,4 +67,4 @@ bot.walk_forward(5)
 bot.reset_player()
 ```
 
-## [Changelog](CHANGELOG.md)
+## [Changelog](https://github.com/Mews/pyrobloxbot/blob/main/CHANGELOG.md)
