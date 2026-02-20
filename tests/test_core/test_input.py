@@ -22,12 +22,6 @@ def mock_key_up():
         yield m
 
 
-@pytest.fixture
-def mock_mouse():
-    with patch("pyrobloxbot.core.input.mouse") as m:
-        yield m
-
-
 def test_press_key_single(mock_pydirectinput):
     bot.press_key("esc")
 
@@ -91,11 +85,11 @@ def test_key_up_multiple(mock_pydirectinput):
     )
 
 
-def test_mouse_left_click(mock_mouse):
+def test_mouse_left_click(mock_pydirectinput):
     bot.mouse_left_click()
-    mock_mouse.click.assert_called_once_with(mock_mouse.LEFT)
+    mock_pydirectinput.leftClick.assert_called_once()
 
 
-def test_mouse_right_click(mock_mouse):
+def test_mouse_right_click(mock_pydirectinput):
     bot.mouse_right_click()
-    mock_mouse.click.assert_called_once_with(mock_mouse.RIGHT)
+    mock_pydirectinput.rightClick.assert_called_once()
