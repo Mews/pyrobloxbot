@@ -55,6 +55,10 @@ Which will make the character in the main window jump, then the character in the
 The above example being ran.
 ```
 
+```{tip}
+When using the functions to join games while using a multiple Roblox instance tool, it will affect the Roblox instance that was opened **last**.
+```
+
 **✅ Pros**
 
 - Can control all the open Roblox accounts.
