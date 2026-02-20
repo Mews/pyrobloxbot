@@ -10,7 +10,14 @@ class RobloxApiException(Exception):
     pass
 
 
+class ImageTimeoutExpired(Exception):
+    """Raised when the timeout expires when waiting for an image to be visible"""
+
+    pass
+
+
 __all__ = [
     "NoRobloxWindowException",
     "RobloxApiException",
+    "ImageTimeoutExpired",
 ]

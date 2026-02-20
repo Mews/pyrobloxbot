@@ -80,6 +80,7 @@ def test_other_exports_included_by_default(export):
         "mouse_left_click",
         "mouse_right_click",
         "wait_for_focus",
+        "wait_for_image",
     ],
 )
 def test__all__is_complete(export):
