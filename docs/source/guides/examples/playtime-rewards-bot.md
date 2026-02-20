@@ -96,8 +96,7 @@ def join_server_and_wait():
     while is_in_server():
         pass
 
-    while not is_in_server():
-        pass
+    bot.wait_for_image("index_button.png")
 ```
 
 Notice we first wait until we leave the previous server, then we wait to join the new server.

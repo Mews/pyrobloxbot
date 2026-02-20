@@ -2,6 +2,8 @@
 
 Image recognition enables your bot to react to certain events, by checking if a given image is visible on screen.
 
+It is done using two main methods, {py:func}`pyrobloxbot.image_is_visible` and {py:func}`pyrobloxbot.wait_for_image`
+
 For example, if whenever a boss spawns, a notification appears on screen, which looks the same every time, then you might do something like this:
 ```python
 import pyrobloxbot as bot
@@ -10,8 +12,7 @@ def kill_boss():
     bot.reset_player() # Put the player in a predictable position
     ...
 
-while not bot.image_is_visible("boss_notification.png"):
-    bot.wait(1)
+bot.wait_for_image("boss_notification.png")
 
 kill_boss()
 ```
