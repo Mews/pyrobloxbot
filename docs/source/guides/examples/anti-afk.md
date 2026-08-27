@@ -37,7 +37,7 @@ Now, we just need to run this function every 5 minutes.
 
 ```python
 while True:
-    bot.move_randomly(5)
+    move_randomly(5)
     bot.wait(5*60)
 ```
 
