@@ -17,3 +17,5 @@ jobs:
       type_check_command: 'mypy'
       lint_command: 'ruff check .'
       format_command: 'ruff format . --check'
+      ruff_version: '0.15.0'
+      mypy_version: '1.19.1'
